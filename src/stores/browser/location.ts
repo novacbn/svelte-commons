@@ -91,7 +91,7 @@ function QueryParamOptions(options: IQueryParamOptions = {}): IQueryParamOptions
  *
  * ```html
  * <script>
- *     import {hash} from "svelte-commons/stores/browser";
+ *     import {hash} from "svelte-commons/lib/stores/browser";
  *
  *     // Here, we're binding to `location.hash`. The Store's
  *     // value will default to the initial value of `location.hash`

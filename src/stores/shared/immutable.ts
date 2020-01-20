@@ -13,7 +13,7 @@ import {
  * Returns a `Readable` Svelte Store, in which all input / output from the
  * Store are unique deep clones via the given `clone` function
  *
- *  * ```javascript
+ * ```javascript
  * import {immutable_readable} from "svelte-commons/lib/stores/shared";
  *
  * // With the below `clone` code, we are providing a fast

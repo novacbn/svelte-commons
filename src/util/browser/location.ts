@@ -1,3 +1,8 @@
+/**
+ * @packageDocumentation
+ * @hidden
+ */
+
 import {get_current_origin, get_current_url} from "../shared";
 
 /**
