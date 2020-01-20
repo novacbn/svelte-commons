@@ -1,0 +1,43 @@
+{
+    "name": "svelte-commons",
+    "version": "0.0.1",
+    "description": "Provides common utilities for working with Svelte",
+    "main": "lib/index.js",
+    "typings": "types/index.d.ts",
+    "keywords": [
+        "svelte",
+        "typescript"
+    ],
+    "files": [
+        "dist",
+        "lib",
+        "types"
+    ],
+    "author": "novacbn",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/novacbn/svelte-commons"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=6.0.0"
+    },
+    "scripts": {
+        "build:lib": "npm run build:lib:typescript && npm run build:lib:browser",
+        "build:lib:browser": "parcel build ./src/index.ts --global SvelteCommons --out-file ./dist/svelte-commons.umd.js",
+        "build:lib:typescript": "tsc",
+        "build:typedoc": "typedoc --out ./dist/docs --target es6 --theme minimal --mode file src",
+        "prebuild:clean": "rimraf ./dist"
+    },
+    "dependencies": {
+        "svelte": "^3.17.1"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.12.4",
+        "prettier": "^1.14.3",
+        "rimraf": "^3.0.0",
+        "tslib": "^1.10.0",
+        "typedoc": "^0.15.0",
+        "typescript": "^3.7.4"
+    }
+}
