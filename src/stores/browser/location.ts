@@ -55,6 +55,9 @@ export interface IQueryParamOptions {
 
 /**
  * Returns the standardized defaults for options passed into `pathname` Store
+ *
+ * @internal
+ *
  * @param options
  */
 function PathnameOptions(options: IPathnameOptions = {}): IPathnameOptions {
@@ -67,6 +70,9 @@ function PathnameOptions(options: IPathnameOptions = {}): IPathnameOptions {
 
 /**
  * Returns the standardized defaults for options passed into `query_param` Store
+ *
+ * @internal
+ *
  * @param options
  */
 function QueryParamOptions(options: IQueryParamOptions = {}): IQueryParamOptions {
@@ -81,10 +87,26 @@ function QueryParamOptions(options: IQueryParamOptions = {}): IQueryParamOptions
  *
  * NOTE: For convenience, values read / written already have their prefixing "#" removed / added respectively
  *
- * ```javascript
- * TODO:
+ * As a minimal example:
+ *
+ * ```html
+ * <script>
+ *     import {hash} from "svelte-commons/stores/browser";
+ *
+ *     // Here, we're binding to `location.hash`. The Store's
+ *     // value will default to the initial value of `location.hash`
+ *     const store = hash();
+ * </script>
+ *
+ * // Using the `$` prefix, our Component will reactively listen to the Store
+ * {#if $store === "I-am-a-hash-string"}
+ *     Hi :)
+ * {:else}
+ *     Click <a href="#I-am-a-hash-string">here</a> to see a secret!
+ * {/if}
  * ```
  */
+
 export function hash(): Readable<string> | Writable<string> {
     const url = get_url();
 

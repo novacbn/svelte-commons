@@ -2,6 +2,8 @@
  * Represents the href of the current context (with no origin), used in various places
  * in `svelte-commons`, such as `util/browser/location` in-lieu of `window.location.href`.
  * IMPLEMENTATION NOTE: Servers! Set it in your middleware / routes to support proper SSR.
+ *
+ * @internal
  */
 let CONTEXT_CURRENT_HREF = "";
 
@@ -10,6 +12,8 @@ let CONTEXT_CURRENT_HREF = "";
  * such as `util/browser/location` in-lieu of `window.location`.
  * IMPLEMENTATION NOTE: This value is currently only used so `URL` will construct with `URL.hash`
  * values. So you normally shouldn't have to update this!
+ *
+ * @internal
  */
 
 let CONTEXT_CURRENT_ORIGIN = "http://localhost/";

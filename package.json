@@ -27,7 +27,7 @@
         "build:lib": "npm run build:lib:typescript && npm run build:lib:browser",
         "build:lib:browser": "parcel build ./src/index.ts --global SvelteCommons --out-file ./dist/svelte-commons.umd.js",
         "build:lib:typescript": "tsc",
-        "build:typedoc": "typedoc --out ./dist/docs --target es6 --theme minimal --mode file src",
+        "build:typedoc": "typedoc --out ./dist/docs --exclude '**/index.ts' --stripInternal --target es6 --theme minimal --mode modules src",
         "prebuild:clean": "rimraf ./dist"
     },
     "dependencies": {

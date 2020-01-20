@@ -3,6 +3,9 @@ import {get_current_origin, get_current_url} from "../shared";
 /**
  * Updates the current search string
  * NOTE: Set `hash` to `true`, to update `location.hash` as a proper URL
+ *
+ * @internal
+ *
  * @param search
  * @param hash
  * @param push_state
@@ -23,6 +26,9 @@ function update_search(
 /**
  * Returns an object mapping of the current `location.search` value
  * NOTE: Set `hash` to `true` for hash-based routing systems
+ *
+ * @internal
+ *
  * @param hash
  */
 export function get_query_params(hash: boolean = false): {[key: string]: boolean | string} {
@@ -39,6 +45,9 @@ export function get_query_params(hash: boolean = false): {[key: string]: boolean
 /**
  * Returns the current URL based on `Location`
  * NOTE: Set `hash` to `true`, to use `location.hash` as the source instead
+ *
+ * @internal
+ *
  * @param hash
  */
 export function get_url(hash: boolean = false): URL {
@@ -53,6 +62,9 @@ export function get_url(hash: boolean = false): URL {
 /**
  * Sets the current url
  * NOTE: Set `hash` to `true`, to update `location.hash` as a proper URL
+ *
+ * @internal
+ *
  * @param url
  * @param hash
  * @param push_state
@@ -81,6 +93,9 @@ export function update_url(
  * Updates the current `location.search` with the `*.toString()` values from a `params` mapping
  * NOTE: Set `hash` to `true` for hash-based routing systems
  * NOTE: Mapped values set to `undefined` / `""` / `false`, they will be deleted from the query string instead
+ *
+ * @internal
+ *
  * @param params
  * @param hash_mode
  */

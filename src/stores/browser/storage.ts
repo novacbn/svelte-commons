@@ -34,6 +34,9 @@ export interface IStorageOptions {
 
 /**
  * Returns the standardized defaults for options passed into `storage` Store
+ *
+ * @internal
+ *
  * @param options
  */
 function StorageOptions(options: IStorageOptions = {}): IStorageOptions {

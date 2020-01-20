@@ -20,6 +20,9 @@ export type IUpdater<T> = ((value: T) => Partial<T>) | T;
 
 /**
  * Returns the number of non-identity `!==` hits between the key-values of each object
+ *
+ * @internal
+ *
  * @param object_a
  * @param object_b
  */
@@ -36,6 +39,9 @@ export function diff_count(object_a: {[key: string]: any}, object_b: {[key: stri
 
 /**
  * Returns the filtered `array` element, that naively matches the `predicate`
+ *
+ * @internal
+ *
  * @param array
  * @param predicate
  */
@@ -64,6 +70,9 @@ export function filter_collection<T extends object>(
 
 /**
  * Returns the first `array` element that, naively matches the `predicate`
+ *
+ * @internal
+ *
  * @param array
  * @param predicate
  */
@@ -86,6 +95,9 @@ export function find_collection<T extends object>(
 
 /**
  * Returns true if the passed in `value` is `false`, `undefined`, or `null`
+ *
+ * @internal
+ *
  * @param value
  */
 export function is_falsy(value: any): boolean {
@@ -94,6 +106,9 @@ export function is_falsy(value: any): boolean {
 
 /**
  * Returns the a new Array of elements from `array`, with using `mapper` to remap each element
+ *
+ * @internal
+ *
  * @param {*} array
  * @param {*} mapper
  */
@@ -111,6 +126,9 @@ export function map_collection<T extends object>(array: T[], mapper: IMapper<T>)
 
 /**
  * Returns true if the key-values in `predicate` match that of `item`
+ *
+ * @internal
+ *
  * @param item
  * @param predicate
  */
@@ -124,6 +142,9 @@ export function match_predicate<T extends object>(item: T, predicate: Partial<T>
 
 /**
  * Returns the filtered `array` element, that naively DOES NOT match the `predicate`
+ *
+ * @internal
+ *
  * @param array
  * @param predicate
  */
@@ -152,6 +173,9 @@ export function reject_collection<T extends object>(
 
 /**
  * Returns the updated `item`, with using `updater` to remap the any values
+ *
+ * @internal
+ *
  * @param {*} item
  * @param {*} updater
  */

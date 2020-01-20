@@ -2,6 +2,8 @@ import {SvelteComponent} from "svelte/internal";
 
 /**
  * Represents the Regular Expression to match patterns in route patterns, e.g. `/my/route/:parameter/:names`
+ *
+ * @internal
  */
 const ROUTE_PARAMETER_EXPRESSION = /:[^\s/]+/g;
 
@@ -29,6 +31,9 @@ export interface IRouterMap {
 
 /**
  * Returns the normalized version of the `pathname` string (via `URL`)
+ *
+ * @internal
+ *
  * @param pathname
  */
 function normalize_pathname(pathname: string): string {
@@ -38,6 +43,9 @@ function normalize_pathname(pathname: string): string {
 /**
  * Returns the sorting for route patterns, sorting longer (more specific) patterns
  * higher than shorter (less specific) patterns
+ *
+ * @internal
+ *
  * @param a
  * @param b
  */
@@ -48,6 +56,9 @@ function sort_routes(a: [string, SvelteComponent], b: [string, SvelteComponent])
 /**
  * Returns a pathname matching function, that returns the named parameters in
  * the given pathname if the route matched
+ *
+ * @internal
+ *
  * @param route
  */
 export function compile_route(route: string): IRouterMatcher {
