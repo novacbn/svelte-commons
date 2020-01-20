@@ -5,6 +5,7 @@
     "main": "lib/index.js",
     "typings": "types/index.d.ts",
     "keywords": [
+        "library",
         "svelte",
         "typescript"
     ],
