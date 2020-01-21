@@ -98,7 +98,7 @@ function QueryParamOptions(options: IQueryParamOptions = {}): IQueryParamOptions
  *     const store = hash();
  * </script>
  *
- * // Using the `$` prefix, our Component will reactively listen to the Store
+ * // Below will show different messages depending on the current `location.hash`
  * {#if $store === "I-am-a-hash-string"}
  *     Hi :)
  * {:else}
@@ -137,8 +137,41 @@ export function hash(): Readable<string> | Writable<string> {
  *
  * NOTE: Set `options.hash` to `true` for hash-based routing systems
  *
- * ```javascript
- * TODO:
+ * As a minimal example:
+ *
+ * ```html
+ * <script>
+ *     import {pathname} from "svelte-commons/lib/stores/browser";
+ *
+ *     const store = pathname();
+ * </script>
+ *
+ * <!--
+ *     The below `<h1>` element, will reactively display our current `location.pathname`, in the
+ *     case of `http://example.domain/some/path`, it will display `The current pathname is: /some/path`
+ * -->
+ * <h1>The current pathname is: {$store}</h1>
+ * ```
+ *
+ * And then, you can also bind hash-based pathnames:
+ *
+ * ```html
+ * <script>
+ *     import {pathname} from "svelte-commons/lib/stores/browser";
+ *
+ *     // By passing `.hash = true`, we're binding hash-based URLs like `http://example.domain/#some/path`. Instead
+ *     // of server-based pathnames like `http://example.domain/some/path`
+ *     const store = pathname({hash: true});
+ * </script>
+ *
+ * <!--
+ *     Below will show different message depending on the hash-based pathname
+ * -->
+ * {#if $store === "/happy-message"}
+ *     Hi :)
+ * {:else}
+ *     404: Click <a href="#/happy-message">here</a> to see a secret!
+ * {/if}
  * ```
  *
  * @param options
@@ -185,8 +218,81 @@ export function pathname(options: IPathnameOptions = {}): Readable<string> | Wri
  *
  * NOTE: Set `options.hash` to `true` for hash-based routing systems
  *
- * ```javascript
- * TODO:
+ * For this Store example, we have a two view Components:
+ *
+ * **views/SampleView.svelte**
+ *
+ * ```html
+ * <script type="module">
+ *     let view_count = 0;
+ * </script>
+ *
+ * <script>
+ *     // Below, we're incrementing our view count per visit to this route view
+ *     view_count += 1;
+ * </script>
+ *
+ * // Next, we're passing the current amount of views into the echo route
+ * Seems like you just hit the homepage, try visting <a href="#/echo/{view_count}">here</a>!
+ * ```
+ *
+ * **views/ParameterView.svelte**
+ *
+ * ```html
+ * <script>
+ *     // This is the property that will be used by the router as a URL parameter
+ *     export let view_count = 0;
+ * </script>
+ *
+ * Wow, it seems like you visited the homepage, <b>{view_count}</b> times!
+ * ```
+ *
+ * Finally we will have our main application Component that will handle matching them:
+ *
+ * **Application.svelte**
+ *
+ * ```html
+ * <script>
+ *     import {router} from "svelte-commons/lib/stores/browser";
+ *
+ *     import ParameterView from "./views/ParameterView.svelte";
+ *     import SampleView from "./views/SampleView.svelte";
+ *
+ *     // Below, we're creating a new router Store that has two
+ *     // of our views bound to two specific hash URLs
+ *     const store = router({
+ *         "":                  SampleView,
+ *         "echo/:view_count":  ParameterView
+ *     }, {hash: true});
+ *
+ *     // Here, we're just reactively listening to our router Store. It will
+ *     // return, if any matches found, the target view Component and the URL parameters
+ *     let Component, parameters;
+ *     $: {
+ *         const results = $store;
+ *
+ *         if (results) ({Component, parameters} = results);
+ *         else {
+ *             Component = null;
+ *             parameters = null;
+ *         }
+ *     }
+ * </script>
+ *
+ * {#if Component}
+ *     <!--
+ *         If our router Store returned a match, we render the view Component and
+ *         pass in the route parameters
+ *     -->
+ *
+ *     <svelte:component this={Component} {...parameters} />
+ * {:else}
+ *     <!--
+ *         Since no match was returned, we simply display a "404" message
+ *     -->
+ *
+ *     <h1>404 - Unknown route <code>{location.hash.slice(1)}</code></h1>
+ * {/if}
  * ```
  *
  * @param routes
@@ -220,10 +326,69 @@ export function router(
  * NOTE: Set `options.hash` to `true` for hash-based routing systems
  * NOTE: When setting value to `undefined` / `""` / `false` or the `default_value`, it will be deleted from the query string instead
  *
- * ```javascript
- * TODO:
+ * As a minimal example:
+ *
+ * ```html
+ * <script>
+ *     import {query_param} from "svelte-commons/lib/stores/browser";
+ *
+ *     // Here, we're binding the `?my_string_key=XXXX` query parameter. And if the value
+ *     // is equal to our default of `Joseph Joestar`, it wont appear in the URL
+ *     const store = query_param("my_string_key", "Joseph Joestar");
+ * </script>
+ *
+ * <!--
+ *     Below will bind the `<h1>` and `<input />` elements to reactively display our
+ *     parameter. And also will allow the end-user to change the parameter as-well
+ * -->
+ * <h1>Hello, {$store}!</h1>
+ * <input type="text" bind:value={$store} />
  * ```
  *
+ * You can also bind boolean parameters:
+ *
+ * ```html
+ * <script>
+ *     import {query_param} from "svelte-commons/lib/stores/browser";
+ *
+ *     // Here, we're binding the `?my_boolean_key` query parameter. And we're
+ *     // defaulting to `false`.
+ *     const store = query_param("my_boolean_key", false);
+ *
+ *     function on_click(event) {
+ *         // This will just simply toggle the parameter in the URL
+ *         $store = !$store;
+ *     }
+ * </script>
+ *
+ * <!--
+ *     Below will display different messages, depending on if the `?my_boolean_key` parameter is
+ *     in the URL. And also allow the end-user toggle the parameter in the URL by clicking the button
+ * -->
+ * {#if $store}
+ *     <h1>my_boolean_key is currently set to true!</h1>
+ * {:else}
+ *     <h1>my_boolean_key is currently set to false...</h1>
+ * {/if}
+ *
+ * <button on:click={on_click}>Toggle Message</button>
+ * ```
+ *
+ * Finally, you can also bind hash-based parameters:
+ *
+ * ```html
+ * <script>
+ *     import {query_param} from "svelte-commons/lib/stores/browser";
+ *
+ *     // This is exactly the same as the first example. Expect instead of reactively
+ *     // binding to `http://example.domain/some/path?my_string_key=XXX`, we're binding to hash-based
+ *     // URLs. e.g. `http://example.domain/#some/path?my_string_key=XXX`.
+ *     const store = query_param("my_string_key", "Joseph Joestar", {hash: true});
+ * </script>
+ *
+ * <h1>Hello, {$store}!</h1>
+ * <input type="text" bind:value={$store} />
+ * ```
  * @param key
  * @param default_value
  * @param options
