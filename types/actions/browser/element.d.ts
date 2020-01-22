@@ -1,4 +1,4 @@
-import { IAction } from "../action";
+import { IAction } from "../../util/shared/actions";
 /**
  * Represents the attribute storage object
  */

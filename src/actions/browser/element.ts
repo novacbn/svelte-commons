@@ -1,6 +1,6 @@
 import {is_falsy} from "../../util/shared/functional";
 
-import {IAction} from "../action";
+import {IAction} from "../../util/shared/actions";
 
 /**
  * Represents the attribute storage object
