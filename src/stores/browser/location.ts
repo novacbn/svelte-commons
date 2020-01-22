@@ -13,22 +13,23 @@ import {CONTEXT_IS_BROWSER} from "../../util/shared/context";
 import {IRouterMap, IRouterParameters, make_router} from "../../util";
 
 /**
- * Represents the options passable into `pathname` Svelte Store
+ * Represents the options passable into [[pathname]] Svelte Store
  */
 export interface IPathnameOptions {
     /**
-     * Represents if the `pathname` Store
+     * Represents if the [[pathname]] Store should operate in hash mode,
+     * e.g. bind to the pathname after the URL hashtag `https://my.domain/#path/to/route`
      */
     hash?: boolean;
 
     /**
-     * Represents if updates to `pathname` Store push a new History state, rather than replace
+     * Represents if updates to [[pathname]] Store push a new History state, rather than replace
      */
     push_state?: boolean;
 }
 
 /**
- * Represents value provided to subscriptions of the `router` Svelte Store
+ * Represents value provided to subscriptions of the [[router]] Svelte Store
  */
 export interface IRouterValue {
     /**
@@ -43,11 +44,11 @@ export interface IRouterValue {
 }
 
 /**
- * Represents the options passable into `query_param` Svelte Store
+ * Represents the options passable into [[query_param]] Svelte Store
  */
 export interface IQueryParamOptions {
     /**
-     * Represents if `query_param` should operate in hash mode,
+     * Represents if [[query_param]] should operate in hash mode,
      * e.g. bind to query variables after the URL hashtag `https://my.domain/#path/to/route?my_var=XXXX`
      */
     hash?: boolean;
@@ -135,8 +136,6 @@ export function hash(): Readable<string> | Writable<string> {
 /**
  * Returns a `Readable` (Server) / `Writable` (Browser) Svelte Store with a reactive binding to current pathname
  *
- * NOTE: Set `options.hash` to `true` for hash-based routing systems
- *
  * As a minimal example:
  *
  * ```html
@@ -213,10 +212,8 @@ export function pathname(options: IPathnameOptions = {}): Readable<string> | Wri
 }
 
 /**
- * Returns a `Readable` Svelte Store, which returns the assigned Svelte Component to the
- * current pathname.
- *
- * NOTE: Set `options.hash` to `true` for hash-based routing systems
+ * Returns a `Readable` Svelte Store, which returns the assigned Svelte Component and
+ * parameters to the current pathname.
  *
  * For this Store example, we have a two view Components:
  *
@@ -323,7 +320,6 @@ export function router(
 /**
  * Returns a `Readable` (Server) / `Writable` (Browser) Svelte Store with a reactive binding to the given Query Parameter
  *
- * NOTE: Set `options.hash` to `true` for hash-based routing systems
  * NOTE: When setting value to `undefined` / `""` / `false` or the `default_value`, it will be deleted from the query string instead
  *
  * As a minimal example:
