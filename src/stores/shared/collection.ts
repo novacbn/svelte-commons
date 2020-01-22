@@ -1,9 +1,9 @@
 import {Writable, get, writable} from "svelte/store";
 
 import {
-    IMapper,
-    IPredicate,
-    IUpdater,
+    IMapperPartial,
+    IPredicatePartial,
+    IUpdatePartial,
     filter_collection,
     find_collection,
     map_collection,
@@ -11,7 +11,7 @@ import {
     update_object
 } from "../../util/shared/functional";
 
-import {IStartStopNotifier} from "../store";
+import {IStoreStartStopNotifier} from "../../util/shared/stores";
 
 /**
  * Represents a `Writable` Svelte Store for interacting with an `Array` of `Object`s
@@ -106,7 +106,7 @@ export interface ICollectionStore<T> extends Writable<T[]> {
      * const results = store.filter({name: "John Smith"}, true);
      * ```
      */
-    filter(predicate?: IPredicate<T> | null, mutate?: boolean): T[];
+    filter(predicate?: IPredicatePartial<T> | null, mutate?: boolean): T[];
 
     /**
      * Returns the first collection item that matches the `predicate`
@@ -143,7 +143,7 @@ export interface ICollectionStore<T> extends Writable<T[]> {
      * // const results = store.find((value, index) => value.name === "John Smith");
      * ```
      */
-    find(predicate?: IPredicate<T> | null): T | undefined;
+    find(predicate?: IPredicatePartial<T> | null): T | undefined;
 
     /**
      * Returns the current collection of items from the internal Store
@@ -211,7 +211,7 @@ export interface ICollectionStore<T> extends Writable<T[]> {
      * store.map({name: "Agent 006"});
      * ```
      */
-    map(mapper: IMapper<T>, mutate?: boolean): T[];
+    map(mapper: IMapperPartial<T>, mutate?: boolean): T[];
 
     /**
      * Pushes the item into the collection, returning the new index
@@ -291,7 +291,7 @@ export interface ICollectionStore<T> extends Writable<T[]> {
      * const results = store.reject({name: "James Bond"}, true);
      * ```
      */
-    reject(predicate?: IPredicate<T> | null, mutate?: boolean): T[];
+    reject(predicate?: IPredicatePartial<T> | null, mutate?: boolean): T[];
 
     /**
      * Removes the collection item at the given `index` position, and returns a copy of it
@@ -428,7 +428,7 @@ export interface ICollectionStore<T> extends Writable<T[]> {
      * });
      * ```
      */
-    set_item(predicate: IPredicate<T>, updater: IUpdater<T>): T;
+    set_item(predicate: IPredicatePartial<T>, updater: IUpdatePartial<T>): T;
 }
 
 /**
@@ -438,14 +438,14 @@ export interface ICollectionStore<T> extends Writable<T[]> {
  */
 export function collection<T extends object>(
     store: Writable<T[]> | T[] = [],
-    start?: IStartStopNotifier<T[]>
+    start?: IStoreStartStopNotifier<T[]>
 ): ICollectionStore<T> {
     // Need to support end-developers passing in both initial arrays and stores
     if (Array.isArray(store)) store = writable(store, start);
 
     const {update, set, subscribe} = store;
 
-    const filter = (predicate?: IPredicate<T> | null, mutate: boolean = false) => {
+    const filter = (predicate?: IPredicatePartial<T> | null, mutate: boolean = false) => {
         let array = get(store);
         array = filter_collection<T>(array, predicate);
 
@@ -453,7 +453,7 @@ export function collection<T extends object>(
         return array;
     };
 
-    const find = (predicate?: IPredicate<T> | null) => {
+    const find = (predicate?: IPredicatePartial<T> | null) => {
         const array = get(store);
         const item = find_collection(array, predicate);
 
@@ -462,7 +462,7 @@ export function collection<T extends object>(
 
     const _get = () => get(store);
 
-    const map = (mapper: IMapper<T>, mutate: boolean = false) => {
+    const map = (mapper: IMapperPartial<T>, mutate: boolean = false) => {
         let array = get(store);
         array = map_collection<T>(array, mapper);
 
@@ -478,7 +478,7 @@ export function collection<T extends object>(
         return index;
     };
 
-    const reject = (predicate?: IPredicate<T> | null, mutate: boolean = false) => {
+    const reject = (predicate?: IPredicatePartial<T> | null, mutate: boolean = false) => {
         let array = get(store);
         array = reject_collection<T>(array, predicate);
 
@@ -500,7 +500,7 @@ export function collection<T extends object>(
         return {...item};
     };
 
-    const set_item = (predicate: IPredicate<T>, updater: IUpdater<T>) => {
+    const set_item = (predicate: IPredicatePartial<T>, updater: IUpdatePartial<T>) => {
         const array = get(store);
         const item = find_collection(array, predicate);
 

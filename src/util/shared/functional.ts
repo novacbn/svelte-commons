@@ -1,22 +1,17 @@
 /**
- * Represents the lookup map returned by `make_array_lookup` / `make_object_lookup`
- */
-export type ILookupMap = {[key: string]: boolean};
-
-/**
  * Represents the predicate filter, function, or `Array` index used in `filter_collection` / `find_collection` / `reject_collection`
  */
-export type IPredicate<T> = ((value: T, index: number) => boolean) | Partial<T> | number;
+export type IPredicatePartial<T> = ((value: T, index: number) => boolean) | Partial<T> | number;
 
 /**
  * Represents the mapping value or function used in `map_collection`
  */
-export type IMapper<T> = ((value: T, index: number) => Partial<T>) | Partial<T>;
+export type IMapperPartial<T> = ((value: T, index: number) => Partial<T>) | Partial<T>;
 
 /**
  * Represents the updating value or function used in `update_value`
  */
-export type IUpdater<T> = ((value: T) => Partial<T>) | T;
+export type IUpdatePartial<T> = ((value: T) => Partial<T>) | Partial<T>;
 
 /**
  * Returns the number of non-identity `!==` hits between the key-values of each object
@@ -47,7 +42,7 @@ export function diff_count(object_a: {[key: string]: any}, object_b: {[key: stri
  */
 export function filter_collection<T extends object>(
     array: T[],
-    predicate?: IPredicate<T> | null
+    predicate?: IPredicatePartial<T> | null
 ): T[] {
     if (typeof predicate === "function") {
         return array.filter((item, index) => {
@@ -78,7 +73,7 @@ export function filter_collection<T extends object>(
  */
 export function find_collection<T extends object>(
     array: T[],
-    predicate?: IPredicate<T> | null
+    predicate?: IPredicatePartial<T> | null
 ): T | undefined {
     if (typeof predicate === "function") {
         return array.find((item, index) => {
@@ -112,7 +107,7 @@ export function is_falsy(value: any): boolean {
  * @param {*} array
  * @param {*} mapper
  */
-export function map_collection<T extends object>(array: T[], mapper: IMapper<T>): T[] {
+export function map_collection<T extends object>(array: T[], mapper: IMapperPartial<T>): T[] {
     if (typeof mapper === "function") {
         return array.map((item, index) => {
             return mapper(item, index);
@@ -150,7 +145,7 @@ export function match_predicate<T extends object>(item: T, predicate: Partial<T>
  */
 export function reject_collection<T extends object>(
     array: T[],
-    predicate?: IPredicate<T> | null
+    predicate?: IPredicatePartial<T> | null
 ): T[] {
     if (typeof predicate === "function") {
         return array.filter((item, index) => {
@@ -179,7 +174,7 @@ export function reject_collection<T extends object>(
  * @param {*} item
  * @param {*} updater
  */
-export function update_object<T extends object>(item: T, updater: IUpdater<T>): [number, T] {
+export function update_object<T extends object>(item: T, updater: IUpdatePartial<T>): [number, T] {
     let _item: T;
 
     if (typeof updater === "object") {

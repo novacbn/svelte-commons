@@ -1,13 +1,13 @@
 import {Readable, readable, Writable, writable} from "svelte/store";
 
 import {
-    IInvalidator,
-    IStartStopNotifier,
-    ISubscriber,
-    IUpdater,
+    IStoreInvalidator,
+    IStoreStartStopNotifier,
+    IStoreSubscriber,
+    IStoreUpdater,
     is_readable,
     is_writable
-} from "../store";
+} from "../../util/shared/stores";
 
 /**
  * Returns a `Readable` Svelte Store, in which all input / output from the
@@ -63,8 +63,8 @@ import {
  */
 export function immutable_readable<T>(
     value: T | Readable<T>,
-    clone: IUpdater<T>,
-    start: IStartStopNotifier<T>
+    clone: IStoreUpdater<T>,
+    start: IStoreStartStopNotifier<T>
 ): Readable<T> {
     let store: Readable<T>;
 
@@ -73,7 +73,7 @@ export function immutable_readable<T>(
     if (is_readable(value)) {
         store = value as Readable<T>;
     } else {
-        const _start = (set: ISubscriber<T>) => {
+        const _start = (set: IStoreSubscriber<T>) => {
             function _set(value: T) {
                 value = clone(value);
 
@@ -89,7 +89,7 @@ export function immutable_readable<T>(
 
     const {subscribe} = store;
 
-    const _subscribe = (run: ISubscriber<T>, invalidate: IInvalidator<T> | undefined) => {
+    const _subscribe = (run: IStoreSubscriber<T>, invalidate: IStoreInvalidator<T> | undefined) => {
         const _run = (value: T) => {
             value = clone(value);
 
@@ -169,15 +169,15 @@ export function immutable_readable<T>(
  */
 export function immutable_writable<T>(
     value: T | Writable<T>,
-    clone: IUpdater<T>,
-    start?: IStartStopNotifier<T>
+    clone: IStoreUpdater<T>,
+    start?: IStoreStartStopNotifier<T>
 ): Writable<T> {
     let store: Writable<T>;
 
     if (is_writable(value)) {
         store = value as Writable<T>;
     } else {
-        let _start: IStartStopNotifier<T> | undefined;
+        let _start: IStoreStartStopNotifier<T> | undefined;
         if (start) {
             _start = () => {
                 const _set = (value: T) => {
@@ -202,7 +202,7 @@ export function immutable_writable<T>(
         set(value);
     };
 
-    const _subscribe = (run: ISubscriber<T>, invalidate: IInvalidator<T> | undefined) => {
+    const _subscribe = (run: IStoreSubscriber<T>, invalidate: IStoreInvalidator<T> | undefined) => {
         const _run = (value: T) => {
             value = clone(value);
 
@@ -212,7 +212,7 @@ export function immutable_writable<T>(
         return subscribe(_run, invalidate);
     };
 
-    const _update = (updater: IUpdater<T>) => {
+    const _update = (updater: IStoreUpdater<T>) => {
         const _updater = (value: T) => {
             value = clone(value);
 

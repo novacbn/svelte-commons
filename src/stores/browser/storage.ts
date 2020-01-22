@@ -51,8 +51,51 @@ function StorageOptions(options: IStorageOptions = {}): IStorageOptions {
 /**
  * Returns a `Readable` (Server) / `Writable` (Browser) Svelte Store with a reactive binding to a given `Storage` adapter
  *
+ * NOTE: Only **JSON-compatible** values are supported
+ *
+ * As a semi-complete example:
+ *
  * ```javascript
- * TODO:
+ * import {get} from "svelte/store";
+ *
+ * import {storage} from "svelte-commons/lib/stores/browser";
+ *
+ * // Below, creating a factory function wrapper around the `localStorage` Web Storage API
+ * const local_storage = storage(window.localStorage, {
+ *     // Both `event` and `event_source` tells the Store what event string to
+ *     // listen to and what `EventTarget` to listen from for tab-sync
+ *     event: "storage",
+ *     event_source: window,
+ *
+ *     // `.prefix` tells the Store to prefix all storage keys with a specific string (defaults to `svelte-commons.`)
+ *     prefix: "my_key_prefix."
+ * });
+ *
+ * // Now we can use our new `local_storage` factory to make a reactive Store binding
+ * // to a specific `localStorage` key.
+ * const store = local_storage("my_string_key", "I am default");
+ *
+ * // Using `get`, we can see the Store is already at its default
+ * console.log(get(store)); // logs: `I am default`
+ *
+ * // Since there is nothing set yet, the actual localStorage key is empty
+ * console.log(window.localStorage.getItem("my_key_prefix.my_string_key")) // logs: `null`
+ *
+ * // After setting a value, both the Store and `localStorage` have the same value
+ * store.set("But, this is not default");
+ * console.log(
+ *     get(store),
+ *     window.localStorage.getItem("my_key_prefix.my_string_key")
+ * ); // logs: `But, this is not default`, `"But, this is not default"`
+ *
+ * // By setting the Store to the default value OR `undefined`, the
+ * // `localStorage` item is removed
+ * store.set("I am default");
+ *
+ * console.log(
+ *     get(store),
+ *     window.localStorage.getItem("my_key_prefix.my_string_key")
+ * ); // logs: `I am default`, `null`
  * ```
  *
  * @param adapter
@@ -100,8 +143,24 @@ export function storage<T extends IJSONType>(
 /**
  * Returns a `storage` Svelte Store with a reactive binding to `window.localStorage`
  *
+ * NOTE: Only **JSON-compatible** values are supported
+ *
+ * As a minimal example:
+ *
  * ```javascript
- * TODO:
+ * import {local_storage} from "svelte-commons/lib/stores/browser";
+ *
+ * const store = local_storage("my_string_key", "some default string");
+ *
+ * store.subscribe((value) => {
+ *     console.log(value);
+ * }); // Will log any changes to the Store
+ *
+ * store.set("a non-default string"); // logs: `a non-default string`
+ *
+ * console.log(
+ *     window.localStorage.getItem("svelte-commons.my_string_key")
+ * ); // logs: `"a non-default string"`
  * ```
  */
 export const local_storage = storage(localStorage, {
@@ -112,8 +171,24 @@ export const local_storage = storage(localStorage, {
 /**
  * Returns a `storage` Svelte Store with a reactive binding to `window.sessionStorage`
  *
+ * NOTE: Only **JSON-compatible** values are supported
+ *
+ * As a minimal example:
+ *
  * ```javascript
- * TODO:
+ * import {session_storage} from "svelte-commons/lib/stores/browser";
+ *
+ * const store = session_storage("my_string_key", "some default string");
+ *
+ * store.subscribe((value) => {
+ *     console.log(value);
+ * }); // Will log any changes to the Store
+ *
+ * store.set("a non-default string"); // logs: `a non-default string`
+ *
+ * console.log(
+ *     window.sessionStorage.getItem("svelte-commons.my_string_key")
+ * ); // logs: `"a non-default string"`
  * ```
  */
 export const session_storage = storage(sessionStorage, {
