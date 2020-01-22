@@ -2368,32 +2368,32 @@ img {
 		<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 			<a href="_stores_shared_collection_.icollectionstore.html" class="tsd-kind-icon">ICollection<wbr>Store</a>
 			<ul>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="_stores_shared_collection_.icollectionstore.html#filter" class="tsd-kind-icon">filter</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="_stores_shared_collection_.icollectionstore.html#find" class="tsd-kind-icon">find</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="_stores_shared_collection_.icollectionstore.html#get" class="tsd-kind-icon">get</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="_stores_shared_collection_.icollectionstore.html#map" class="tsd-kind-icon">map</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="_stores_shared_collection_.icollectionstore.html#push" class="tsd-kind-icon">push</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="_stores_shared_collection_.icollectionstore.html#reject" class="tsd-kind-icon">reject</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
 					<a href="_stores_shared_collection_.icollectionstore.html#remove" class="tsd-kind-icon">remove</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="_stores_shared_collection_.icollectionstore.html#set_item" class="tsd-kind-icon">set_<wbr>item</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a href="_stores_shared_collection_.icollectionstore.html#set" class="tsd-kind-icon">set</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="_stores_shared_collection_.icollectionstore.html#set_item" class="tsd-kind-icon">set_<wbr>item</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a href="_stores_shared_collection_.icollectionstore.html#subscribe" class="tsd-kind-icon">subscribe</a>
@@ -2417,7 +2417,34 @@ img {
 				</div>
 				<p>NOTE: All operation methods use <code>get</code> from <code>svelte/store</code>, which may incur
 				performance penalty in hot codepaths</p>
-				<pre><code class="language-javascript">TODO:</code></pre>
+				<p>As a minimal example:</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// We can pass nothing, which will just initialize an internal empty `Array`</span>
+<span class="hljs-keyword">const</span> store = collection();
+
+<span class="hljs-comment">// Or, we can also pass in our own `Array` value</span>
+<span class="hljs-keyword">const</span> store = collection([
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"President"</span>, <span class="hljs-string">"Ex-CIA Agent"</span>]
+    },
+
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>, <span class="hljs-string">"Rival of John Smith"</span>]
+    }
+]);</code></pre>
+				<p>Alternatively, you can wrap any Store that implements <code>.subscribe</code>, and optionally <code>.set</code> for mutations</p>
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {local_storage} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/browser"</span>;
+<span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// We're binding `localStore.getItem/setItem("my_array_key", ...)` into a Svelte Store</span>
+<span class="hljs-keyword">const</span> storage = local_storage(<span class="hljs-string">"my_array_key"</span>, []);
+
+<span class="hljs-comment">// And then wrapping it into the `collection` Store to treat it a reactive</span>
+<span class="hljs-comment">// source of an `Array` of `Object`s</span>
+<span class="hljs-keyword">const</span> store = collection(store);</code></pre>
 			</div>
 		</section>
 		<section class="tsd-panel tsd-type-parameters">
@@ -2446,22 +2473,17 @@ img {
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Properties</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#filter" class="tsd-kind-icon">filter</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#find" class="tsd-kind-icon">find</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#get" class="tsd-kind-icon">get</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#map" class="tsd-kind-icon">map</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#push" class="tsd-kind-icon">push</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#reject" class="tsd-kind-icon">reject</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#remove" class="tsd-kind-icon">remove</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#set_item" class="tsd-kind-icon">set_<wbr>item</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section tsd-is-inherited">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#filter" class="tsd-kind-icon">filter</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#find" class="tsd-kind-icon">find</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#get" class="tsd-kind-icon">get</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#map" class="tsd-kind-icon">map</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#push" class="tsd-kind-icon">push</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#reject" class="tsd-kind-icon">reject</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#remove" class="tsd-kind-icon">remove</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_stores_shared_collection_.icollectionstore.html#set" class="tsd-kind-icon">set</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_stores_shared_collection_.icollectionstore.html#set_item" class="tsd-kind-icon">set_<wbr>item</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_stores_shared_collection_.icollectionstore.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_stores_shared_collection_.icollectionstore.html#update" class="tsd-kind-icon">update</a></li>
 						</ul>
@@ -2470,326 +2492,402 @@ img {
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 				<a name="filter" class="tsd-anchor"></a>
 				<h3>filter</h3>
-				<div class="tsd-signature tsd-kind-icon">filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/shared/collection.ts#L36">src/stores/shared/collection.ts:36</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Returns a filtered copy current collection, with every item that matches the <code>predicate</code></p>
-					</div>
-					<p>NOTE: If <code>mutate</code> is <code>true</code>, the Store is automatically set with the new result</p>
-					<pre><code class="language-javascript">TODO:</code></pre>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">?: </span><a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, mutate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">filter<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">?: </span><a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, mutate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/shared/collection.ts#L109">src/stores/shared/collection.ts:109</a></li>
 							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5><span class="tsd-flag ts-flagOptional">Optional</span> predicate: <a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
-										</li>
-										<li>
-											<h5><span class="tsd-flag ts-flagOptional">Optional</span> mutate: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns a filtered copy current collection, with every item that matches the <code>predicate</code></p>
+							</div>
+							<p>As a minimal example:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// Define our initial collection payload</span>
+<span class="hljs-keyword">const</span> initial_data = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"President"</span>, <span class="hljs-string">"Ex-CIA Agent"</span>]
+    },
+
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>, <span class="hljs-string">"Rival of John Smith"</span>]
+    }
+];
+
+<span class="hljs-keyword">const</span> store = collection(initial_data);
+
+<span class="hljs-comment">// We filter for objects that only have `John Smith` as the `.name` key</span>
+<span class="hljs-keyword">const</span> results = store.filter({<span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>});
+
+<span class="hljs-built_in">console</span>.log({results}); <span class="hljs-comment">// logs: `[{name: "John Smith", positions: ["President", "Ex-CIA Agent"]}]`</span>
+
+<span class="hljs-comment">// Then we put our results back into the Store</span>
+store.set(results);
+
+<span class="hljs-comment">// Alternatively, we can also pass in the index of what we want:</span>
+<span class="hljs-comment">// const results = store.filter(0);</span>
+
+<span class="hljs-comment">// Or, a function that filters the items manually:</span>
+<span class="hljs-comment">// const results = store.filter((value, index) =&gt; value.name === "John Smith");</span></code></pre>
+							<p>For simplicity, you can also have <a href="_stores_shared_collection_.icollectionstore.html#filter">ICollectionStore.filter</a> set the Store value for you:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-keyword">const</span> store = collection(...);
+
+<span class="hljs-comment">// When passing `true`, `store.set` is called for us. And the</span>
+<span class="hljs-comment">// results is still returned</span>
+<span class="hljs-keyword">const</span> results = store.filter({<span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>}, <span class="hljs-literal">true</span>);</code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> predicate: <a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> mutate: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 				<a name="find" class="tsd-anchor"></a>
 				<h3>find</h3>
-				<div class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/shared/collection.ts#L45">src/stores/shared/collection.ts:45</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Returns the first collection item that matches the <code>predicate</code></p>
-					</div>
-					<pre><code class="language-javascript">TODO:</code></pre>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">?: </span><a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">?: </span><a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/shared/collection.ts#L146">src/stores/shared/collection.ts:146</a></li>
 							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5><span class="tsd-flag ts-flagOptional">Optional</span> predicate: <a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-										<span class="tsd-signature-symbol"> | </span>
-										<span class="tsd-signature-type">undefined</span>
-									</h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns the first collection item that matches the <code>predicate</code></p>
+							</div>
+							<p>As a minimal example:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// Define our initial collection payload</span>
+<span class="hljs-keyword">const</span> initial_data = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"President"</span>, <span class="hljs-string">"Ex-CIA Agent"</span>]
+    },
+
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>, <span class="hljs-string">"Rival of John Smith"</span>]
+    }
+];
+
+<span class="hljs-keyword">const</span> store = collection(initial_data);
+
+<span class="hljs-comment">// Find only the first object that has `John Smith` as the `.name` key</span>
+<span class="hljs-keyword">const</span> results = store.find({<span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>});
+
+<span class="hljs-built_in">console</span>.log({results}); <span class="hljs-comment">// logs: `{name: "John Smith", positions: ["President", "Ex-CIA Agent"]}`</span>
+
+<span class="hljs-comment">// Alternatively, we can also pass in the index of what we want:</span>
+<span class="hljs-comment">// const results = store.find(0);</span>
+
+<span class="hljs-comment">// Or, a function that filters the items manually:</span>
+<span class="hljs-comment">// const results = store.find((value, index) =&gt; value.name === "John Smith");</span></code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> predicate: <a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">undefined</span>
+						</h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 				<a name="get" class="tsd-anchor"></a>
 				<h3>get</h3>
-				<div class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/shared/collection.ts#L61">src/stores/shared/collection.ts:61</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Returns the current collection of items from the internal Store</p>
-					</div>
-					<p>NOTE: This is just a wrapper around <code>get</code> from <code>svelte/store</code></p>
-					<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/shared/collection.ts#L164">src/stores/shared/collection.ts:164</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns the current collection of items from the internal Store</p>
+							</div>
+							<p>NOTE: This is just a wrapper around <code>get</code> from <code>svelte/store</code></p>
+							<p>As a minimal example:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
 
 <span class="hljs-keyword">const</span> store = collection(...);
 <span class="hljs-keyword">const</span> array = store.get();
 
 <span class="hljs-built_in">console</span>.log(array);</code></pre>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
-							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 				<a name="map" class="tsd-anchor"></a>
 				<h3>map</h3>
-				<div class="tsd-signature tsd-kind-icon">map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/shared/collection.ts#L72">src/stores/shared/collection.ts:72</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Returns the current collection of items, with each item remapped with new values</p>
-					</div>
-					<p>NOTE: If <code>mutate</code> is <code>true</code>, the Store is automatically set with the new result</p>
-					<pre><code class="language-javascript">TODO:</code></pre>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>mapper<span class="tsd-signature-symbol">: </span><a href="../modules/_util_shared_functional_.html#imapper" class="tsd-signature-type">IMapper</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, mutate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">map<span class="tsd-signature-symbol">(</span>mapper<span class="tsd-signature-symbol">: </span><a href="../modules/_util_shared_functional_.html#imapper" class="tsd-signature-type">IMapper</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, mutate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/shared/collection.ts#L214">src/stores/shared/collection.ts:214</a></li>
 							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5>mapper: <a href="../modules/_util_shared_functional_.html#imapper" class="tsd-signature-type">IMapper</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-										</li>
-										<li>
-											<h5><span class="tsd-flag ts-flagOptional">Optional</span> mutate: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns the current collection of items, with each item remapped with new values</p>
+							</div>
+							<p>As a minimal example:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// Define our initial collection payload</span>
+<span class="hljs-keyword">const</span> initial_data = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>]
+    }
+];
+
+<span class="hljs-keyword">const</span> store = collection(initial_data);
+
+<span class="hljs-comment">// Here, we're passing in a `mapper` that returns new objects that</span>
+<span class="hljs-comment">// containing the previous `.positions` values but replace all the</span>
+<span class="hljs-comment">// `.name` values with a specific string</span>
+store.map(<span class="hljs-function">(<span class="hljs-params">value, index</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> new_value = {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"Agent 006"</span>,
+        <span class="hljs-attr">positions</span>: value.positions
+    };
+});</code></pre>
+							<p>You can also partially update every collection item as-well:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-keyword">const</span> initial_data = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>]
+    }
+];
+
+<span class="hljs-keyword">const</span> store = collection(initial_data);
+
+<span class="hljs-comment">// Instead of passing a function to `mapper`, we're passing a partial</span>
+<span class="hljs-comment">// object that will be applied to every collection item instead</span>
+store.map({<span class="hljs-attr">name</span>: <span class="hljs-string">"Agent 006"</span>});</code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>mapper: <a href="../modules/_util_shared_functional_.html#imapper" class="tsd-signature-type">IMapper</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> mutate: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 				<a name="push" class="tsd-anchor"></a>
 				<h3>push</h3>
-				<div class="tsd-signature tsd-kind-icon">push<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/shared/collection.ts#L81">src/stores/shared/collection.ts:81</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Pushes the item into the collection, returning the new index</p>
-					</div>
-					<pre><code class="language-javascript">TODO:</code></pre>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">push<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/shared/collection.ts#L242">src/stores/shared/collection.ts:242</a></li>
 							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5>item: <span class="tsd-signature-type">T</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Pushes the item into the collection, returning the new index</p>
+							</div>
+							<p>As a minimal example:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// If we don't pass a value, it'll just initialize with an empty array</span>
+<span class="hljs-keyword">const</span> store = collection();
+
+<span class="hljs-comment">// `ICollectionStore.push` works similar to `Array.push`, returning the new length</span>
+<span class="hljs-comment">// of the internal array each push</span>
+<span class="hljs-keyword">const</span> index_one = store.push({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>,
+    <span class="hljs-attr">positions</span>: [<span class="hljs-string">"President"</span>, <span class="hljs-string">"Ex-CIA Agent"</span>]
+});
+
+<span class="hljs-keyword">const</span> index_two = store.push({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+    <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>, <span class="hljs-string">"Rival of John Smith"</span>]
+});
+
+<span class="hljs-built_in">console</span>.log(index_one, index_two); <span class="hljs-comment">// logs `0, 1`</span></code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>item: <span class="tsd-signature-type">T</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 				<a name="reject" class="tsd-anchor"></a>
 				<h3>reject</h3>
-				<div class="tsd-signature tsd-kind-icon">reject<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/shared/collection.ts#L92">src/stores/shared/collection.ts:92</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Returns a filtered copy current collection, with every item that DOES NOT match the <code>predicate</code></p>
-					</div>
-					<p>NOTE: If <code>mutate</code> is <code>true</code>, the Store is automatically set with the new result</p>
-					<pre><code class="language-javascript">TODO:</code></pre>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">?: </span><a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, mutate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">reject<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">?: </span><a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, mutate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/shared/collection.ts#L294">src/stores/shared/collection.ts:294</a></li>
 							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5><span class="tsd-flag ts-flagOptional">Optional</span> predicate: <a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
-										</li>
-										<li>
-											<h5><span class="tsd-flag ts-flagOptional">Optional</span> mutate: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns a filtered copy current collection, with every item that DOES NOT match the <code>predicate</code></p>
+							</div>
+							<p>As a minimal example:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// Define our initial collection payload</span>
+<span class="hljs-keyword">const</span> initial_data = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"President"</span>, <span class="hljs-string">"Ex-CIA Agent"</span>]
+    },
+
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>, <span class="hljs-string">"Rival of John Smith"</span>]
+    }
+];
+
+<span class="hljs-keyword">const</span> store = collection(initial_data);
+
+<span class="hljs-comment">// We reject any object that don't have `James Bond` as their `.name` key</span>
+<span class="hljs-keyword">const</span> results = store.reject({<span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>});
+
+<span class="hljs-built_in">console</span>.log({results}); <span class="hljs-comment">// logs: `[{name: "John Smith", positions: ["President", "Ex-CIA Agent"]}]`</span>
+
+<span class="hljs-comment">// Then we put our results back into the Store</span>
+store.set(results);
+
+<span class="hljs-comment">// Alternatively, we can also pass in the index of what we want:</span>
+<span class="hljs-comment">// const results = store.reject(1);</span>
+
+<span class="hljs-comment">// Or, a function that filters the items manually:</span>
+<span class="hljs-comment">// const results = store.reject((value, index) =&gt; value.name === "James Bond");</span></code></pre>
+							<p>For simplicity, you can also have <a href="_stores_shared_collection_.icollectionstore.html#reject">ICollectionStore.reject</a> set the Store value for you:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-keyword">const</span> store = collection(...);
+
+<span class="hljs-comment">// When passing `true`, `store.set` is called for us. And the</span>
+<span class="hljs-comment">// results is still returned</span>
+<span class="hljs-keyword">const</span> results = store.reject({<span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>}, <span class="hljs-literal">true</span>);</code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> predicate: <a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> mutate: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 				<a name="remove" class="tsd-anchor"></a>
 				<h3>remove</h3>
-				<div class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/shared/collection.ts#L103">src/stores/shared/collection.ts:103</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Removes the collection item at the given <code>index</code> position, and returns a copy of it</p>
-					</div>
-					<p>NOTE: This function errors if no item was found matching <code>index</code></p>
-					<pre><code class="language-javascript">TODO:</code></pre>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/shared/collection.ts#L326">src/stores/shared/collection.ts:326</a></li>
 							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5>index: <span class="tsd-signature-type">number</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Removes the collection item at the given <code>index</code> position, and returns a copy of it</p>
+							</div>
+							<p>NOTE: This function throws an exception, if no item was found matching <code>index</code></p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// Define our initial collection payload</span>
+<span class="hljs-keyword">const</span> initial_data = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"President"</span>, <span class="hljs-string">"Ex-CIA Agent"</span>]
+    },
+
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>, <span class="hljs-string">"Rival of John Smith"</span>]
+    }
+];
+
+<span class="hljs-keyword">const</span> store = collection(initial_data);
+
+<span class="hljs-comment">// When removing the second collection item (1-index), we</span>
+<span class="hljs-comment">// get the object back as the return value</span>
+<span class="hljs-keyword">const</span> results = store.remove(<span class="hljs-number">1</span>);
+
+<span class="hljs-built_in">console</span>.log(results); <span class="hljs-comment">// logs: `{name: "James Bond", positions: ["MI6 Agent", "Rival of John Smith"]}`</span></code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>index: <span class="tsd-signature-type">number</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+					</li>
+				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="set_item" class="tsd-anchor"></a>
-				<h3>set_<wbr>item</h3>
-				<div class="tsd-signature tsd-kind-icon">set_<wbr>item<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/shared/collection.ts#L114">src/stores/shared/collection.ts:114</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Updates the item that matches the given <code>predicate</code> with the <code>updater</code></p>
-					</div>
-					<p>NOTE: This function errors if no item was found matching <code>predicate</code></p>
-					<pre><code class="language-javascript">TODO:</code></pre>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, updater<span class="tsd-signature-symbol">: </span><a href="../modules/_util_shared_functional_.html#iupdater" class="tsd-signature-type">IUpdater</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5>predicate: <a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-										</li>
-										<li>
-											<h5>updater: <a href="../modules/_util_shared_functional_.html#iupdater" class="tsd-signature-type">IUpdater</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</section>
-		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
-			<h2>Methods</h2>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 				<a name="set" class="tsd-anchor"></a>
 				<h3>set</h3>
@@ -2819,6 +2917,124 @@ img {
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="set_item" class="tsd-anchor"></a>
+				<h3>set_<wbr>item</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">set_<wbr>item<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, updater<span class="tsd-signature-symbol">: </span><a href="../modules/_util_shared_functional_.html#iupdater" class="tsd-signature-type">IUpdater</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/shared/collection.ts#L431">src/stores/shared/collection.ts:431</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Updates the item that matches the given <code>predicate</code> with the <code>updater</code></p>
+							</div>
+							<p>NOTE: This function errors if no item was found matching <code>predicate</code></p>
+							<p>As a minimal example:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// Define our initial collection payload</span>
+<span class="hljs-keyword">const</span> initial_data = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"President"</span>, <span class="hljs-string">"Ex-CIA Agent"</span>]
+    }
+];
+
+<span class="hljs-keyword">const</span> store = collection(initial_data);
+
+<span class="hljs-comment">// Here, we're caching the very first collection item</span>
+<span class="hljs-keyword">const</span> first_find = store.find(<span class="hljs-number">0</span>);
+
+<span class="hljs-comment">// Next, we're overwriting the item at that index</span>
+store.set_item(<span class="hljs-number">0</span>, {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+    <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>, <span class="hljs-string">"Rival of John Smith"</span>]
+});
+
+<span class="hljs-comment">// Then, caching our new collection item</span>
+<span class="hljs-keyword">const</span> second_find = store.find(<span class="hljs-number">0</span>);
+
+<span class="hljs-comment">// Since we overwrote the first collection item, our two</span>
+<span class="hljs-comment">// results will not equal each other</span>
+<span class="hljs-built_in">console</span>.log(first_find === second_find); <span class="hljs-comment">// logs: `false`</span>
+
+<span class="hljs-comment">// Alternatively, we can pass a filter object to `predicate` instead of an index:</span>
+<span class="hljs-comment">// const first_find = store.set_item({name: "John Smith"}, ...);</span>
+
+<span class="hljs-comment">// Or even pass a filter function too:</span>
+<span class="hljs-comment">// const first_find = store.set_item((value, index) =&gt; value.name === "John Smith", ...);</span></code></pre>
+							<p>Every <code>updater</code> you pass, actually partially updates the existing collection item:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// Define our initial collection payload</span>
+<span class="hljs-keyword">const</span> initial_data = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>]
+    }
+];
+
+<span class="hljs-keyword">const</span> store = collection(initial_data);
+
+<span class="hljs-keyword">const</span> first_find = store.find(<span class="hljs-number">0</span>);
+
+<span class="hljs-comment">// Here we're applying a partial update to just change the `.name` key</span>
+store.set_item(<span class="hljs-number">0</span>, {<span class="hljs-attr">name</span>: <span class="hljs-string">"Agent 006"</span>});
+
+<span class="hljs-keyword">const</span> second_find = store.find(<span class="hljs-number">0</span>);
+
+<span class="hljs-comment">// Since we did a partial update, both cached collection items have similar values</span>
+
+<span class="hljs-built_in">console</span>.log(first_find); <span class="hljs-comment">// logs: `{name: "James Bond", positions: ["MI6 Agent"]}`</span>
+
+<span class="hljs-built_in">console</span>.log(second_find); <span class="hljs-comment">// logs: `{name: "Agent 006", positions: ["MI6 Agent"]}`</span>
+
+<span class="hljs-comment">// And since it was a partial update, the `.positions` key on each</span>
+<span class="hljs-comment">// item is actually the exact same array reference</span>
+<span class="hljs-built_in">console</span>.log(first_find.positions === second_find.positions) <span class="hljs-comment">// logs: `true`</span></code></pre>
+							<p>And finally, we can pass a function to <code>updater</code> instead:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {collection} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// Define our initial collection payload</span>
+<span class="hljs-keyword">const</span> initial_data = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
+        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>]
+    }
+];
+
+<span class="hljs-keyword">const</span> store = collection(initial_data);
+
+<span class="hljs-comment">// Here, we're passing in an `updater` that returns a new object</span>
+<span class="hljs-comment">// containing the previous `.positions` value and a new `.name` value</span>
+store.set_item(<span class="hljs-number">0</span>, (value) =&gt; {
+    <span class="hljs-keyword">const</span> new_value {
+        <span class="hljs-attr">names</span>: <span class="hljs-string">"Agent 006"</span>,
+        <span class="hljs-attr">positions</span>: value.positions
+    };
+
+    <span class="hljs-keyword">return</span> new_value;
+});</code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>predicate: <a href="../modules/_util_shared_functional_.html#ipredicate" class="tsd-signature-type">IPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5>updater: <a href="../modules/_util_shared_functional_.html#iupdater" class="tsd-signature-type">IUpdater</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 					</li>
 				</ul>
 			</section>

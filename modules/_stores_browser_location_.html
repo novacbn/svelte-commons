@@ -2426,7 +2426,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/browser/location.ts#L110">src/stores/browser/location.ts:110</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/browser/location.ts#L111">src/stores/browser/location.ts:111</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2443,7 +2443,7 @@ img {
     <span class="hljs-keyword">const</span> store = hash();
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-// Using the `$` prefix, our Component will reactively listen to the Store
+// Below will show different messages depending on the current `location.hash`
 {#if $store === "I-am-a-hash-string"}
     Hi :)
 {:else}
@@ -2467,15 +2467,42 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/browser/location.ts#L146">src/stores/browser/location.ts:146</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/browser/location.ts#L178">src/stores/browser/location.ts:178</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Returns a <code>Readable</code> (Server) / <code>Writable</code> (Browser) Svelte Store with a reactive binding to current pathname</p>
 							</div>
-							<p>NOTE: Set <code>options.hash</code> to <code>true</code> for hash-based routing systems</p>
-							<pre><code class="language-javascript">TODO:</code></pre>
+							<p>As a minimal example:</p>
+							<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> {pathname} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/browser"</span>;
+
+    <span class="hljs-keyword">const</span> store = pathname();
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!--
+    The below `&lt;h1&gt;` element, will reactively display our current `location.pathname`, in the
+    case of `http://example.domain/some/path`, it will display `The current pathname is: /some/path`
+--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>The current pathname is: {$store}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></code></pre>
+							<p>And then, you can also bind hash-based pathnames:</p>
+							<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> {pathname} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/browser"</span>;
+
+    <span class="hljs-comment">// By passing `.hash = true`, we're binding hash-based URLs like `http://example.domain/#some/path`. Instead</span>
+    <span class="hljs-comment">// of server-based pathnames like `http://example.domain/some/path`</span>
+    <span class="hljs-keyword">const</span> store = pathname({<span class="hljs-attr">hash</span>: <span class="hljs-literal">true</span>});
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!--
+    Below will show different message depending on the hash-based pathname
+--&gt;</span>
+{#if $store === "/happy-message"}
+    Hi :)
+{:else}
+    404: Click <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#/happy-message"</span>&gt;</span>here<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> to see a secret!
+{/if}</code></pre>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
@@ -2502,16 +2529,66 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/browser/location.ts#L231">src/stores/browser/location.ts:231</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/browser/location.ts#L392">src/stores/browser/location.ts:392</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Returns a <code>Readable</code> (Server) / <code>Writable</code> (Browser) Svelte Store with a reactive binding to the given Query Parameter</p>
 							</div>
-							<p>NOTE: Set <code>options.hash</code> to <code>true</code> for hash-based routing systems
-							NOTE: When setting value to <code>undefined</code> / <code>&quot;&quot;</code> / <code>false</code> or the <code>default_value</code>, it will be deleted from the query string instead</p>
-							<pre><code class="language-javascript">TODO:</code></pre>
+							<p>NOTE: When setting value to <code>undefined</code> / <code>&quot;&quot;</code> / <code>false</code> or the <code>default_value</code>, it will be deleted from the query string instead</p>
+							<p>As a minimal example:</p>
+							<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> {query_param} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/browser"</span>;
+
+    <span class="hljs-comment">// Here, we're binding the `?my_string_key=XXXX` query parameter. And if the value</span>
+    <span class="hljs-comment">// is equal to our default of `Joseph Joestar`, it wont appear in the URL</span>
+    <span class="hljs-keyword">const</span> store = query_param(<span class="hljs-string">"my_string_key"</span>, <span class="hljs-string">"Joseph Joestar"</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!--
+    Below will bind the `&lt;h1&gt;` and `&lt;input /&gt;` elements to reactively display our
+    parameter. And also will allow the end-user to change the parameter as-well
+--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, {$store}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">bind:value</span>=<span class="hljs-string">{$store}</span> /&gt;</span></code></pre>
+							<p>You can also bind boolean parameters:</p>
+							<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> {query_param} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/browser"</span>;
+
+    <span class="hljs-comment">// Here, we're binding the `?my_boolean_key` query parameter. And we're</span>
+    <span class="hljs-comment">// defaulting to `false`.</span>
+    <span class="hljs-keyword">const</span> store = query_param(<span class="hljs-string">"my_boolean_key"</span>, <span class="hljs-literal">false</span>);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_click</span>(<span class="hljs-params">event</span>) </span>{
+        <span class="hljs-comment">// This will just simply toggle the parameter in the URL</span>
+        $store = !$store;
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!--
+    Below will display different messages, depending on if the `?my_boolean_key` parameter is
+    in the URL. And also allow the end-user toggle the parameter in the URL by clicking the button
+--&gt;</span>
+{#if $store}
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>my_boolean_key is currently set to true!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+{:else}
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>my_boolean_key is currently set to false...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+{/if}
+
+<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">on:click</span>=<span class="hljs-string">{on_click}</span>&gt;</span>Toggle Message<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></code></pre>
+							<p>Finally, you can also bind hash-based parameters:</p>
+							<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> {query_param} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/browser"</span>;
+
+    <span class="hljs-comment">// This is exactly the same as the first example. Expect instead of reactively</span>
+    <span class="hljs-comment">// binding to `http://example.domain/some/path?my_string_key=XXX`, we're binding to hash-based</span>
+    <span class="hljs-comment">// URLs. e.g. `http://example.domain/#some/path?my_string_key=XXX`.</span>
+    <span class="hljs-keyword">const</span> store = query_param(<span class="hljs-string">"my_string_key"</span>, <span class="hljs-string">"Joseph Joestar"</span>, {<span class="hljs-attr">hash</span>: <span class="hljs-literal">true</span>});
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, {$store}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">bind:value</span>=<span class="hljs-string">{$store}</span> /&gt;</span></code></pre>
 						</div>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
 						<ul class="tsd-type-parameters">
@@ -2550,16 +2627,77 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/1ca4eb2/src/stores/browser/location.ts#L195">src/stores/browser/location.ts:195</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/browser/location.ts#L298">src/stores/browser/location.ts:298</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Returns a <code>Readable</code> Svelte Store, which returns the assigned Svelte Component to the
-								current pathname.</p>
+								<p>Returns a <code>Readable</code> Svelte Store, which returns the assigned Svelte Component and
+								parameters to the current pathname.</p>
 							</div>
-							<p>NOTE: Set <code>options.hash</code> to <code>true</code> for hash-based routing systems</p>
-							<pre><code class="language-javascript">TODO:</code></pre>
+							<p>For this Store example, we have a two view Components:</p>
+							<p><strong>views/SampleView.svelte</strong></p>
+							<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">let</span> view_count = <span class="hljs-number">0</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
+    <span class="hljs-comment">// Below, we're incrementing our view count per visit to this route view</span>
+    view_count += <span class="hljs-number">1</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+// Next, we're passing the current amount of views into the echo route
+Seems like you just hit the homepage, try visting <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#/echo/{view_count}"</span>&gt;</span>here<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>!</code></pre>
+							<p><strong>views/ParameterView.svelte</strong></p>
+							<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-comment">// This is the property that will be used by the router as a URL parameter</span>
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> view_count = <span class="hljs-number">0</span>;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+Wow, it seems like you visited the homepage, <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>{view_count}<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span> times!</code></pre>
+							<p>Finally we will have our main application Component that will handle matching them:</p>
+							<p><strong>Application.svelte</strong></p>
+							<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">import</span> {router} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/browser"</span>;
+
+    <span class="hljs-keyword">import</span> ParameterView <span class="hljs-keyword">from</span> <span class="hljs-string">"./views/ParameterView.svelte"</span>;
+    <span class="hljs-keyword">import</span> SampleView <span class="hljs-keyword">from</span> <span class="hljs-string">"./views/SampleView.svelte"</span>;
+
+    <span class="hljs-comment">// Below, we're creating a new router Store that has two</span>
+    <span class="hljs-comment">// of our views bound to two specific hash URLs</span>
+    <span class="hljs-keyword">const</span> store = router({
+        <span class="hljs-string">""</span>:                  SampleView,
+        <span class="hljs-string">"echo/:view_count"</span>:  ParameterView
+    }, {<span class="hljs-attr">hash</span>: <span class="hljs-literal">true</span>});
+
+    <span class="hljs-comment">// Here, we're just reactively listening to our router Store. It will</span>
+    <span class="hljs-comment">// return, if any matches found, the target view Component and the URL parameters</span>
+    <span class="hljs-keyword">let</span> Component, parameters;
+    $: {
+        <span class="hljs-keyword">const</span> results = $store;
+
+        <span class="hljs-keyword">if</span> (results) ({Component, parameters} = results);
+        <span class="hljs-keyword">else</span> {
+            Component = <span class="hljs-literal">null</span>;
+            parameters = <span class="hljs-literal">null</span>;
+        }
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+{#if Component}
+    <span class="hljs-comment">&lt;!--
+        If our router Store returned a match, we render the view Component and
+        pass in the route parameters
+    --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">svelte:component</span> <span class="hljs-attr">this</span>=<span class="hljs-string">{Component}</span> {<span class="hljs-attr">...parameters</span>} /&gt;</span>
+{:else}
+    <span class="hljs-comment">&lt;!--
+        Since no match was returned, we simply display a "404" message
+    --&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>404 - Unknown route <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>{location.hash.slice(1)}<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+{/if}</code></pre>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
