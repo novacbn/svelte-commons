@@ -22,6 +22,9 @@ export interface IRouterMap {
 /**
  * Returns a pathname matching function, that returns the named parameters in
  * the given pathname if the route matched
+ *
+ * @internal
+ *
  * @param route
  */
 export declare function compile_route(route: string): IRouterMatcher;

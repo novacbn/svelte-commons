@@ -1,10 +1,10 @@
 import { Readable, Writable } from "svelte/store";
-import { IStartStopNotifier, IUpdater } from "../store";
+import { IStoreStartStopNotifier, IStoreUpdater } from "../../util/shared/stores";
 /**
  * Returns a `Readable` Svelte Store, in which all input / output from the
  * Store are unique deep clones via the given `clone` function
  *
- *  * ```javascript
+ * ```javascript
  * import {immutable_readable} from "svelte-commons/lib/stores/shared";
  *
  * // With the below `clone` code, we are providing a fast
@@ -52,7 +52,7 @@ import { IStartStopNotifier, IUpdater } from "../store";
  * @param clone
  * @param start
  */
-export declare function immutable_readable<T>(value: T | Readable<T>, clone: IUpdater<T>, start: IStartStopNotifier<T>): Readable<T>;
+export declare function immutable_readable<T>(value: T | Readable<T>, clone: IStoreUpdater<T>, start: IStoreStartStopNotifier<T>): Readable<T>;
 /**
  * Returns a `Writable` Svelte Store, in which all input / output from the
  * Store are unique deep clones via the given `clone` function
@@ -118,4 +118,4 @@ export declare function immutable_readable<T>(value: T | Readable<T>, clone: IUp
  * @param clone
  * @param start
  */
-export declare function immutable_writable<T>(value: T | Writable<T>, clone: IUpdater<T>, start?: IStartStopNotifier<T>): Writable<T>;
+export declare function immutable_writable<T>(value: T | Writable<T>, clone: IStoreUpdater<T>, start?: IStoreStartStopNotifier<T>): Writable<T>;
