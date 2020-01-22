@@ -2428,7 +2428,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">IJSONType<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="_stores_browser_storage_.html#ijsontype" class="tsd-signature-type">IJSONType</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/browser/storage.ts#L8">src/stores/browser/storage.ts:8</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/072a5e3/src/stores/browser/storage.ts#L8">src/stores/browser/storage.ts:8</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2443,7 +2443,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">IStorage<wbr>Store&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/browser/storage.ts#L13">src/stores/browser/storage.ts:13</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/072a5e3/src/stores/browser/storage.ts#L13">src/stores/browser/storage.ts:13</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2494,14 +2494,28 @@ img {
 				<div class="tsd-signature tsd-kind-icon">local_<wbr>storage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;storage(localStorage, {event: &quot;storage&quot;,event_source: window})</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/browser/storage.ts#L107">src/stores/browser/storage.ts:107</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/072a5e3/src/stores/browser/storage.ts#L166">src/stores/browser/storage.ts:166</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>Returns a <code>storage</code> Svelte Store with a reactive binding to <code>window.localStorage</code></p>
 					</div>
-					<pre><code class="language-javascript">TODO:</code></pre>
+					<p>NOTE: Only <strong>JSON-compatible</strong> values are supported</p>
+					<p>As a minimal example:</p>
+					<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {local_storage} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/browser"</span>;
+
+<span class="hljs-keyword">const</span> store = local_storage(<span class="hljs-string">"my_string_key"</span>, <span class="hljs-string">"some default string"</span>);
+
+store.subscribe(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(value);
+}); <span class="hljs-comment">// Will log any changes to the Store</span>
+
+store.set(<span class="hljs-string">"a non-default string"</span>); <span class="hljs-comment">// logs: `a non-default string`</span>
+
+<span class="hljs-built_in">console</span>.log(
+    <span class="hljs-built_in">window</span>.localStorage.getItem(<span class="hljs-string">"svelte-commons.my_string_key"</span>)
+); <span class="hljs-comment">// logs: `"a non-default string"`</span></code></pre>
 				</div>
 				<div class="tsd-type-declaration">
 					<h4>Type declaration</h4>
@@ -2537,14 +2551,28 @@ img {
 				<div class="tsd-signature tsd-kind-icon">session_<wbr>storage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;storage(sessionStorage, {event: &quot;storage&quot;,event_source: window})</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/browser/storage.ts#L119">src/stores/browser/storage.ts:119</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/072a5e3/src/stores/browser/storage.ts#L194">src/stores/browser/storage.ts:194</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>Returns a <code>storage</code> Svelte Store with a reactive binding to <code>window.sessionStorage</code></p>
 					</div>
-					<pre><code class="language-javascript">TODO:</code></pre>
+					<p>NOTE: Only <strong>JSON-compatible</strong> values are supported</p>
+					<p>As a minimal example:</p>
+					<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {session_storage} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/browser"</span>;
+
+<span class="hljs-keyword">const</span> store = session_storage(<span class="hljs-string">"my_string_key"</span>, <span class="hljs-string">"some default string"</span>);
+
+store.subscribe(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(value);
+}); <span class="hljs-comment">// Will log any changes to the Store</span>
+
+store.set(<span class="hljs-string">"a non-default string"</span>); <span class="hljs-comment">// logs: `a non-default string`</span>
+
+<span class="hljs-built_in">console</span>.log(
+    <span class="hljs-built_in">window</span>.sessionStorage.getItem(<span class="hljs-string">"svelte-commons.my_string_key"</span>)
+); <span class="hljs-comment">// logs: `"a non-default string"`</span></code></pre>
 				</div>
 				<div class="tsd-type-declaration">
 					<h4>Type declaration</h4>
@@ -2587,14 +2615,55 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/4c1da1b/src/stores/browser/storage.ts#L61">src/stores/browser/storage.ts:61</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/072a5e3/src/stores/browser/storage.ts#L104">src/stores/browser/storage.ts:104</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Returns a <code>Readable</code> (Server) / <code>Writable</code> (Browser) Svelte Store with a reactive binding to a given <code>Storage</code> adapter</p>
 							</div>
-							<pre><code class="language-javascript">TODO:</code></pre>
+							<p>NOTE: Only <strong>JSON-compatible</strong> values are supported</p>
+							<p>As a semi-complete example:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {<span class="hljs-keyword">get</span>} from "svelte/store";
+
+import {storage} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/browser"</span>;
+
+<span class="hljs-comment">// Below, creating a factory function wrapper around the `localStorage` Web Storage API</span>
+<span class="hljs-keyword">const</span> local_storage = storage(<span class="hljs-built_in">window</span>.localStorage, {
+    <span class="hljs-comment">// Both `event` and `event_source` tells the Store what event string to</span>
+    <span class="hljs-comment">// listen to and what `EventTarget` to listen from for tab-sync</span>
+    <span class="hljs-attr">event</span>: <span class="hljs-string">"storage"</span>,
+    <span class="hljs-attr">event_source</span>: <span class="hljs-built_in">window</span>,
+
+    <span class="hljs-comment">// `.prefix` tells the Store to prefix all storage keys with a specific string (defaults to `svelte-commons.`)</span>
+    <span class="hljs-attr">prefix</span>: <span class="hljs-string">"my_key_prefix."</span>
+});
+
+<span class="hljs-comment">// Now we can use our new `local_storage` factory to make a reactive Store binding</span>
+<span class="hljs-comment">// to a specific `localStorage` key.</span>
+<span class="hljs-keyword">const</span> store = local_storage(<span class="hljs-string">"my_string_key"</span>, <span class="hljs-string">"I am default"</span>);
+
+<span class="hljs-comment">// Using `get`, we can see the Store is already at its default</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">get</span>(store)); // logs: `I am default`
+
+// Since there is nothing <span class="hljs-keyword">set</span> yet, the actual localStorage key is empty
+console.log(window.localStorage.getItem("my_key_prefix.my_string_key")) // logs: `null`
+
+// After setting a value, both the Store and `localStorage` have the same value
+store.<span class="hljs-keyword">set</span>("But, this is not default");
+console.log(
+    <span class="hljs-keyword">get</span>(store),
+    window.localStorage.getItem("my_key_prefix.my_string_key")
+); // logs: `But, this is not default`, `"But, this is not default"`
+
+// By setting the Store to the default value OR `undefined`, the
+// `localStorage` item is removed
+store.<span class="hljs-keyword">set</span>("I am default");
+
+console.log(
+    <span class="hljs-keyword">get</span>(store),
+    window.localStorage.getItem("my_key_prefix.my_string_key")
+); // logs: `I am default`, `null`</code></pre>
 						</div>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
 						<ul class="tsd-type-parameters">
