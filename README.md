@@ -11,7 +11,7 @@ Provides common utilities for working with Svelte
 Open your terminal and install via `npm`:
 
 ```sh
-npm install git+https://github.com/novacbn/svelte-commons#0.0.1
+npm install git+https://github.com/novacbn/svelte-commons#0.0.2
 ```
 
 ### Documentation
