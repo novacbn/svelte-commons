@@ -20,8 +20,10 @@ export declare function get_current_origin(): string;
  */
 export declare function set_current_href(href: string): void;
 /**
- * Sets the current URL origin of the context, `location.origin` (Browser) / `CONTEXT_CURRENT_ORIGIN` (Server)
- * NOTE: `location.origin` is actually read-only in Browsers
+ * Sets the current URL origin of the context, `CONTEXT_CURRENT_ORIGIN` (Server)
+ *
+ * NOTE: Will throw an exception when ran on Browser
+ *
  * @param origin
  */
 export declare function set_current_origin(origin: string): void;

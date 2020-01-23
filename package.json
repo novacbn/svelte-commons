@@ -1,6 +1,6 @@
 {
     "name": "svelte-commons",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Provides common utilities for working with Svelte",
     "main": "lib/index.js",
     "typings": "types/index.d.ts",
