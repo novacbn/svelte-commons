@@ -14,6 +14,29 @@ export type IMapperPartial<T> = ((value: T, index: number) => Partial<T>) | Part
 export type IUpdatePartial<T> = ((value: T) => Partial<T>) | Partial<T>;
 
 /**
+ * Represents a entry from an object that was processed via `Object.entries`
+ */
+export type IObjectEntry<T> = [string, T];
+
+/**
+ * Represents a sorting comparator for sorting between the keys in a `Object.entries` Array output
+ *
+ * @internal
+ *
+ * @param entry_a
+ * @param entry_b
+ */
+export function comparator_entries([key_a]: IObjectEntry<any>, [key_b]: IObjectEntry<any>): number {
+    key_a = key_a.toLowerCase();
+    key_b = key_b.toLowerCase();
+
+    if (key_a >= key_b) return 1;
+    else if (key_b >= key_a) return -1;
+
+    return 0;
+}
+
+/**
  * Returns the number of non-identity `!==` hits between the key-values of each object
  *
  * @internal
@@ -89,14 +112,14 @@ export function find_collection<T extends object>(
 }
 
 /**
- * Returns true if the passed in `value` is `false`, `undefined`, or `null`
+ * Returns true if the passed in `value` is `undefined`, `null`, `""`, or `false`
  *
  * @internal
  *
  * @param value
  */
 export function is_falsy(value: any): boolean {
-    return typeof value === "undefined" || value === false || value === null;
+    return typeof value === "undefined" || value === false || value === null || value === "";
 }
 
 /**
