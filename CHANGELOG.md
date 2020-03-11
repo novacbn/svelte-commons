@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v0.0.3 - **UNRELEASED**
+## v0.0.3 - 2020/03/10
 
 -   Added [`geraintluff/tv4`](https://github.com/geraintluff/tv4) as a dependency for JSON Schema validation
 -   Added `format_css_declaration`, `format_css_reference`, `format_css_variable` to `util/shared/browser` for handling CSS standardized formatting
