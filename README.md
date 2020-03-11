@@ -2,7 +2,7 @@
 
 ## Description
 
-Provides common utilities for working with Svelte
+Provides a collection of common Svelte Actions, Svelte Stores, and Utility Functions for working with Svelte / Browser
 
 ## Developer
 
