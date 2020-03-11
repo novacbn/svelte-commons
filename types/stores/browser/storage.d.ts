@@ -1,10 +1,5 @@
 import { Readable, Writable } from "svelte/store";
-/**
- * Represents values that `storage` can serialize
- */
-export declare type IJSONType = boolean | number | string | IJSONType[] | {
-    [key: string]: IJSONType;
-};
+import { IJSONType } from "../../util/shared/builtin";
 /**
  * Represents the Svelte Store factory returned by `storage`
  */

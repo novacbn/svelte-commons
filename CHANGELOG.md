@@ -2,6 +2,7 @@
 
 ## v0.0.3 - **UNRELEASED**
 
+-   Added [`geraintluff/tv4`](https://github.com/geraintluff/tv4) as a dependency for JSON Schema validation
 -   Added `format_css_declaration`, `format_css_reference`, `format_css_variable` to `util/shared/browser` for handling CSS standardized formatting
 -   Added `map_classes`, `map_style`, `map_variables` to `util/shared/browser` for handling mapping HTML and CSS properties to objects
 -   Added `format_dash_key` to `util/shared/string` for transforming text into dash key-like strings
@@ -9,10 +10,12 @@
 -   Added `format_tokens` to `util/shared/string` for substituting `%s` tokens in a string, with the vararg spread
     -   e.g. `format_tokens("My name is %s! How are you, %s?", "Jeff", "Karen")` -> `My name is Jeff! How are you, Karen?`
 -   Added `merged` to `stores/shared/merged` for applying partials changes to an object over time
+-   Added `schema` to `stores/shared/schema` for continuous JSON Schema validation for Svelte Store I/O
 -   Intent to deprecate `attribute_passthrough`, `class_passthrough`, and `html5_passthrough` from `actions/browser/element`
     -   Due to SSR not being possible with them, not being considered before
     -   Use prop spreading to replace `attribute_passthrough`
     -   Use `map_classes` from `util/shared/browser` to replace `class_passthrough`
+-   Moved `IJSONType` from `stores/browser/storage` to `util/shared/builtin`
 
 ## v0.0.2 - 2020/01/22
 

@@ -1,11 +1,7 @@
 import {Readable, Writable, readable, writable} from "svelte/store";
 
+import {IJSONType} from "../../util/shared/builtin";
 import {CONTEXT_IS_BROWSER} from "../../util/shared/context";
-
-/**
- * Represents values that `storage` can serialize
- */
-export type IJSONType = boolean | number | string | IJSONType[] | {[key: string]: IJSONType};
 
 /**
  * Represents the Svelte Store factory returned by `storage`
