@@ -9,6 +9,10 @@
 -   Added `format_tokens` to `util/shared/string` for substituting `%s` tokens in a string, with the vararg spread
     -   e.g. `format_tokens("My name is %s! How are you, %s?", "Jeff", "Karen")` -> `My name is Jeff! How are you, Karen?`
 -   Added `merged` to `stores/shared/merged` for applying partials changes to an object over time
+-   Intent to deprecate `attribute_passthrough`, `class_passthrough`, and `html5_passthrough` from `actions/browser/element`
+    -   Due to SSR not being possible with them, not being considered before
+    -   Use prop spreading to replace `attribute_passthrough`
+    -   Use `map_classes` from `util/shared/browser` to replace `class_passthrough`
 
 ## v0.0.2 - 2020/01/22
 

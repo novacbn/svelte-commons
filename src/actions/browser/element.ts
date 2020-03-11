@@ -7,6 +7,9 @@ import {IAction} from "../../util/shared/actions";
  */
 export type IAttributeMap = {[key: string]: any};
 
+let DEPRECATE_ATTRIBUTES = false;
+let DEPRECATE_CLASSES = false;
+
 /**
  * Returns an attribute passthrough Svelte Action
  *
@@ -53,6 +56,13 @@ export type IAttributeMap = {[key: string]: any};
  * @param whitelist
  */
 export function attribute_passthrough(whitelist?: string[]): IAction {
+    if (!DEPRECATE_ATTRIBUTES) {
+        console.warn(
+            "[svelte-commons] DEPRECATE: `attribute_passthrough` is deprecated, use prop spread"
+        );
+        DEPRECATE_ATTRIBUTES = true;
+    }
+
     return (element: HTMLElement, properties: IAttributeMap) => {
         let update: (properties: IAttributeMap) => void;
         if (whitelist) {
@@ -131,6 +141,13 @@ export function attribute_passthrough(whitelist?: string[]): IAction {
  * @param class_list
  */
 export function class_passthrough(class_list: string[]): IAction {
+    if (!DEPRECATE_CLASSES) {
+        console.warn(
+            "[svelte-commons] DEPRECATE: `class_passthrough` is deprecated, use `map_classes` instead"
+        );
+        DEPRECATE_CLASSES = true;
+    }
+
     const lookup = new Set(class_list);
 
     return (element: HTMLElement, properties: IAttributeMap) => {
