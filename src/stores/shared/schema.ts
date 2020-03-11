@@ -1,18 +1,18 @@
-import tv4, {JsonSchema, validate} from "tv4";
+import tv4, {JsonSchema} from "tv4";
 import {Writable, writable} from "svelte/store";
 
 import {IJSONType} from "../../util/shared/builtin";
 import {IStoreStartStopNotifier, is_writable} from "../../util/shared/stores";
 
 /**
- * Returns a `Writable` Svelte Store, that validates values set to the Store, and retrieved via subscriptions against a JSON Schema
+ * Returns a `Writable` Svelte Store, that validates values set to the Store, and retrieved via subscriptions, against a JSON Schema
  * @param store
  * @param schema
  * @param start
  */
 export function schema<T extends IJSONType>(
     store: T | Writable<T>,
-    schema: JsonSchema,
+    json_schema: JsonSchema,
     start?: IStoreStartStopNotifier<T>
 ): Writable<T> {
     if (!is_writable(store)) {
@@ -22,13 +22,12 @@ export function schema<T extends IJSONType>(
     const {set, subscribe, update} = store as Writable<T>;
 
     function _validate(value: T) {
-        if (validate(value, schema)) return true;
+        if (tv4.validate(value, json_schema)) return true;
 
-        const {dataPath, message, schemaPath} = tv4.error;
+        const {title = "UntitledSchema"} = json_schema;
+        const {dataPath, message} = tv4.error;
 
-        throw new TypeError(
-            `bad change '${dataPath}' in Schema Store (property '${schemaPath}' errored with '${message}')`
-        );
+        throw new TypeError(`bad change '${title}${dataPath}' in Schema Store (${message})`);
     }
 
     return {
@@ -38,12 +37,12 @@ export function schema<T extends IJSONType>(
         },
 
         subscribe(run, invalidate) {
-            run = (value) => {
+            const _run = (value: T) => {
                 _validate(value);
                 run(value);
             };
 
-            return subscribe(run, invalidate);
+            return subscribe(_run, invalidate);
         },
 
         update(updater) {
