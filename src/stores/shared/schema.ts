@@ -1,11 +1,11 @@
 import tv4, {JsonSchema} from "tv4";
-import {Writable, writable} from "svelte/store";
+import {Readable, Writable, writable} from "svelte/store";
 
 import {IJSONType} from "../../util/shared/builtin";
 import {IStoreStartStopNotifier, is_writable} from "../../util/shared/stores";
 
 /**
- * Returns a `Writable` Svelte Store, that validates values set to the Store, and retrieved via subscriptions, against a JSON Schema
+ * Returns a `Readable` / `Writable` Svelte Store, that validates values set to the Store, and retrieved via subscriptions, against a JSON Schema
  * @param store
  * @param schema
  * @param start
@@ -14,12 +14,10 @@ export function schema<T extends IJSONType>(
     store: T | Writable<T>,
     json_schema: JsonSchema,
     start?: IStoreStartStopNotifier<T>
-): Writable<T> {
+): Readable<T> | Writable<T> {
     if (!is_writable(store)) {
         store = writable(store, start) as Writable<T>;
     }
-
-    const {set, subscribe, update} = store as Writable<T>;
 
     function _validate(value: T) {
         if (tv4.validate(value, json_schema)) return true;
@@ -27,31 +25,48 @@ export function schema<T extends IJSONType>(
         const {title = "UntitledSchema"} = json_schema;
         const {dataPath, message} = tv4.error;
 
-        throw new TypeError(`bad change '${title}${dataPath}' in Schema Store (${message})`);
+        throw new TypeError(`bad change '${title}${dataPath}' to Schema Store (${message})`);
     }
 
-    return {
-        set(value) {
-            _validate(value);
-            set(value);
-        },
+    if (is_writable(store)) {
+        const {set, subscribe, update} = store as Writable<T>;
 
-        subscribe(run, invalidate) {
-            const _run = (value: T) => {
+        return {
+            set(value) {
                 _validate(value);
-                run(value);
-            };
+                set(value);
+            },
 
-            return subscribe(_run, invalidate);
-        },
+            subscribe(run, invalidate) {
+                const _run = (value: T) => {
+                    _validate(value);
+                    run(value);
+                };
 
-        update(updater) {
-            update((value) => {
-                const new_value = updater(value);
+                return subscribe(_run, invalidate);
+            },
 
-                _validate(new_value);
-                return new_value;
-            });
-        }
-    };
+            update(updater) {
+                update((value) => {
+                    value = updater(value);
+
+                    _validate(value);
+                    return value;
+                });
+            }
+        } as Writable<T>;
+    } else {
+        const {subscribe} = store as Readable<T>;
+
+        return {
+            subscribe(run, invalidate) {
+                const _run = (value: T) => {
+                    _validate(value);
+                    run(value);
+                };
+
+                return subscribe(_run, invalidate);
+            }
+        } as Readable<T>;
+    }
 }

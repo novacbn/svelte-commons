@@ -16,6 +16,8 @@
     -   Use prop spreading to replace `attribute_passthrough`
     -   Use `map_classes` from `util/shared/browser` to replace `class_passthrough`
 -   Moved `IJSONType` from `stores/browser/storage` to `util/shared/builtin`
+-   Updated `storage` to override `Writable.set` / `Writable.update` instead of handling `Writable.subscribe`
+-   Fixed bug in `storage`, where if you set `undefined`, it would not update Store to reflect default value
 
 ## v0.0.2 - 2020/01/22
 

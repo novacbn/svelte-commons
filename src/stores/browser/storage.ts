@@ -111,7 +111,7 @@ export function storage<T extends IJSONType>(
         const stored_value = adapter.getItem(key);
         const parsed_value = stored_value ? JSON.parse(stored_value) : default_value;
 
-        const store = writable<T>(parsed_value, (set) => {
+        const {set, subscribe, update} = writable<T>(parsed_value, (set) => {
             function on_change(event: any) {
                 event: StorageEvent = event.detail ? event.detail : event;
 
@@ -127,12 +127,31 @@ export function storage<T extends IJSONType>(
             }
         });
 
-        store.subscribe((value) => {
-            if (value === default_value || typeof value === "undefined") adapter.removeItem(key);
-            else adapter.setItem(key, JSON.stringify(value));
-        });
+        return {
+            subscribe,
 
-        return store;
+            set(value) {
+                if (typeof value === "undefined") value = default_value;
+
+                if (value === default_value) adapter.removeItem(key);
+                else adapter.setItem(key, JSON.stringify(value));
+
+                set(value);
+            },
+
+            update(updater) {
+                update((value) => {
+                    value = updater(value);
+
+                    if (typeof value === "undefined") value = default_value;
+
+                    if (value === default_value) adapter.removeItem(key);
+                    else adapter.setItem(key, JSON.stringify(value));
+
+                    return value;
+                });
+            }
+        };
     };
 }
 
