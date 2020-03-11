@@ -11,6 +11,19 @@ export declare type IMapperPartial<T> = ((value: T, index: number) => Partial<T>
  */
 export declare type IUpdatePartial<T> = ((value: T) => Partial<T>) | Partial<T>;
 /**
+ * Represents a entry from an object that was processed via `Object.entries`
+ */
+export declare type IObjectEntry<T> = [string, T];
+/**
+ * Represents a sorting comparator for sorting between the keys in a `Object.entries` Array output
+ *
+ * @internal
+ *
+ * @param entry_a
+ * @param entry_b
+ */
+export declare function comparator_entries([key_a]: IObjectEntry<any>, [key_b]: IObjectEntry<any>): number;
+/**
  * Returns the number of non-identity `!==` hits between the key-values of each object
  *
  * @internal
@@ -42,7 +55,7 @@ export declare function filter_collection<T extends object>(array: T[], predicat
  */
 export declare function find_collection<T extends object>(array: T[], predicate?: IPredicatePartial<T> | null): T | undefined;
 /**
- * Returns true if the passed in `value` is `false`, `undefined`, or `null`
+ * Returns true if the passed in `value` is `undefined`, `null`, `""`, or `false`
  *
  * @internal
  *

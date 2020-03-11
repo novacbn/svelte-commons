@@ -8,6 +8,7 @@
     -   e.g. `format_dash_key("This is a KeyYep")` -> `this-is-a-key-yep`
 -   Added `format_tokens` to `util/shared/string` for substituting `%s` tokens in a string, with the vararg spread
     -   e.g. `format_tokens("My name is %s! How are you, %s?", "Jeff", "Karen")` -> `My name is Jeff! How are you, Karen?`
+-   Added `merged` to `stores/shared/merged` for applying partials changes to an object over time
 
 ## v0.0.2 - 2020/01/22
 
