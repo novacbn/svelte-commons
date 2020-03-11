@@ -2397,13 +2397,60 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/715ebdc/src/stores/shared/schema.ts#L13">src/stores/shared/schema.ts:13</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/5a74e99/src/stores/shared/schema.ts#L64">src/stores/shared/schema.ts:64</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Returns a <code>Readable</code> / <code>Writable</code> Svelte Store, that validates values set to the Store, and retrieved via subscriptions, against a JSON Schema</p>
 							</div>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {schema} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+
+<span class="hljs-comment">// Here, we're defining our JSONSchema that will validate our I/O</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Check out for more information: https://json-schema.org/</span>
+<span class="hljs-keyword">const</span> person_schema = {
+    <span class="hljs-attr">$id</span>: <span class="hljs-string">"https://example.com/person.schema.json"</span>,
+    <span class="hljs-attr">$schema</span>: <span class="hljs-string">"http://json-schema.org/draft-07/schema#"</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">"Person"</span>,
+    <span class="hljs-attr">type</span>: <span class="hljs-string">"object"</span>,
+    <span class="hljs-attr">properties</span>: {
+        <span class="hljs-attr">firstName</span>: {
+            <span class="hljs-attr">type</span>: <span class="hljs-string">"string"</span>,
+            <span class="hljs-attr">description</span>: <span class="hljs-string">"The person's first name."</span>
+        },
+
+        <span class="hljs-attr">lastName</span>: {
+            <span class="hljs-attr">type</span>: <span class="hljs-string">"string"</span>,
+            <span class="hljs-attr">description</span>: <span class="hljs-string">"The person's last name."</span>
+        },
+
+        <span class="hljs-attr">age</span>: {
+            <span class="hljs-attr">description</span>: <span class="hljs-string">"Age in years which must be equal to or greater than zero."</span>,
+            <span class="hljs-attr">type</span>: <span class="hljs-string">"integer"</span>,
+            <span class="hljs-attr">minimum</span>: <span class="hljs-number">0</span>
+        }
+    }
+};
+
+<span class="hljs-comment">// We need to seed our with an initial value, so here's a sample person</span>
+<span class="hljs-keyword">const</span> initial_person = {
+    <span class="hljs-attr">firstName</span>: <span class="hljs-string">"John"</span>,
+    <span class="hljs-attr">lastName</span>: <span class="hljs-string">"Smith"</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">32</span>
+};
+
+<span class="hljs-comment">// Now we just pass our initial data and our JSON Schema in</span>
+<span class="hljs-keyword">const</span> store = schema(initial_person, person_schema);
+
+<span class="hljs-comment">// To demonstrate changes, we need to log each change</span>
+store.subscribe(<span class="hljs-built_in">console</span>.log); <span class="hljs-comment">// logs: `{firstName: "John", lastName: "Smith", age: 32}`</span>
+
+<span class="hljs-comment">// Here, we're copying our initial "Person", then updating its age to `21`</span>
+store.set({...initial_person, <span class="hljs-attr">age</span>: <span class="hljs-number">21</span>}); <span class="hljs-comment">// logs: `{firstName: "John", lastName: "Smith", age: 21}`</span>
+
+<span class="hljs-comment">// Same as above, but using a negative `.age` to have an exception thrown</span>
+store.set({...initial_person, <span class="hljs-attr">age</span>: <span class="hljs-number">-60</span>}); <span class="hljs-comment">// throws exception: `Uncaught TypeError: bad change 'Person/age' to Schema Store (Value -60 is less than minimum 0)`</span></code></pre>
 						</div>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
 						<ul class="tsd-type-parameters">
