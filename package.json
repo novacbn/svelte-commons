@@ -1,12 +1,14 @@
 {
     "name": "svelte-commons",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Provides common utilities for working with Svelte",
     "main": "lib/index.js",
     "typings": "types/index.d.ts",
     "keywords": [
         "library",
         "svelte",
+        "svelte-action",
+        "svelte-store",
         "typescript"
     ],
     "files": [

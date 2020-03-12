@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v0.0.4 - **UNRELEASED**
+## v0.0.4 - 2020/03/11
 
 -   Added to `overlay` to `stores/shared/overlay` for similar functionality as `derived`, but providing a second callback to handle `Writable` Svelte Stores
 -   Added `make_memory_storage` to `util/shared/browser`, which makes an in-memory version of [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Storage) for use with `storage`
