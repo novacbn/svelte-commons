@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;stores/shared/schema&quot; | svelte-commons - v0.0.3</title>
+	<title>&quot;stores/shared/schema&quot; | svelte-commons - v0.0.4</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -2335,7 +2335,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="../index.html">svelte-commons - v0.0.3</a></strong>
+					<strong><a href="../index.html">svelte-commons - v0.0.4</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2391,19 +2391,20 @@ img {
 				<a name="schema" class="tsd-anchor"></a>
 				<h3>schema</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">schema&lt;T&gt;<span class="tsd-signature-symbol">(</span>store<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, json_schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JsonSchema</span>, start<span class="tsd-signature-symbol">?: </span><a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">schema&lt;T&gt;<span class="tsd-signature-symbol">(</span>store<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, json_schema<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JsonSchema</span>, start<span class="tsd-signature-symbol">?: </span><a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/5a74e99/src/stores/shared/schema.ts#L64">src/stores/shared/schema.ts:64</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/shared/schema.ts#L68">src/stores/shared/schema.ts:68</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Returns a <code>Readable</code> / <code>Writable</code> Svelte Store, that validates values set to the Store, and retrieved via subscriptions, against a JSON Schema</p>
 							</div>
+							<p><strong>NOTE</strong>: If a non-Store value is passed as <code>store</code>, then it will be wrapped in a <code>Writable</code> Store</p>
 							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {schema} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
 
 <span class="hljs-comment">// Here, we're defining our JSONSchema that will validate our I/O</span>
@@ -2461,7 +2462,7 @@ store.set({...initial_person, <span class="hljs-attr">age</span>: <span class="h
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>store: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5>store: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 							</li>
 							<li>
 								<h5>json_schema: <span class="tsd-signature-type">JsonSchema</span></h5>

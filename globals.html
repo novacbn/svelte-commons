@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>svelte-commons - v0.0.3 | svelte-commons - v0.0.3</title>
+	<title>svelte-commons - v0.0.4 | svelte-commons - v0.0.4</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -2335,7 +2335,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="index.html">svelte-commons - v0.0.3</a></strong>
+					<strong><a href="index.html">svelte-commons - v0.0.4</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2376,7 +2376,7 @@ img {
 			<a href="#description" id="description" style="color: inherit; text-decoration: none;">
 				<h2>Description</h2>
 			</a>
-			<p>Provides common utilities for working with Svelte</p>
+			<p>Provides a collection of common Svelte Actions, Svelte Stores, and Utility Functions for working with Svelte / Browser</p>
 			<a href="#developer" id="developer" style="color: inherit; text-decoration: none;">
 				<h2>Developer</h2>
 			</a>
@@ -2384,11 +2384,57 @@ img {
 				<h3>Installation</h3>
 			</a>
 			<p>Open your terminal and install via <code>npm</code>:</p>
-			<pre><code class="language-sh">npm install git+https://github.com/novacbn/svelte-commons<span class="hljs-comment">#0.0.3</span></code></pre>
+			<pre><code class="language-sh">npm install git+https://github.com/novacbn/svelte-commons<span class="hljs-comment">#0.0.4</span></code></pre>
 			<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 				<h3>Documentation</h3>
 			</a>
 			<p>See TypeDoc documentation at <a href="https://novacbn.github.io/svelte-commons">novacbn.github.io/svelte-commons</a>.</p>
+			<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+				<h3>API</h3>
+			</a>
+			<blockquote>
+				<p><strong>LEGEND</strong>:</p>
+				<ul>
+					<li><code>manual shared</code> means the API requires some manual handling, to work in both states</li>
+					<li><code>pseudo shared</code> means the API works in both states, but with caveats</li>
+				</ul>
+			</blockquote>
+			<ul>
+				<li>Actions<ul>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_actions_browser_element_.html#attribute_passthrough"><code>attribute_passthrough</code></a> — <strong>browser only</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_actions_browser_element_.html#class_passthrough"><code>class_passthrough</code></a> — <strong>browser only</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_actions_browser_element_.html#html5_passthrough"><code>html5_passthrough</code></a> — <strong>browser only</strong></li>
+					</ul>
+				</li>
+				<li>Stores<ul>
+						<li><a href="https://novacbn.github.io/svelte-commons/interfaces/_stores_shared_collection_.icollectionstore.html"><code>collection</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_browser_location_.html#hash"><code>hash</code></a> - <strong>manual shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_shared_immutable_.html#immutable_readable"><code>immutable_readable</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_shared_immutable_.html#immutable_writable"><code>immutable_writable</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_browser_storage_.html#local_storage"><code>local_storage</code></a> — <strong>pseudo shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_shared_merged_.html#merged"><code>merged</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_browser_location_.html#pathname"><code>pathname</code></a> — <strong>manual shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_browser_location_.html#query_param"><code>query_param</code></a> — <strong>manual shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_browser_location_.html#router"><code>router</code></a> — <strong>manual shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_browser_storage_.html#session_storage"><code>session_storage</code></a> — <strong>pseudo shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_shared_schema_.html#schema"><code>schema</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_stores_browser_storage_.html#storage"><code>storage</code></a> — <strong>pseudo shared</strong></li>
+					</ul>
+				</li>
+				<li>Utilities<ul>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#format_css_declaration"><code>format_css_declaration</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#format_css_reference"><code>format_css_reference</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#format_css_variable"><code>format_css_variable</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_util_shared_string_.html#format_dash_key"><code>format_dash_key</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_util_shared_string_.html#format_tokens"><code>format_tokens</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_util_shared_stores_.html#is_readable"><code>is_readable</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_util_shared_stores_.html#is_writable"><code>is_writable</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#map_classes"><code>map_classes</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#map_style"><code>map_style</code></a> — <strong>shared</strong></li>
+						<li><a href="https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#map_variables"><code>map_variables</code></a> — <strong>shared</strong></li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
@@ -2403,6 +2449,7 @@ img {
 							<li class="tsd-kind-external-module"><a href="modules/_stores_shared_collection_.html" class="tsd-kind-icon">&quot;stores/shared/collection&quot;</a></li>
 							<li class="tsd-kind-external-module"><a href="modules/_stores_shared_immutable_.html" class="tsd-kind-icon">&quot;stores/shared/immutable&quot;</a></li>
 							<li class="tsd-kind-external-module"><a href="modules/_stores_shared_merged_.html" class="tsd-kind-icon">&quot;stores/shared/merged&quot;</a></li>
+							<li class="tsd-kind-external-module"><a href="modules/_stores_shared_overlay_.html" class="tsd-kind-icon">&quot;stores/shared/overlay&quot;</a></li>
 							<li class="tsd-kind-external-module"><a href="modules/_stores_shared_schema_.html" class="tsd-kind-icon">&quot;stores/shared/schema&quot;</a></li>
 							<li class="tsd-kind-external-module"><a href="modules/_util_shared_actions_.html" class="tsd-kind-icon">&quot;util/shared/actions&quot;</a></li>
 							<li class="tsd-kind-external-module"><a href="modules/_util_shared_browser_.html" class="tsd-kind-icon">&quot;util/shared/browser&quot;</a></li>

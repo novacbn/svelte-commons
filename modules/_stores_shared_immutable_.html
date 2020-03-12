@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;stores/shared/immutable&quot; | svelte-commons - v0.0.3</title>
+	<title>&quot;stores/shared/immutable&quot; | svelte-commons - v0.0.4</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -2335,7 +2335,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="../index.html">svelte-commons - v0.0.3</a></strong>
+					<strong><a href="../index.html">svelte-commons - v0.0.4</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2365,6 +2365,21 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+			<a href="_stores_shared_immutable_.html#icloner" class="tsd-kind-icon">ICloner</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+			<a href="_stores_shared_immutable_.html#deprecate_readable" class="tsd-kind-icon">DEPRECATE_<wbr>READABLE</a>
+		</li>
+		<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+			<a href="_stores_shared_immutable_.html#deprecate_writable" class="tsd-kind-icon">DEPRECATE_<wbr>WRITABLE</a>
+		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+			<a href="_stores_shared_immutable_.html#clone_value" class="tsd-kind-icon">clone_<wbr>value</a>
+		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+			<a href="_stores_shared_immutable_.html#immutable" class="tsd-kind-icon">immutable</a>
+		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 			<a href="_stores_shared_immutable_.html#immutable_readable" class="tsd-kind-icon">immutable_<wbr>readable</a>
 		</li>
@@ -2380,8 +2395,23 @@ img {
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
+						<h3>Type aliases</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_stores_shared_immutable_.html#icloner" class="tsd-kind-icon">ICloner</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section tsd-is-not-exported">
+						<h3>Variables</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_stores_shared_immutable_.html#deprecate_readable" class="tsd-kind-icon">DEPRECATE_<wbr>READABLE</a></li>
+							<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_stores_shared_immutable_.html#deprecate_writable" class="tsd-kind-icon">DEPRECATE_<wbr>WRITABLE</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
 						<h3>Functions</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_stores_shared_immutable_.html#clone_value" class="tsd-kind-icon">clone_<wbr>value</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_stores_shared_immutable_.html#immutable" class="tsd-kind-icon">immutable</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_stores_shared_immutable_.html#immutable_readable" class="tsd-kind-icon">immutable_<wbr>readable</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_stores_shared_immutable_.html#immutable_writable" class="tsd-kind-icon">immutable_<wbr>writable</a></li>
 						</ul>
@@ -2390,66 +2420,159 @@ img {
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Type aliases</h2>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+				<a name="icloner" class="tsd-anchor"></a>
+				<h3>ICloner</h3>
+				<div class="tsd-signature tsd-kind-icon">ICloner&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/shared/immutable.ts#L10">src/stores/shared/immutable.ts:10</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents the &quot;cloner&quot; function that returns a clone of the input</p>
+					</div>
+				</div>
+				<h4 class="tsd-type-parameters-title">Type parameters</h4>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+					</li>
+				</ul>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-siganture">
+							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5>value: <span class="tsd-signature-type">T</span></h5>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+			<h2>Variables</h2>
+			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+				<a name="deprecate_readable" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagLet">Let</span> DEPRECATE_<wbr>READABLE</h3>
+				<div class="tsd-signature tsd-kind-icon">DEPRECATE_<wbr>READABLE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/shared/immutable.ts#L12">src/stores/shared/immutable.ts:12</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+				<a name="deprecate_writable" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagLet">Let</span> DEPRECATE_<wbr>WRITABLE</h3>
+				<div class="tsd-signature tsd-kind-icon">DEPRECATE_<wbr>WRITABLE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/shared/immutable.ts#L13">src/stores/shared/immutable.ts:13</a></li>
+					</ul>
+				</aside>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Functions</h2>
-			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-				<a name="immutable_readable" class="tsd-anchor"></a>
-				<h3>immutable_<wbr>readable</h3>
-				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">immutable_<wbr>readable&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, clone<span class="tsd-signature-symbol">: </span><a href="_util_shared_stores_.html#istoreupdater" class="tsd-signature-type">IStoreUpdater</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, start<span class="tsd-signature-symbol">: </span><a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+				<a name="clone_value" class="tsd-anchor"></a>
+				<h3>clone_<wbr>value</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+					<li class="tsd-signature tsd-kind-icon">clone_<wbr>value<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/5a74e99/src/stores/shared/immutable.ts#L64">src/stores/shared/immutable.ts:64</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/shared/immutable.ts#L22">src/stores/shared/immutable.ts:22</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Returns a <code>Readable</code> Svelte Store, in which all input / output from the
-								Store are unique deep clones via the given <code>clone</code> function</p>
+								<p>Returns a shallow clone of the <code>value</code> object</p>
 							</div>
-							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {immutable_readable} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
+							<p><strong>NOTE</strong>: Only <code>object</code> or <code>Array</code> types are supported</p>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>value: <span class="tsd-signature-type">any</span></h5>
+								<div class="tsd-comment tsd-typography">
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+				<a name="immutable" class="tsd-anchor"></a>
+				<h3>immutable</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">immutable&lt;T&gt;<span class="tsd-signature-symbol">(</span>store<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, clone<span class="tsd-signature-symbol">?: </span><a href="_stores_shared_immutable_.html#icloner" class="tsd-signature-type">ICloner</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, start<span class="tsd-signature-symbol">?: </span><a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/shared/immutable.ts#L80">src/stores/shared/immutable.ts:80</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns a <code>Readable</code> / <code>Writable</code> Svelte Store, that clones the stored value before every I/O operation, to prevent untracked data mutations</p>
+							</div>
+							<p><strong>NOTE</strong>: If a non-Store value is passed as <code>store</code>, then it will be wrapped in a <code>Writable</code> Store</p>
+							<p><strong>NOTE</strong>: By default, <code>immutable</code> can <strong>ONLY</strong> shallow clone <code>Object</code>s and <code>Array</code>s. If deep or specific cloning is needed, pass a <code>clone</code> function</p>
+							<p>For a simple example, in making a <code>Readable</code> Store immutable:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {readable} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte/store"</span>;
+<span class="hljs-keyword">import</span> {immutable} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
 
-<span class="hljs-comment">// With the below `clone` code, we are providing a fast</span>
-<span class="hljs-comment">// customized deep cloning function for our data structure</span>
-<span class="hljs-comment">//</span>
-<span class="hljs-comment">// Which will be ran by the Store for every commit / retrieval</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clone</span>(<span class="hljs-params">array</span>) </span>{
-    <span class="hljs-keyword">return</span> array.map(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
-        <span class="hljs-keyword">return</span> {
-            <span class="hljs-attr">name</span>: value.name,
-            <span class="hljs-attr">positions</span>: [...value.positions]
-        };
-    });
-}
+<span class="hljs-keyword">const</span> initial_value = {<span class="hljs-attr">key</span>: <span class="hljs-string">"value"</span>};
 
-<span class="hljs-keyword">const</span> initial_data = [
-    {
-        <span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>,
-        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"President"</span>, <span class="hljs-string">"Ex-CIA Agent"</span>]
-    },
+<span class="hljs-keyword">const</span> readable_store = readable(initial_value);
 
-    {
-        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
-        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>, <span class="hljs-string">"Rival of John Smith"</span>]
-    }
-];
-
-<span class="hljs-comment">// Here, we're passing our inital data structure and cloning function.</span>
-<span class="hljs-comment">// Internally, the `initial_data` value will be cloned on Store creation as-well</span>
-
-<span class="hljs-keyword">const</span> store = immutable_readable(initial_data, (<span class="hljs-keyword">set</span>) =&gt; {
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {};
-});
-
-<span class="hljs-keyword">let</span> cache;
+<span class="hljs-keyword">const</span> store = immutable(readable_store);
 
 store.subscribe(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
-    cache = value;
-}); <span class="hljs-comment">// caches cloned value of `initial_data`</span>
+    <span class="hljs-built_in">console</span>.log({initial_value, value});
+    <span class="hljs-built_in">console</span>.log(value === initial_value);
+}); <span class="hljs-comment">// logs: `false`</span></code></pre>
+							<p>Another simple example, but this time making a <code>Writable</code> Store immutable:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {derived, writable} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte/store"</span>;
+<span class="hljs-keyword">import</span> {immutable} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
 
-<span class="hljs-built_in">console</span>.log(initial_data === cache); <span class="hljs-comment">// logs `false`, since `cache` is a unique clone</span></code></pre>
+<span class="hljs-keyword">const</span> initial_value = {<span class="hljs-attr">key</span>: <span class="hljs-string">"value"</span>};
+
+<span class="hljs-keyword">const</span> writable_store = writable(initial_value);
+
+<span class="hljs-keyword">const</span> store = immutable(writable_store);
+
+<span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> A `derived` Store is used here for simpler looking code</span>
+<span class="hljs-keyword">const</span> derived_store = derived([writable_store, store], ([$writable, $store]) =&gt; {
+    <span class="hljs-built_in">console</span>.log({$writable, $store});
+    <span class="hljs-built_in">console</span>.log($writable === $store);
+});
+
+<span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> This subscription is just so the `derived` callback starts running</span>
+derived_store.subscribe(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {}); <span class="hljs-comment">// logs: `false`</span>
+
+store.set({<span class="hljs-attr">key</span>: <span class="hljs-string">"not a value!"</span>}); <span class="hljs-comment">// logs: `false`</span></code></pre>
 						</div>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
 						<ul class="tsd-type-parameters">
@@ -2460,15 +2583,53 @@ store.subscribe(<span class="hljs-function">(<span class="hljs-params">value</sp
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>value: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5>store: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 							</li>
 							<li>
-								<h5>clone: <a href="_util_shared_stores_.html#istoreupdater" class="tsd-signature-type">IStoreUpdater</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clone: <a href="_stores_shared_immutable_.html#icloner" class="tsd-signature-type">ICloner</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;clone_value</span></h5>
 							</li>
 							<li>
-								<h5>start: <a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+						</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+				<a name="immutable_readable" class="tsd-anchor"></a>
+				<h3>immutable_<wbr>readable</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">immutable_<wbr>readable&lt;T&gt;<span class="tsd-signature-symbol">(</span>store<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, clone<span class="tsd-signature-symbol">?: </span><a href="_stores_shared_immutable_.html#icloner" class="tsd-signature-type">ICloner</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, start<span class="tsd-signature-symbol">?: </span><a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/shared/immutable.ts#L95">src/stores/shared/immutable.ts:95</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>T</h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>store: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> clone: <a href="_stores_shared_immutable_.html#icloner" class="tsd-signature-type">ICloner</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Readable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2479,75 +2640,15 @@ store.subscribe(<span class="hljs-function">(<span class="hljs-params">value</sp
 				<a name="immutable_writable" class="tsd-anchor"></a>
 				<h3>immutable_<wbr>writable</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">immutable_<wbr>writable&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, clone<span class="tsd-signature-symbol">: </span><a href="_util_shared_stores_.html#istoreupdater" class="tsd-signature-type">IStoreUpdater</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, start<span class="tsd-signature-symbol">?: </span><a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">immutable_<wbr>writable&lt;T&gt;<span class="tsd-signature-symbol">(</span>store<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, clone<span class="tsd-signature-symbol">?: </span><a href="_stores_shared_immutable_.html#icloner" class="tsd-signature-type">ICloner</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, start<span class="tsd-signature-symbol">?: </span><a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/5a74e99/src/stores/shared/immutable.ts#L170">src/stores/shared/immutable.ts:170</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/shared/immutable.ts#L112">src/stores/shared/immutable.ts:112</a></li>
 							</ul>
 						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Returns a <code>Writable</code> Svelte Store, in which all input / output from the
-								Store are unique deep clones via the given <code>clone</code> function</p>
-							</div>
-							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {immutable_writable} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
-
-<span class="hljs-comment">// With the below `clone` code, we are providing a fast</span>
-<span class="hljs-comment">// customized deep cloning function for our data structure</span>
-<span class="hljs-comment">//</span>
-<span class="hljs-comment">// Which will be ran by the Store for every commit / retrieval</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clone</span>(<span class="hljs-params">array</span>) </span>{
-    <span class="hljs-keyword">return</span> array.map(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
-        <span class="hljs-keyword">return</span> {
-            <span class="hljs-attr">name</span>: value.name,
-            <span class="hljs-attr">positions</span>: [...value.positions]
-        };
-    });
-}
-
-<span class="hljs-keyword">const</span> initial_data = [
-    {
-        <span class="hljs-attr">name</span>: <span class="hljs-string">"John Smith"</span>,
-        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"President"</span>, <span class="hljs-string">"Ex-CIA Agent"</span>]
-    },
-
-    {
-        <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
-        <span class="hljs-attr">positions</span>: [<span class="hljs-string">"MI6 Agent"</span>, <span class="hljs-string">"Rival of John Smith"</span>]
-    }
-];
-
-<span class="hljs-comment">// Here, we're passing our inital data structure and cloning function.</span>
-<span class="hljs-comment">// Internally, the `initial_data` value will be cloned on Store creation as-well</span>
-<span class="hljs-keyword">const</span> store = immutable_writable(initial_data, clone);
-
-<span class="hljs-keyword">let</span> value_one, value_two;
-
-store.subscribe(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
-    value_one = value;
-}); <span class="hljs-comment">// caches cloned value of `initial_data`</span>
-
-store.subscribe(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
-    value_two = value;
-}); <span class="hljs-comment">// caches cloned value of `initial_data`</span>
-
-<span class="hljs-built_in">console</span>.log(value_one === value_two); <span class="hljs-comment">// logs `false`, since `value_one` / `value_two` are both unique clones</span>
-
-<span class="hljs-comment">// Demonstrating below, that even `Writable.set` clones before commit</span>
-<span class="hljs-keyword">const</span> value_three = value_one;
-
-value_three.push({
-    <span class="hljs-attr">name</span>: <span class="hljs-string">"Goldfinger"</span>,
-    <span class="hljs-attr">positions</span>: [<span class="hljs-string">"Ex-Gold Smuggler"</span>]
-});
-
-store.set(value_three);
-
-<span class="hljs-built_in">console</span>.log(value_one === value_three); <span class="hljs-comment">// logs `false`, since `value_one` is now a new unique clone</span></code></pre>
-						</div>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
 						<ul class="tsd-type-parameters">
 							<li>
@@ -2557,15 +2658,13 @@ store.set(value_three);
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>value: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5>store: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 							</li>
 							<li>
-								<h5>clone: <a href="_util_shared_stores_.html#istoreupdater" class="tsd-signature-type">IStoreUpdater</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> clone: <a href="_stores_shared_immutable_.html#icloner" class="tsd-signature-type">ICloner</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 							</li>
 							<li>
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								<div class="tsd-comment tsd-typography">
-								</div>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
