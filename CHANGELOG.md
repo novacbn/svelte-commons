@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v0.0.4 - **UNRELEASED**
+
+-   Added to `overlay` to `stores/shared/overlay` for similar functionality as `derived`, but providing a second callback to handle `Writable` Svelte Stores
+-   Updated `is_readable` / `is_writable` to work as TypeScript Type Guards
+-   Updated `schema` to utilize `derived` and `overlay`
+-   Updated `tsconfig.json` to fix TypeScript Compiler output not working via CommonJS `require`
+
 ## v0.0.3 - 2020/03/10
 
 -   Added [`geraintluff/tv4`](https://github.com/geraintluff/tv4) as a dependency for JSON Schema validation

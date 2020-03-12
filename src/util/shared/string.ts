@@ -33,7 +33,7 @@ export function format_dash_key(text: string): string {
 }
 
 /**
- * Returns the pattern with the token delimiter `%s`, with the spread arguments `tokens`
+ * Returns the pattern with the token delimiter `%s` replaced, with the spread arguments `tokens`
  *
  * ```typescript
  * import {format_tokens} from "svelte-commons/lib/util/shared";

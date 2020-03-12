@@ -1,3 +1,4 @@
+import { Readable, Writable } from "svelte/store";
 /**
  * NOTE:
  *  Since Svelte doesn't export the direct input / output type
@@ -42,7 +43,7 @@ export declare type IStoreUpdater<T> = (value: T) => T;
  * ); // logs: `true`, `true`
  * ```
  */
-export declare function is_readable(value: unknown): boolean;
+export declare function is_readable<T>(value: unknown): value is Readable<T>;
 /**
  * Returns if the `value` matches a `Writable` Svelte Store implementation
  *
@@ -64,4 +65,4 @@ export declare function is_readable(value: unknown): boolean;
  *
  * @param value
  */
-export declare function is_writable(value: unknown): boolean;
+export declare function is_writable<T>(value: unknown): value is Writable<T>;

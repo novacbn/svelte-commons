@@ -55,8 +55,8 @@ import { IStoreStartStopNotifier } from "../../util/shared/stores";
  * store.set({...initial_person, age: -60}); // throws exception: `Uncaught TypeError: bad change 'Person/age' to Schema Store (Value -60 is less than minimum 0)`
  * ```
  *
- * @param store
+ * @param value
  * @param schema
  * @param start
  */
-export declare function schema<T extends IJSONType>(store: T | Writable<T>, json_schema: JsonSchema, start?: IStoreStartStopNotifier<T>): Readable<T> | Writable<T>;
+export declare function schema<T extends IJSONType>(store: T | Readable<T> | Writable<T>, json_schema: JsonSchema, start?: IStoreStartStopNotifier<T>): Readable<T> | Writable<T>;

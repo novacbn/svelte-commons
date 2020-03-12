@@ -1,3 +1,5 @@
+import {Readable, Writable} from "svelte/store";
+
 /**
  * NOTE:
  *  Since Svelte doesn't export the direct input / output type
@@ -48,7 +50,7 @@ export type IStoreUpdater<T> = (value: T) => T;
  * ); // logs: `true`, `true`
  * ```
  */
-export function is_readable(value: unknown): boolean {
+export function is_readable<T>(value: unknown): value is Readable<T> {
     // @ts-ignore
     return typeof value === "object" && typeof value.subscribe === "function";
 }
@@ -74,7 +76,7 @@ export function is_readable(value: unknown): boolean {
  *
  * @param value
  */
-export function is_writable(value: unknown): boolean {
+export function is_writable<T>(value: unknown): value is Writable<T> {
     return (
         // @ts-ignore
         typeof value === "object" &&
