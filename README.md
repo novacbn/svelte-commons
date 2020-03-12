@@ -31,11 +31,11 @@ See TypeDoc documentation at [novacbn.github.io/svelte-commons](https://novacbn.
     -   [`html5_passthrough`](https://novacbn.github.io/svelte-commons/modules/_actions_browser_element_.html#html5_passthrough) — **browser only**
 -   Stores
     -   [`collection`](https://novacbn.github.io/svelte-commons/interfaces/_stores_shared_collection_.icollectionstore.html) — **shared**
-    -   [`hash`](https://novacbn.github.io/svelte-commons/modules/_stores_browser_location_.html#hash) - **manual shared**
-    -   [`immutable_readable`](https://novacbn.github.io/svelte-commons/modules/_stores_shared_immutable_.html#immutable_readable) — **shared**
-    -   [`immutable_writable`](https://novacbn.github.io/svelte-commons/modules/_stores_shared_immutable_.html#immutable_writable) — **shared**
+    -   [`hash`](https://novacbn.github.io/svelte-commons/modules/_stores_browser_location_.html#hash) — **manual shared**
+    -   [`immutable`](https://novacbn.github.io/svelte-commons/modules/_stores_shared_immutable_.html#immutable) — **shared**
     -   [`local_storage`](https://novacbn.github.io/svelte-commons/modules/_stores_browser_storage_.html#local_storage) — **pseudo shared**
     -   [`merged`](https://novacbn.github.io/svelte-commons/modules/_stores_shared_merged_.html#merged) — **shared**
+    -   [`overlay`](https://novacbn.github.io/svelte-commons/modules/_stores_shared_overlay_.html#overlay) — **shared**
     -   [`pathname`](https://novacbn.github.io/svelte-commons/modules/_stores_browser_location_.html#pathname) — **manual shared**
     -   [`query_param`](https://novacbn.github.io/svelte-commons/modules/_stores_browser_location_.html#query_param) — **manual shared**
     -   [`router`](https://novacbn.github.io/svelte-commons/modules/_stores_browser_location_.html#router) — **manual shared**
@@ -50,6 +50,7 @@ See TypeDoc documentation at [novacbn.github.io/svelte-commons](https://novacbn.
     -   [`format_tokens`](https://novacbn.github.io/svelte-commons/modules/_util_shared_string_.html#format_tokens) — **shared**
     -   [`is_readable`](https://novacbn.github.io/svelte-commons/modules/_util_shared_stores_.html#is_readable) — **shared**
     -   [`is_writable`](https://novacbn.github.io/svelte-commons/modules/_util_shared_stores_.html#is_writable) — **shared**
+    -   [`make_memory_storage`](https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#make_memory_storage) — **shared**
     -   [`map_classes`](https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#map_classes) — **shared**
     -   [`map_style`](https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#map_style) — **shared**
     -   [`map_variables`](https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#map_variables) — **shared**
