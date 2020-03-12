@@ -58,5 +58,3 @@ export declare type ICloner<T> = (value: T) => T;
  * @param start
  */
 export declare function immutable<T>(store: T | Readable<T> | Writable<T>, clone?: ICloner<T>, start?: IStoreStartStopNotifier<T>): Readable<T> | Writable<T>;
-export declare function immutable_readable<T>(store: T | Readable<T>, clone?: ICloner<T>, start?: IStoreStartStopNotifier<T>): Readable<T>;
-export declare function immutable_writable<T>(store: T | Writable<T>, clone?: ICloner<T>, start?: IStoreStartStopNotifier<T>): Writable<T>;

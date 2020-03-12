@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## v0.1.0 - **UNRELEASED**
+
+-   **(BREAKING)** Moved `storage` from `stores/browser/storage` to `stores/shared/storage`
+-   Updated `storage` to utilize `overlay`
+-   **(BREAKING)** Updated `storage` to not automagically return `Readable` Stores on Server
+    -   Replacements: Utilize `make_memory_storage` and `storage` to create a graceful degradation Store, or, default to a `readable` if `local_storage` not found, etc...
+    -   Example #1:
+        -   `const graceful_storage = local_storage || session_storage || storage(make_memory_storage());`
+        -   `const color = graceful_storage("preferences.color", "red");`
+    -   Example #2:
+        -   `const color = local_storage ? local_storage("preferences.color", "red") : readable("red");`
+-   **(BREAKING)** Updated `local_storage` / `session_storage` to be `null` if their respective Web Storages are not available
+-   **(BREAKING)** Removed deprecated `attribute_passthrough` / `class_passthrough` / `html5_passthrough` from `actions/browser/element`
+-   **(BREAKING)** Removed deprecated `immutable_readable` / `immutable_writable` from `stores/shared/immutable`
+
 ## v0.0.4 - 2020/03/11
 
 -   Added to `overlay` to `stores/shared/overlay` for similar functionality as `derived`, but providing a second callback to handle `Writable` Svelte Stores

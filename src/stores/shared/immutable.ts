@@ -1,4 +1,4 @@
-import {Readable, Writable, derived, readable, writable} from "svelte/store";
+import {Readable, Writable, derived, writable} from "svelte/store";
 
 import {IStoreStartStopNotifier, is_readable, is_writable} from "../../util/shared/stores";
 
@@ -8,9 +8,6 @@ import {overlay} from "./overlay";
  * Represents the "cloner" function that returns a clone of the input
  */
 export type ICloner<T> = (value: T) => T;
-
-let DEPRECATE_READABLE = false;
-let DEPRECATE_WRITABLE = false;
 
 /**
  * Returns a shallow clone of the `value` object
@@ -88,38 +85,4 @@ export function immutable<T>(
 
     if (is_writable(store)) return overlay(store, clone, clone);
     return derived(store, clone);
-}
-
-// DEPRECATED: The following functions were deprecated, and are now aliases
-
-export function immutable_readable<T>(
-    store: T | Readable<T>,
-    clone?: ICloner<T>,
-    start?: IStoreStartStopNotifier<T>
-): Readable<T> {
-    if (!DEPRECATE_READABLE) {
-        console.warn(
-            "[svelte-commons] DEPRECATE: `immutable_readable` is deprecated, use `immutable` directly"
-        );
-        DEPRECATE_READABLE = true;
-    }
-
-    if (!is_readable(store) && start) store = readable(store, start);
-
-    return immutable(store, clone, start) as Readable<T>;
-}
-
-export function immutable_writable<T>(
-    store: T | Writable<T>,
-    clone?: ICloner<T>,
-    start?: IStoreStartStopNotifier<T>
-): Writable<T> {
-    if (!DEPRECATE_WRITABLE) {
-        console.warn(
-            "[svelte-commons] DEPRECATE: `immutable_writable` is deprecated, use `immutable` directly"
-        );
-        DEPRECATE_WRITABLE = true;
-    }
-
-    return immutable(store, clone, start) as Writable<T>;
 }
