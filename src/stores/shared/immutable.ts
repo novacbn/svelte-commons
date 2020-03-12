@@ -1,230 +1,125 @@
-import {Readable, readable, Writable, writable} from "svelte/store";
+import {Readable, Writable, derived, readable, writable} from "svelte/store";
 
-import {
-    IStoreInvalidator,
-    IStoreStartStopNotifier,
-    IStoreSubscriber,
-    IStoreUpdater,
-    is_readable,
-    is_writable
-} from "../../util/shared/stores";
+import {IStoreStartStopNotifier, is_readable, is_writable} from "../../util/shared/stores";
+
+import {overlay} from "./overlay";
 
 /**
- * Returns a `Readable` Svelte Store, in which all input / output from the
- * Store are unique deep clones via the given `clone` function
+ * Represents the "cloner" function that returns a clone of the input
+ */
+export type ICloner<T> = (value: T) => T;
+
+let DEPRECATE_READABLE = false;
+let DEPRECATE_WRITABLE = false;
+
+/**
+ * Returns a shallow clone of the `value` object
  *
- * ```javascript
- * import {immutable_readable} from "svelte-commons/lib/stores/shared";
- *
- * // With the below `clone` code, we are providing a fast
- * // customized deep cloning function for our data structure
- * //
- * // Which will be ran by the Store for every commit / retrieval
- * function clone(array) {
- *     return array.map((value) => {
- *         return {
- *             name: value.name,
- *             positions: [...value.positions]
- *         };
- *     });
- * }
- *
- * const initial_data = [
- *     {
- *         name: "John Smith",
- *         positions: ["President", "Ex-CIA Agent"]
- *     },
- *
- *     {
- *         name: "James Bond",
- *         positions: ["MI6 Agent", "Rival of John Smith"]
- *     }
- * ];
- *
- * // Here, we're passing our inital data structure and cloning function.
- * // Internally, the `initial_data` value will be cloned on Store creation as-well
- *
- * const store = immutable_readable(initial_data, (set) => {
- *     return () => {};
- * });
- *
- * let cache;
- *
- * store.subscribe((value) => {
- *     cache = value;
- * }); // caches cloned value of `initial_data`
- *
- * console.log(initial_data === cache); // logs `false`, since `cache` is a unique clone
- * ```
+ * **NOTE**: Only `object` or `Array` types are supported
  *
  * @param value
- * @param clone
- * @param start
  */
-export function immutable_readable<T>(
-    value: T | Readable<T>,
-    clone: IStoreUpdater<T>,
-    start: IStoreStartStopNotifier<T>
-): Readable<T> {
-    let store: Readable<T>;
-
-    // We need to support both creation of a `Readable` Store,
-    // and wrapping of an existing `Readable` Store
-    if (is_readable(value)) {
-        store = value as Readable<T>;
-    } else {
-        const _start = (set: IStoreSubscriber<T>) => {
-            function _set(value: T) {
-                value = clone(value);
-
-                set(value);
-            }
-
-            return start(_set);
-        };
-
-        value = clone(value as T);
-        store = readable(value, _start);
-    }
-
-    const {subscribe} = store;
-
-    const _subscribe = (run: IStoreSubscriber<T>, invalidate: IStoreInvalidator<T> | undefined) => {
-        const _run = (value: T) => {
-            value = clone(value);
-
-            run(value);
-        };
-
-        return subscribe(_run, invalidate);
-    };
-
-    return {subscribe: _subscribe};
+function clone_value(value: any): any {
+    if (Array.isArray(value)) return [...value];
+    return {...value};
 }
 
 /**
- * Returns a `Writable` Svelte Store, in which all input / output from the
- * Store are unique deep clones via the given `clone` function
+ * Returns a `Readable` / `Writable` Svelte Store, that clones the stored value before every I/O operation, to prevent untracked data mutations
+ *
+ * **NOTE**: If a non-Store value is passed as `store`, then it will be wrapped in a `Writable` Store
+ *
+ * **NOTE**: By default, `immutable` can **ONLY** shallow clone `Object`s and `Array`s. If deep or specific cloning is needed, pass a `clone` function
+ *
+ * For a simple example, in making a `Readable` Store immutable:
  *
  * ```javascript
- * import {immutable_writable} from "svelte-commons/lib/stores/shared";
+ * import {readable} from "svelte/store";
+ * import {immutable} from "svelte-commons/lib/stores/shared";
  *
- * // With the below `clone` code, we are providing a fast
- * // customized deep cloning function for our data structure
- * //
- * // Which will be ran by the Store for every commit / retrieval
- * function clone(array) {
- *     return array.map((value) => {
- *         return {
- *             name: value.name,
- *             positions: [...value.positions]
- *         };
- *     });
- * }
+ * const initial_value = {key: "value"};
  *
- * const initial_data = [
- *     {
- *         name: "John Smith",
- *         positions: ["President", "Ex-CIA Agent"]
- *     },
+ * const readable_store = readable(initial_value);
  *
- *     {
- *         name: "James Bond",
- *         positions: ["MI6 Agent", "Rival of John Smith"]
- *     }
- * ];
- *
- * // Here, we're passing our inital data structure and cloning function.
- * // Internally, the `initial_data` value will be cloned on Store creation as-well
- * const store = immutable_writable(initial_data, clone);
- *
- * let value_one, value_two;
+ * const store = immutable(readable_store);
  *
  * store.subscribe((value) => {
- *     value_one = value;
- * }); // caches cloned value of `initial_data`
- *
- * store.subscribe((value) => {
- *     value_two = value;
- * }); // caches cloned value of `initial_data`
- *
- * console.log(value_one === value_two); // logs `false`, since `value_one` / `value_two` are both unique clones
- *
- * // Demonstrating below, that even `Writable.set` clones before commit
- * const value_three = value_one;
- *
- * value_three.push({
- *     name: "Goldfinger",
- *     positions: ["Ex-Gold Smuggler"]
- * });
- *
- * store.set(value_three);
- *
- * console.log(value_one === value_three); // logs `false`, since `value_one` is now a new unique clone
+ *     console.log({initial_value, value});
+ *     console.log(value === initial_value);
+ * }); // logs: `false`
  * ```
  *
- * @param value
+ * Another simple example, but this time making a `Writable` Store immutable:
+ *
+ * ```javascript
+ * import {derived, writable} from "svelte/store";
+ * import {immutable} from "svelte-commons/lib/stores/shared";
+ *
+ * const initial_value = {key: "value"};
+ *
+ * const writable_store = writable(initial_value);
+ *
+ * const store = immutable(writable_store);
+ *
+ * // NOTE: A `derived` Store is used here for simpler looking code
+ * const derived_store = derived([writable_store, store], ([$writable, $store]) => {
+ *     console.log({$writable, $store});
+ *     console.log($writable === $store);
+ * });
+ *
+ * // NOTE: This subscription is just so the `derived` callback starts running
+ * derived_store.subscribe(() => {}); // logs: `false`
+ *
+ * store.set({key: "not a value!"}); // logs: `false`
+ * ```
+ *
+ * @param store
  * @param clone
  * @param start
  */
-export function immutable_writable<T>(
-    value: T | Writable<T>,
-    clone: IStoreUpdater<T>,
+export function immutable<T>(
+    store: T | Readable<T> | Writable<T>,
+    clone: ICloner<T> = clone_value,
     start?: IStoreStartStopNotifier<T>
-): Writable<T> {
-    let store: Writable<T>;
+): Readable<T> | Writable<T> {
+    // Need to support raw non-Store values being passed, so
+    // we wrap them in a `Writable` Store
+    if (!is_readable(store)) store = writable(store, start);
 
-    if (is_writable(value)) {
-        store = value as Writable<T>;
-    } else {
-        let _start: IStoreStartStopNotifier<T> | undefined;
-        if (start) {
-            _start = () => {
-                const _set = (value: T) => {
-                    value = clone(value);
+    if (is_writable(store)) return overlay(store, clone, clone);
+    else return derived(store, clone);
+}
 
-                    set(value);
-                };
+// DEPRECATED: The following functions were deprecated, and are now aliases
 
-                return start(_set);
-            };
-        }
-
-        value = clone(value as T);
-        store = writable(value, _start);
+export function immutable_readable<T>(
+    store: T | Readable<T>,
+    clone?: ICloner<T>,
+    start?: IStoreStartStopNotifier<T>
+): Readable<T> {
+    if (!DEPRECATE_READABLE) {
+        console.warn(
+            "[svelte-commons] DEPRECATE: `immutable_readable` is deprecated, use `immutable` directly"
+        );
+        DEPRECATE_READABLE = true;
     }
 
-    const {set, subscribe, update} = store;
+    if (!is_readable(store) && start) store = readable(store, start);
 
-    const _set = (value: T) => {
-        value = clone(value);
+    return immutable(store, clone, start) as Readable<T>;
+}
 
-        set(value);
-    };
+export function immutable_writable<T>(
+    store: T | Writable<T>,
+    clone?: ICloner<T>,
+    start?: IStoreStartStopNotifier<T>
+): Writable<T> {
+    if (!DEPRECATE_WRITABLE) {
+        console.warn(
+            "[svelte-commons] DEPRECATE: `immutable_writable` is deprecated, use `immutable` directly"
+        );
+        DEPRECATE_WRITABLE = true;
+    }
 
-    const _subscribe = (run: IStoreSubscriber<T>, invalidate: IStoreInvalidator<T> | undefined) => {
-        const _run = (value: T) => {
-            value = clone(value);
-
-            run(value);
-        };
-
-        return subscribe(_run, invalidate);
-    };
-
-    const _update = (updater: IStoreUpdater<T>) => {
-        const _updater = (value: T) => {
-            value = clone(value);
-
-            return clone(updater(value));
-        };
-
-        return update(_updater);
-    };
-
-    return {
-        set: _set,
-        subscribe: _subscribe,
-        update: _update
-    };
+    return immutable(store, clone, start) as Writable<T>;
 }

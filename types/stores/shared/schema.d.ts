@@ -5,6 +5,8 @@ import { IStoreStartStopNotifier } from "../../util/shared/stores";
 /**
  * Returns a `Readable` / `Writable` Svelte Store, that validates values set to the Store, and retrieved via subscriptions, against a JSON Schema
  *
+ * **NOTE**: If a non-Store value is passed as `store`, then it will be wrapped in a `Writable` Store
+ *
  * ```javascript
  * import {schema} from "svelte-commons/lib/stores/shared";
  *
@@ -55,7 +57,7 @@ import { IStoreStartStopNotifier } from "../../util/shared/stores";
  * store.set({...initial_person, age: -60}); // throws exception: `Uncaught TypeError: bad change 'Person/age' to Schema Store (Value -60 is less than minimum 0)`
  * ```
  *
- * @param value
+ * @param store
  * @param schema
  * @param start
  */

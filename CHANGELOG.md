@@ -4,8 +4,12 @@
 
 -   Added to `overlay` to `stores/shared/overlay` for similar functionality as `derived`, but providing a second callback to handle `Writable` Svelte Stores
 -   Updated `is_readable` / `is_writable` to work as TypeScript Type Guards
--   Updated `schema` to utilize `derived` and `overlay`
+-   Updated `immutable`, `schema` to utilize `derived` and `overlay`
 -   Updated `tsconfig.json` to fix TypeScript Compiler output not working via CommonJS `require`
+-   Intent to deprecate `immutable_readable` / `immutable_writable`, use `immutable` instead
+    -   The two functions were separate at the time, **ONLY** due to the `overlay` function not existing
+    -   Both `immutable_readable` / `immutable_writable` are now aliases of `immutable`
+    -   **IMPORTANT NOTE**: `immutable` defaults to a `Writable` Store if you pass in a non-Store value, unlike `immutable_readable` which defaults to `Readable`
 
 ## v0.0.3 - 2020/03/10
 
