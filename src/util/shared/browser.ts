@@ -7,6 +7,11 @@ import {format_dash_key, format_tokens} from "./string";
 export type IKeyMap = {[key: string]: any};
 
 /**
+ * Represents the object with defaults allowed to be used via `make_memory_storage`
+ */
+export type IStorageDefaults = {[key: string]: string};
+
+/**
  * Returns the `key` and `value` stringified to a CSS Property Declaration, e.g. `color:red`
  *
  * ```typescript
@@ -85,6 +90,73 @@ export function format_css_variable(key: string, value: any): string {
     value = value.toString();
 
     return `--${key}:${value}`;
+}
+
+/**
+ * Represents an in-memory reimplementation of a [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Storage)
+ *
+ * ```javascript
+ * import {make_memory_storage} from "svelte-commons/lib/util/shared";
+ *
+ * const storage = make_memory_storage();
+ *
+ * // Save data to Storage
+ * storage.setItem("key", "value");
+ *
+ * // Get saved data from Storage
+ * let data = storage.getItem("key");
+ *
+ * // Remove saved data from Storage
+ * storage.removeItem("key");
+ *
+ * // Remove all saved data from Storage
+ * storage.clear();
+ * ```
+ *
+ * @param default_value
+ */
+export function make_memory_storage(default_value: IStorageDefaults): Storage {
+    let storage: Map<string, string>;
+    if (default_value) {
+        const entries = Object.entries(default_value);
+
+        storage = new Map(entries);
+    } else storage = new Map();
+
+    return {
+        length: storage.size,
+
+        clear() {
+            storage.clear();
+        },
+
+        getItem(key): string | null {
+            if (storage.has(key)) return storage.get(key) as string;
+            return null;
+        },
+
+        key(index) {
+            const keys = Array.from(storage.keys());
+
+            return keys[index];
+        },
+
+        removeItem(key) {
+            storage.delete(key);
+
+            // @ts-ignore
+            this.length = storage.size;
+        },
+
+        setItem(key, value) {
+            value = value.toString();
+
+            storage.set(key, value);
+
+            // @ts-ignore
+            this.length = storage.size;
+        }
+    };
 }
 
 /**

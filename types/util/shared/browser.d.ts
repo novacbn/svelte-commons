@@ -5,6 +5,12 @@ export declare type IKeyMap = {
     [key: string]: any;
 };
 /**
+ * Represents the object with defaults allowed to be used via `make_memory_storage`
+ */
+export declare type IStorageDefaults = {
+    [key: string]: string;
+};
+/**
  * Returns the `key` and `value` stringified to a CSS Property Declaration, e.g. `color:red`
  *
  * ```typescript
@@ -59,6 +65,30 @@ export declare function format_css_reference(key: string, default_value?: any, f
  * @param value
  */
 export declare function format_css_variable(key: string, value: any): string;
+/**
+ * Represents an in-memory reimplementation of a [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Storage)
+ *
+ * ```javascript
+ * import {make_memory_storage} from "svelte-commons/lib/util/shared";
+ *
+ * const storage = make_memory_storage();
+ *
+ * // Save data to Storage
+ * storage.setItem("key", "value");
+ *
+ * // Get saved data from Storage
+ * let data = storage.getItem("key");
+ *
+ * // Remove saved data from Storage
+ * storage.removeItem("key");
+ *
+ * // Remove all saved data from Storage
+ * storage.clear();
+ * ```
+ *
+ * @param default_value
+ */
+export declare function make_memory_storage(default_value: IStorageDefaults): Storage;
 /**
  * Returns a key-value mapping of CSS Classes transformed into a single spaced ` ` string, e.g. `btn btn-primary`
  *

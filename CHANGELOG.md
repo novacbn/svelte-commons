@@ -3,6 +3,7 @@
 ## v0.0.4 - **UNRELEASED**
 
 -   Added to `overlay` to `stores/shared/overlay` for similar functionality as `derived`, but providing a second callback to handle `Writable` Svelte Stores
+-   Added `make_memory_storage` to `util/shared/browser`, which makes an in-memory version of [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Storage) for use with `storage`
 -   Updated `is_readable` / `is_writable` to work as TypeScript Type Guards
 -   Updated `immutable`, `schema` to utilize `derived` and `overlay`
 -   Updated `tsconfig.json` to fix TypeScript Compiler output not working via CommonJS `require`
