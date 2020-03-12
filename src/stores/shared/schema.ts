@@ -84,5 +84,5 @@ export function schema<T extends IJSONType>(
     }
 
     if (is_writable(store)) return overlay(store, _validate, _validate);
-    else return derived(store, _validate);
+    return derived(store, _validate);
 }

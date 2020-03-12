@@ -87,7 +87,7 @@ export function immutable<T>(
     if (!is_readable(store)) store = writable(store, start);
 
     if (is_writable(store)) return overlay(store, clone, clone);
-    else return derived(store, clone);
+    return derived(store, clone);
 }
 
 // DEPRECATED: The following functions were deprecated, and are now aliases
