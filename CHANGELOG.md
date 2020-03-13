@@ -2,18 +2,32 @@
 
 ## v0.1.0 - **UNRELEASED**
 
--   **(BREAKING)** Moved `storage` from `stores/browser/storage` to `stores/shared/storage`
+-   **BREAKING CHANGES**
+    -   Moved `query_param` from `stores/browser/location` to `stores/browser/query_param`
+    -   Moved `router` from `stores/browser/location` to `stores/shared/router`
+    -   Moved `storage` from `stores/browser/storage` to `stores/shared/storage`
+    -   Updated `hash` / `pathname`
+        -   Both are now **Browser-only**, due to `router` no longer needing them on Server context
+        -   Both now **default to creating new History states** for Store changes
+        -   To revert back to old History behaviour, pass `ILocationOptions.replace`, e.g. `const store = hash({replace: true});`
+    -   Updated `query_param` to now require default values, used to determine typing
+    -   Updated `storage` to not automagically return `Readable` Stores on Server
+        -   Replacements: Utilize `make_memory_storage` and `storage` to create a graceful degradation Store, or, default to a `readable` if `local_storage` not found, etc...
+    -   Updated `local_storage` / `session_storage` to be `null` if their respective Web Storages are not available
+    -   Updated `router` to return `{component, goto, page: {host, path, params, query}}`, `page` with [Sapper's `page`](https://sapper.svelte.dev/docs/#Argument)
+        -   `IRouterReturn.goto` in this case is the same as normal `goto`, but has its `IGotoOptions.base_url` and `IGotoOptions.hash` bound to `IRouterOptions`
+    -   Removed deprecated `attribute_passthrough` / `class_passthrough` / `html5_passthrough` from `actions/browser/element`
+    -   Removed deprecated `immutable_readable` / `immutable_writable` from `stores/shared/immutable`
+    -   Removed the old `util/shared/context` APIs to reflect new `router` changes
+-   Added `search` to `stores/browser/location`
+-   Added `goto` to `util/browser/location`
+-   Added `IS_BROWSER` to `util/shared/browser`
 -   Updated `storage` to utilize `overlay`
--   **(BREAKING)** Updated `storage` to not automagically return `Readable` Stores on Server
-    -   Replacements: Utilize `make_memory_storage` and `storage` to create a graceful degradation Store, or, default to a `readable` if `local_storage` not found, etc...
     -   Example #1:
         -   `const graceful_storage = local_storage || session_storage || storage(make_memory_storage());`
         -   `const color = graceful_storage("preferences.color", "red");`
     -   Example #2:
         -   `const color = local_storage ? local_storage("preferences.color", "red") : readable("red");`
--   **(BREAKING)** Updated `local_storage` / `session_storage` to be `null` if their respective Web Storages are not available
--   **(BREAKING)** Removed deprecated `attribute_passthrough` / `class_passthrough` / `html5_passthrough` from `actions/browser/element`
--   **(BREAKING)** Removed deprecated `immutable_readable` / `immutable_writable` from `stores/shared/immutable`
 
 ## v0.0.4 - 2020/03/11
 
