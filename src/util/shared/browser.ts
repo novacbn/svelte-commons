@@ -135,7 +135,7 @@ export function make_memory_storage(default_value: IStorageDefaults): Storage {
             storage.clear();
         },
 
-        getItem(key): string | null {
+        getItem(key) {
             if (storage.has(key)) return storage.get(key) as string;
             return null;
         },
