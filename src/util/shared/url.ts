@@ -30,6 +30,17 @@ export interface IRouterMap {
 }
 
 /**
+ * Returns if the `href` is an internal webpage link, e.g. `/path/to/page` or `this/is/a/path`
+ *
+ * @internal
+ *
+ * @param href
+ */
+export function is_internal_url(href: string): boolean {
+    return !href.match(/^:\/\//) && !href.startsWith("//");
+}
+
+/**
  * Returns the normalized version of the `pathname` string (via `URL`)
  *
  * @internal

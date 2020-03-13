@@ -1,121 +1,149 @@
-/**
- * @packageDocumentation
- * @hidden
- */
-
-import {get_current_origin, get_current_url} from "../shared";
+import {is_internal_url, IS_BROWSER} from "../shared";
 
 /**
- * Updates the current search string
- * NOTE: Set `hash` to `true`, to update `location.hash` as a proper URL
- *
- * @internal
- *
- * @param search
- * @param hash
- * @param push_state
- * @param state
+ * Represents the options passable into [[goto]]
  */
-function update_search(
-    search: URLSearchParams,
-    hash: boolean = false,
-    push_state: boolean = false,
-    state: any = history.state
-): void {
-    const url = get_url(hash);
-    url.search = search.toString();
+export interface IGotoOptions {
+    base_url: string;
 
-    update_url(url, hash, push_state, state);
+    hash: boolean;
+
+    replace: boolean;
 }
 
 /**
- * Returns an object mapping of the current `location.search` value
- * NOTE: Set `hash` to `true` for hash-based routing systems
+ * Returns the options passable into [[goto]], with standard defaults
  *
  * @internal
  *
- * @param hash
+ * @param options
  */
-export function get_query_params(hash: boolean = false): {[key: string]: boolean | string} {
-    const search = get_url(hash).searchParams;
-    const params: {[key: string]: boolean | string} = {};
+function GotoOptions(options: Partial<IGotoOptions> = {}): IGotoOptions {
+    const {base_url = "", hash = false, replace = false} = options;
 
-    for (const [key, value] of search.entries()) {
-        params[key] = value ? value : true;
-    }
-
-    return params;
+    return {base_url, hash, replace};
 }
 
 /**
- * Returns the current URL based on `Location`
- * NOTE: Set `hash` to `true`, to use `location.hash` as the source instead
+ * Returns a `URL` instance stringified via `.pathname` + `.search` + `.hash`
+ *
+ * > **NOTE**: Set `include_hash` to `false`, to disabled `.hash` as a postfix
+ *
+ * @internal
+ *
+ * @param url
+ * @param include_hash
+ */
+export function format_url(url: Location | URL, include_hash: boolean = true): string {
+    const {hash, pathname, search} = url;
+
+    if (include_hash) return pathname + search + hash;
+    return pathname + search;
+}
+
+/**
+ * Return a new `URL` instance, based off the current Browser `Location`
+ *
+ * > **NOTE**: Set `hash` to `true`, to parse the current `Location.hash` as the URL
  *
  * @internal
  *
  * @param hash
  */
 export function get_url(hash: boolean = false): URL {
-    // NOTE: We need to be able to support the current context's
-    // set URL. That way we can run properly in SSR mode
-    const url = get_current_url();
+    if (hash) {
+        const href = location.hash.slice(1);
 
-    if (hash) return new URL(url.hash.slice(1), get_current_origin());
-    return url;
+        return new URL(href, location.origin);
+    }
+
+    return new URL(location as any);
 }
 
 /**
- * Sets the current url
- * NOTE: Set `hash` to `true`, to update `location.hash` as a proper URL
+ * Updates the current Browser `Location` with a given `URL` instance, using its `.hash`, `.pathname`, and `.search` components
+ *
+ * > **NOTE**: Set `hash` to `true`, to set `Location.hash` as the URL
  *
  * @internal
  *
  * @param url
  * @param hash
- * @param push_state
- * @param state
+ * @param replace
  */
 export function update_url(
-    url: URL,
+    url: Location | URL,
     hash: boolean = false,
-    push_state: boolean = false,
-    state: any = history.state
+    replace: boolean = false
 ): void {
-    const updater = push_state ? "pushState" : "replaceState";
+    let href: string;
+    if (hash) href = format_url(location, false) + "#" + format_url(url);
+    else href = format_url(url);
 
-    // Want to make sure empty pathnames are just removed from the
-    // hash string entirely
-    let {pathname} = url;
-    if (pathname === "/") pathname = "";
-
-    let href = `${pathname}${url.search}${url.hash}`;
-    if (hash) href = `${location.pathname}${location.search}` + (href ? "#" + href : "");
-
-    history[updater](state, "", href);
+    if (replace) history.replaceState(null, "", href);
+    else history.pushState(null, "", href);
 }
 
 /**
- * Updates the current `location.search` with the `*.toString()` values from a `params` mapping
- * NOTE: Set `hash` to `true` for hash-based routing systems
- * NOTE: Mapped values set to `undefined` / `""` / `false`, they will be deleted from the query string instead
+ * Progammatically navigates the Browser to the given `href`, and pushes a new History state
  *
- * @internal
+ * > **NOTE**: If your `<head>` element contains a [`<base>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) element, [[goto]] will read it as the base url
  *
- * @param params
- * @param hash_mode
+ * As a simple example:
+ *
+ * ```javascript
+ * import {goto} from "svelte-commons/lib/util/browser";
+ *
+ * // Navigate to a page decending from the current origin
+ * goto("/shopping-cart/item-274");
+ *
+ * // Similar to above, by updates the Browser's hash string instead
+ * goto("/shopping-cart/item-274", {hash: true});
+ * ```
+ *
+ * You can also replace the current History state:
+ *
+ * ```javascript
+ * import {goto} from "svelte-commons/lib/util/browser";
+ *
+ * // Same above, but replacing current History state
+ * goto("/shopping-cart/item-274", {replace: true});
+ * ```
+ *
+ * Finally, you can navigate to entirely different websites:
+ *
+ * ```javascript
+ * import {goto} from "svelte-commons/lib/util/browser";
+ *
+ * // This will cause a full page reload while navigating
+ * goto("https://google.com");
+ * ```
+ * @param href
+ * @param options
  */
-export function update_query_params(
-    params: {[key: string]: boolean | string | undefined},
-    hash: boolean = false
-): void {
-    const search = get_url(hash).searchParams;
+export function goto(href: string, options: Partial<IGotoOptions>): void {
+    if (!is_internal_url(href)) {
+        location.href = href;
 
-    for (const key in params) {
-        const value = params[key];
-
-        if (typeof value === "undefined" || value === "" || value === false) search.delete(key);
-        else search.set(key, value.toString());
+        return;
     }
 
-    update_search(search, hash);
+    const {base_url, hash, replace} = GotoOptions(options);
+
+    // We need to have the Browser process the URL, so properly URL directives are followed
+    // e.g. `/absolute/path`, `./relative/path`, `../directory/up/path`, etc...
+    const url = new URL(href, get_url(hash).href);
+
+    // We need to support passable base urls here
+    if (base_url) url.pathname = base_url + "/" + url.pathname;
+    else if (!hash && IS_BROWSER) {
+        if (location.href !== document.baseURI) {
+            const {pathname} = new URL(document.baseURI);
+
+            // We can also support non-hash mode base urls via `<base href="XXX" />` in `<head>`
+            url.pathname = pathname + url.pathname;
+        }
+    }
+
+    update_url(url, hash, replace);
 }
