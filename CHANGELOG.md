@@ -10,6 +10,7 @@
         -   Both are now **Browser-only**, due to `router` no longer needing them on Server context
         -   Both now **default to creating new History states** for Store changes
         -   To revert back to old History behaviour, pass `ILocationOptions.replace`, e.g. `const store = hash({replace: true});`
+        -   They can be made read-only via `ILocationOptions.readonly`, e.g. `const store = hash({readonly: true});`
     -   Updated `query_param` to now require default values, used to determine typing
     -   Updated `storage` to not automagically return `Readable` Stores on Server
         -   Replacements: Utilize `make_memory_storage` and `storage` to create a graceful degradation Store, or, default to a `readable` if `local_storage` not found, etc...
