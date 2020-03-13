@@ -22,7 +22,7 @@ See TypeDoc documentation at [novacbn.github.io/svelte-commons](https://novacbn.
 
 > **LEGEND**:
 >
-> -   `manual shared` means the API requires some manual handling, to work in both states
+> -   `manual shared` means the API requires some manual handling, to work in both contexts
 > -   `pseudo shared` means the API works in both states, but with caveats
 
 -   Actions
