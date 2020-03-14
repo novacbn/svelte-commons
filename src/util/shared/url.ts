@@ -37,7 +37,7 @@ export interface IRouterMap {
  * @param href
  */
 export function is_internal_url(href: string): boolean {
-    return !href.match(/^:\/\//) && !href.startsWith("//");
+    return !href.match(/^\w+:\/\//) && !href.startsWith("//");
 }
 
 /**
@@ -48,7 +48,19 @@ export function is_internal_url(href: string): boolean {
  * @param pathname
  */
 function normalize_pathname(pathname: string): string {
+    pathname = pathname.replace(/[\/\/]+/, "/");
+
     return new URL(pathname, "http://localhost").pathname;
+}
+
+/**
+ * Returns the `a` and `b` paths joined together naively
+ * @param a
+ * @param b
+ */
+export function join(a: string, b: string): string {
+    if (a.endsWith("/") || b.startsWith("/")) return normalize_pathname(a + b);
+    return normalize_pathname(a + "/" + b);
 }
 
 /**

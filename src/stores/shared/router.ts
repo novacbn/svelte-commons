@@ -194,7 +194,7 @@ export function router(routes: IRouterMap, options: Partial<IRouterOptions>): IR
     const router = make_router(routes);
     const {base_url, hash, href} = RouterOptions(options);
 
-    function goto(href: string, options: Partial<IGotoOptions> = {}): void {
+    function _goto(href: string, options: Partial<IGotoOptions> = {}): void {
         return goto(href, {...options, base_url, hash});
     }
 
@@ -203,7 +203,7 @@ export function router(routes: IRouterMap, options: Partial<IRouterOptions>): IR
 
     return {
         component: derived(router_store, (value) => (value ? value[1] : null)),
-        goto,
+        goto: _goto,
 
         page: {
             host: make_location_store("host", href_store),

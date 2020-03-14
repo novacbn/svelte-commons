@@ -1,4 +1,5 @@
-import {is_internal_url, IS_BROWSER} from "../shared";
+import {IS_BROWSER} from "../shared/browser";
+import {is_internal_url, join} from "../shared/url";
 
 /**
  * Represents the options passable into [[goto]]
@@ -82,6 +83,12 @@ export function update_url(
 
     if (replace) history.replaceState(null, "", href);
     else history.pushState(null, "", href);
+
+    // We need to trigger the `popstate` event, so any listener can update, e.g. `router` Store.
+    const {state} = history;
+    const event = new PopStateEvent("popstate", {state});
+
+    window.dispatchEvent(event);
 }
 
 /**
@@ -123,9 +130,12 @@ export function update_url(
  */
 export function goto(href: string, options: Partial<IGotoOptions>): void {
     if (!is_internal_url(href)) {
-        location.href = href;
+        const url = new URL(href);
 
-        return;
+        // If the `href` doesn't have a matching origin, we can just do a full page navigation
+        // to it, otherwise we just need to extract the exact everything after the origin
+        if (url.origin !== location.origin) location.href = href;
+        else href = format_url(url);
     }
 
     const {base_url, hash, replace} = GotoOptions(options);
@@ -134,14 +144,14 @@ export function goto(href: string, options: Partial<IGotoOptions>): void {
     // e.g. `/absolute/path`, `./relative/path`, `../directory/up/path`, etc...
     const url = new URL(href, get_url(hash).href);
 
-    // We need to support passable base urls here
-    if (base_url) url.pathname = base_url + "/" + url.pathname;
+    // We need to support passable base urls overrides here
+    if (base_url) url.pathname = join(base_url, url.pathname);
     else if (!hash && IS_BROWSER) {
+        // We can also support non-hash mode base urls via `<base href="XXX" />` in `<head>`
         if (location.href !== document.baseURI) {
             const {pathname} = new URL(document.baseURI);
 
-            // We can also support non-hash mode base urls via `<base href="XXX" />` in `<head>`
-            url.pathname = pathname + url.pathname;
+            url.pathname = join(pathname, url.pathname);
         }
     }
 
