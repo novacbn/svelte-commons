@@ -1,21 +1,26 @@
 /**
- * @packageDocumentation
- * @hidden
+ * Represents the options passable into [[goto]]
  */
+export interface IGotoOptions {
+    base_url: string;
+    hash: boolean;
+    replace: boolean;
+}
 /**
- * Returns an object mapping of the current `location.search` value
- * NOTE: Set `hash` to `true` for hash-based routing systems
+ * Returns a `URL` instance stringified via `.pathname` + `.search` + `.hash`
+ *
+ * > **NOTE**: Set `include_hash` to `false`, to disabled `.hash` as a postfix
  *
  * @internal
  *
- * @param hash
+ * @param url
+ * @param include_hash
  */
-export declare function get_query_params(hash?: boolean): {
-    [key: string]: boolean | string;
-};
+export declare function format_url(url: Location | URL, include_hash?: boolean): string;
 /**
- * Returns the current URL based on `Location`
- * NOTE: Set `hash` to `true`, to use `location.hash` as the source instead
+ * Return a new `URL` instance, based off the current Browser `Location`
+ *
+ * > **NOTE**: Set `hash` to `true`, to parse the current `Location.hash` as the URL
  *
  * @internal
  *
@@ -23,27 +28,52 @@ export declare function get_query_params(hash?: boolean): {
  */
 export declare function get_url(hash?: boolean): URL;
 /**
- * Sets the current url
- * NOTE: Set `hash` to `true`, to update `location.hash` as a proper URL
+ * Updates the current Browser `Location` with a given `URL` instance, using its `.hash`, `.pathname`, and `.search` components
+ *
+ * > **NOTE**: Set `hash` to `true`, to set `Location.hash` as the URL
  *
  * @internal
  *
  * @param url
  * @param hash
- * @param push_state
- * @param state
+ * @param replace
  */
-export declare function update_url(url: URL, hash?: boolean, push_state?: boolean, state?: any): void;
+export declare function update_url(url: Location | URL, hash?: boolean, replace?: boolean): void;
 /**
- * Updates the current `location.search` with the `*.toString()` values from a `params` mapping
- * NOTE: Set `hash` to `true` for hash-based routing systems
- * NOTE: Mapped values set to `undefined` / `""` / `false`, they will be deleted from the query string instead
+ * Progammatically navigates the Browser to the given `href`, and pushes a new History state
  *
- * @internal
+ * > **NOTE**: If your `<head>` element contains a [`<base>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) element, [[goto]] will read it as the base url
  *
- * @param params
- * @param hash_mode
+ * As a simple example:
+ *
+ * ```javascript
+ * import {goto} from "svelte-commons/lib/util/browser";
+ *
+ * // Navigate to a page decending from the current origin
+ * goto("/shopping-cart/item-274");
+ *
+ * // Similar to above, by updates the Browser's hash string instead
+ * goto("/shopping-cart/item-274", {hash: true});
+ * ```
+ *
+ * You can also replace the current History state:
+ *
+ * ```javascript
+ * import {goto} from "svelte-commons/lib/util/browser";
+ *
+ * // Same above, but replacing current History state
+ * goto("/shopping-cart/item-274", {replace: true});
+ * ```
+ *
+ * Finally, you can navigate to entirely different websites:
+ *
+ * ```javascript
+ * import {goto} from "svelte-commons/lib/util/browser";
+ *
+ * // This will cause a full page reload while navigating
+ * goto("https://google.com");
+ * ```
+ * @param href
+ * @param options
  */
-export declare function update_query_params(params: {
-    [key: string]: boolean | string | undefined;
-}, hash?: boolean): void;
+export declare function goto(href: string, options: Partial<IGotoOptions>): void;

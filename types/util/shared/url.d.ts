@@ -20,6 +20,20 @@ export interface IRouterMap {
     [key: string]: SvelteComponent;
 }
 /**
+ * Returns if the `href` is an internal webpage link, e.g. `/path/to/page` or `this/is/a/path`
+ *
+ * @internal
+ *
+ * @param href
+ */
+export declare function is_internal_url(href: string): boolean;
+/**
+ * Returns the `a` and `b` paths joined together naively
+ * @param a
+ * @param b
+ */
+export declare function join(a: string, b: string): string;
+/**
  * Returns a pathname matching function, that returns the named parameters in
  * the given pathname if the route matched
  *

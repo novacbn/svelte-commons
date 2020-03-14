@@ -11,6 +11,10 @@ export declare type IStorageDefaults = {
     [key: string]: string;
 };
 /**
+ * Represents if the current context is in-Browser
+ */
+export declare const IS_BROWSER: boolean;
+/**
  * Returns the `key` and `value` stringified to a CSS Property Declaration, e.g. `color:red`
  *
  * ```typescript
