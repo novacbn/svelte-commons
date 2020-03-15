@@ -1,5 +1,5 @@
 import {IS_BROWSER} from "../shared/browser";
-import {is_internal_url, join} from "../shared/url";
+import {format_url, is_internal_href, join} from "../shared/url";
 
 /**
  * Represents the options passable into [[goto]]
@@ -26,23 +26,6 @@ function GotoOptions(options: Partial<IGotoOptions> = {}): IGotoOptions {
 }
 
 /**
- * Returns a `URL` instance stringified via `.pathname` + `.search` + `.hash`
- *
- * > **NOTE**: Set `include_hash` to `false`, to disabled `.hash` as a postfix
- *
- * @internal
- *
- * @param url
- * @param include_hash
- */
-export function format_url(url: Location | URL, include_hash: boolean = true): string {
-    const {hash, pathname, search} = url;
-
-    if (include_hash) return pathname + search + hash;
-    return pathname + search;
-}
-
-/**
  * Return a new `URL` instance, based off the current Browser `Location`
  *
  * > **NOTE**: Set `hash` to `true`, to parse the current `Location.hash` as the URL
@@ -51,7 +34,7 @@ export function format_url(url: Location | URL, include_hash: boolean = true): s
  *
  * @param hash
  */
-export function get_url(hash: boolean = false): URL {
+export function get_location_url(hash: boolean = false): URL {
     if (hash) {
         const href = location.hash.slice(1);
 
@@ -72,7 +55,7 @@ export function get_url(hash: boolean = false): URL {
  * @param hash
  * @param replace
  */
-export function update_url(
+export function update_location_url(
     url: Location | URL,
     hash: boolean = false,
     replace: boolean = false
@@ -129,7 +112,7 @@ export function update_url(
  * @param options
  */
 export function goto(href: string, options: Partial<IGotoOptions>): void {
-    if (!is_internal_url(href)) {
+    if (!is_internal_href(href)) {
         const url = new URL(href);
 
         // If the `href` doesn't have a matching origin, we can just do a full page navigation
@@ -142,7 +125,7 @@ export function goto(href: string, options: Partial<IGotoOptions>): void {
 
     // We need to have the Browser process the URL, so properly URL directives are followed
     // e.g. `/absolute/path`, `./relative/path`, `../directory/up/path`, etc...
-    const url = new URL(href, get_url(hash).href);
+    const url = new URL(href, get_location_url(hash).href);
 
     // We need to support passable base urls overrides here
     if (base_url) url.pathname = join(base_url, url.pathname);
@@ -155,5 +138,5 @@ export function goto(href: string, options: Partial<IGotoOptions>): void {
         }
     }
 
-    update_url(url, hash, replace);
+    update_location_url(url, hash, replace);
 }

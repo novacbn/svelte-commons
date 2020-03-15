@@ -1,14 +1,18 @@
 import {SvelteComponent} from "svelte/internal";
-import {Readable, derived, readable} from "svelte/store";
+import {Readable, derived, readable, writable, Writable} from "svelte/store";
 
-import {IGotoOptions, format_url, get_url, goto} from "../../util/browser/location";
+import {IGotoOptions, get_location_url, goto} from "../../util/browser/location";
 import {IS_BROWSER} from "../../util/shared/browser";
-import {IRouter, IRouterMap, IRouterParameters, make_router} from "../../util/shared/url";
 
-/**
- * Represents a query string mapping returned by [[IRouterReturn.query]]
- */
-export type IRouterQuery = {[key: string]: boolean | string | undefined};
+import {
+    IRouter,
+    IRouterMap,
+    IRouterParameters,
+    IQueryParams,
+    format_url,
+    make_router,
+    parse_query
+} from "../../util/shared/url";
 
 /**
  * Represents the options passable into the [[router]] Svelte Store
@@ -29,7 +33,9 @@ export interface IRouterOptions {
     hash: boolean;
 
     /**
-     * Represents the current / initial href of the [[router]] Store, usually only used on Server to facilitate SSR routing
+     * Represents the current / initial href of the [[router]] Store, used on Server to facilitate SSR routing
+     *
+     * > **NOTE**: This option is ignored on Browsers
      */
     href: string;
 }
@@ -46,9 +52,19 @@ export interface IRouterReturn {
     component: Readable<SvelteComponent | null>;
 
     /**
+     * Represents a `Readable` (Browser) / `Writable` (Server) Store that outputs the current full href string
+     */
+    href: Readable<string> | Writable<string>;
+
+    /**
      * Represents a bound [[goto]] function, with its [[IGotoOptions.base_url]] / [[IGotoOptions.hash]] already set
      */
     goto: typeof goto;
+
+    /**
+     * Represents a `Readable` Store that outputs a `URL` instance of the current [[IRouterReturn.href]] value
+     */
+    url: Readable<URL>;
 
     /**
      * Represents an object of `Readable` Stores relating to the current webpage details
@@ -61,9 +77,9 @@ export interface IRouterReturn {
 
         path: Readable<string>;
 
-        params: Readable<IRouterParameters | null>;
+        params: Readable<IRouterParameters>;
 
-        query: Readable<IRouterQuery>;
+        query: Readable<IQueryParams>;
     };
 }
 
@@ -75,7 +91,7 @@ export interface IRouterReturn {
  * @param options
  */
 function RouterOptions(options: Partial<IRouterOptions> = {}): IRouterOptions {
-    let {base_url = "/", hash = false, href = ""} = options;
+    let {base_url = "", hash = false, href = ""} = options;
 
     if (IS_BROWSER) {
         // So the end-developer does not have to specifiy, we can fill in the `.href` on Browser context if needed
@@ -91,9 +107,10 @@ function RouterOptions(options: Partial<IRouterOptions> = {}): IRouterOptions {
 }
 
 /**
- * Returns a `Readable` Store that takes an initial URL href, then updates to the current [`Location.href`](https://developer.mozilla.org/en-US/docs/Web/API/Location/host) every [`popstate`](https://developer.mozilla.org/en-US/docs/Web/API/Window/popstate_event)
+ * Returns a `Readable` (Browser) / `Writable` (Server) Store that outputs the current full href
  *
- * **NOTE**: If `hash` is `true`, then the initial URL href is ignored
+ * > **NOTE**: On Browsers, the href will be pulled from [`Location.href`](https://developer.mozilla.org/en-US/docs/Web/API/Location/href)
+ * > **NOTE**: On Servers, a middleware should be responsible for updating the Store
  *
  * @internal
  *
@@ -101,68 +118,20 @@ function RouterOptions(options: Partial<IRouterOptions> = {}): IRouterOptions {
  * @param hash
  */
 function make_href_store(href: string = "", hash: boolean = false): Readable<string> {
-    function get_value() {
-        if (hash) {
-            const url = get_url(true);
+    // If we're running on Server, usually some kind of middleware will be
+    // handling this Store and updating it
+    if (!IS_BROWSER) return writable(href);
 
-            return url.href;
-        }
-
-        return location.href;
-    }
-
-    return readable(hash ? get_value() : href, (set) => {
+    return readable(get_location_url(hash).href, (set) => {
         function on_popstate(event: PopStateEvent) {
-            set(get_value());
+            set(get_location_url(hash).href);
         }
 
-        set(get_value());
+        set(get_location_url(hash).href);
         window.addEventListener("popstate", on_popstate);
         return () => {
             window.removeEventListener("popstate", on_popstate);
         };
-    });
-}
-
-/**
- * Returns a wrapper `Readable` from a Store that outputs entire href URL strings, outputting a specific URL component
- *
- * @internal
- *
- * @param component
- * @param href
- */
-function make_location_store(component: string, href: Readable<string>): Readable<string> {
-    return derived(href, (value) => {
-        const url = new URL(value);
-
-        return (url as any)[component];
-    });
-}
-
-/**
- * Returns a wrapper `Readable` from a Store that outputs entire href URL, outputting a mapping of query parameters
- *
- * @internal
- *
- * @param href
- */
-function make_query_store(href: Readable<string>): Readable<IRouterQuery> {
-    return derived(href, (value) => {
-        const url = new URL(value);
-        const entries = Array.from(url.searchParams.entries());
-
-        const query: [string, boolean | string][] = entries.map(([key, value]) => {
-            // Since boolean query parameters, e.g. `?x=` / `?x`, have no value, we need to them to `true`
-            if (value) return [key, value];
-            return [key, true];
-        });
-
-        return query.reduce<IRouterQuery>((accum, [key, value]) => {
-            accum[key] = value;
-
-            return accum;
-        }, {});
     });
 }
 
@@ -191,8 +160,8 @@ function make_router_store(
  * @param options
  */
 export function router(routes: IRouterMap, options: Partial<IRouterOptions>): IRouterReturn {
-    const router = make_router(routes);
     const {base_url, hash, href} = RouterOptions(options);
+    const router = make_router(routes, base_url);
 
     function _goto(href: string, options: Partial<IGotoOptions> = {}): void {
         return goto(href, {...options, base_url, hash});
@@ -200,16 +169,19 @@ export function router(routes: IRouterMap, options: Partial<IRouterOptions>): IR
 
     const href_store = make_href_store(href, hash);
     const router_store = make_router_store(router, href_store);
+    const url_store = derived(href_store, (value) => new URL(value));
 
     return {
         component: derived(router_store, (value) => (value ? value[1] : null)),
+        href: href_store,
         goto: _goto,
+        url: url_store,
 
         page: {
-            host: make_location_store("host", href_store),
-            path: make_location_store("pathname", href_store),
-            params: derived(router_store, (value) => (value ? value[0] : null)),
-            query: make_query_store(href_store)
+            host: derived(url_store, (value) => value.host),
+            path: derived(url_store, (value) => value.pathname),
+            params: derived(router_store, (value) => (value ? value[0] : {})),
+            query: derived(url_store, (value) => parse_query(value))
         }
     };
 }

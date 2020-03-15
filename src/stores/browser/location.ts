@@ -1,6 +1,6 @@
 import {Readable, Writable, readable, writable} from "svelte/store";
 
-import {get_url, update_url} from "../../util/browser/location";
+import {get_location_url, update_location_url} from "../../util/browser/location";
 
 import {overlay} from "../shared/overlay";
 
@@ -56,7 +56,7 @@ function make_location_store(component: string): ILocationStore {
         const {hash, readonly, replace} = LocationOptions(options);
 
         function get_value(): string {
-            const url = get_url(hash);
+            const url = get_location_url(hash);
 
             return (url as any)[component];
         }
@@ -76,11 +76,11 @@ function make_location_store(component: string): ILocationStore {
         if (readonly) return readable(get_value(), on_start);
 
         function set_value(value: string): void {
-            const url = get_url(hash);
+            const url = get_location_url(hash);
 
             (url as any)[component] = value;
 
-            update_url(url, hash, replace);
+            update_location_url(url, hash, replace);
         }
 
         const store = writable(get_value(), on_start);

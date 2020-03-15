@@ -1,6 +1,6 @@
 import {Writable} from "svelte/store";
 
-import {get_url} from "../../util/browser/location";
+import {get_location_url} from "../../util/browser/location";
 
 import {overlay} from "../shared/overlay";
 
@@ -63,7 +63,7 @@ export function query_param<T = boolean | string>(
         },
 
         (value) => {
-            const url = get_url(hash);
+            const url = get_location_url(hash);
             const params = url.searchParams;
 
             if (typeof default_value === "boolean") {
