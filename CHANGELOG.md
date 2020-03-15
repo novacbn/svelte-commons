@@ -14,8 +14,13 @@
     -   Updated `query_param` to now require default values, used to determine typing
     -   Updated `storage` to not automagically return `Readable` Stores on Server
         -   Replacements: Utilize `make_memory_storage` and `storage` to create a graceful degradation Store, or, default to a `readable` if `local_storage` not found, etc...
+        -   Example #1:
+            -   `const graceful_storage = local_storage || session_storage || storage(make_memory_storage());`
+            -   `const color = graceful_storage("preferences.color", "red");`
+        -   Example #2:
+            -   `const color = local_storage ? local_storage("preferences.color", "red") : readable("red");`
     -   Updated `local_storage` / `session_storage` to be `null` if their respective Web Storages are not available
-    -   Updated `router` to return `{component, goto, page: {host, path, params, query}}`, `page` with [Sapper's `page`](https://sapper.svelte.dev/docs/#Argument)
+    -   Updated `router` to return `{component, href, goto, url, page: {host, path, params, query}}`, `page` with [Sapper's `page`](https://sapper.svelte.dev/docs/#Argument)
         -   `IRouterReturn.goto` in this case is the same as normal `goto`, but has its `IGotoOptions.base_url` and `IGotoOptions.hash` bound to `IRouterOptions`
     -   Removed deprecated `attribute_passthrough` / `class_passthrough` / `html5_passthrough` from `actions/browser/element`
     -   Removed deprecated `immutable_readable` / `immutable_writable` from `stores/shared/immutable`
@@ -23,12 +28,8 @@
 -   Added `search` to `stores/browser/location`
 -   Added `goto` to `util/browser/location`
 -   Added `IS_BROWSER` to `util/shared/browser`
+-   Updated `format_url`, `is_internal_href`, `join`, `normalize_pathname` in `util/shared/url` to be public API
 -   Updated `storage` to utilize `overlay`
-    -   Example #1:
-        -   `const graceful_storage = local_storage || session_storage || storage(make_memory_storage());`
-        -   `const color = graceful_storage("preferences.color", "red");`
-    -   Example #2:
-        -   `const color = local_storage ? local_storage("preferences.color", "red") : readable("red");`
 
 ## v0.0.4 - 2020/03/11
 
