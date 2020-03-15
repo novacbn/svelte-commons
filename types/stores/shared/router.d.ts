@@ -1,13 +1,7 @@
 import { SvelteComponent } from "svelte/internal";
-import { Readable } from "svelte/store";
+import { Readable, Writable } from "svelte/store";
 import { goto } from "../../util/browser/location";
-import { IRouterMap, IRouterParameters } from "../../util/shared/url";
-/**
- * Represents a query string mapping returned by [[IRouterReturn.query]]
- */
-export declare type IRouterQuery = {
-    [key: string]: boolean | string | undefined;
-};
+import { IRouterMap, IRouterParameters, IQueryParams } from "../../util/shared/url";
 /**
  * Represents the options passable into the [[router]] Svelte Store
  */
@@ -25,7 +19,9 @@ export interface IRouterOptions {
      */
     hash: boolean;
     /**
-     * Represents the current / initial href of the [[router]] Store, usually only used on Server to facilitate SSR routing
+     * Represents the current / initial href of the [[router]] Store, used on Server to facilitate SSR routing
+     *
+     * > **NOTE**: This option is ignored on Browsers
      */
     href: string;
 }
@@ -40,20 +36,37 @@ export interface IRouterReturn {
      */
     component: Readable<SvelteComponent | null>;
     /**
+     * Represents a `Readable` (Browser) / `Writable` (Server) Store that outputs the current full href string
+     */
+    href: Readable<string> | Writable<string>;
+    /**
      * Represents a bound [[goto]] function, with its [[IGotoOptions.base_url]] / [[IGotoOptions.hash]] already set
      */
     goto: typeof goto;
+    /**
+     * Represents a `Readable` Store that outputs a `URL` instance of the current [[IRouterReturn.href]] value
+     */
+    url: Readable<URL>;
     /**
      * Represents an object of `Readable` Stores relating to the current webpage details
      */
     page: {
         /**
-         * Represents a `Readable` Store of the current hostname of the [[router]], usually taken from [[IRouterOptions.url]] or [`Location.host`](https://developer.mozilla.org/en-US/docs/Web/API/Location/host)
+         * Represents a `Readable` Store of the current hostname of a [[router]] instance, usually taken from [[IRouterOptions.url]] or [`Location.host`](https://developer.mozilla.org/en-US/docs/Web/API/Location/host)
          */
         host: Readable<string>;
+        /**
+         * Represents a `Readable` Store of the current pathname of a [[router]] instance
+         */
         path: Readable<string>;
-        params: Readable<IRouterParameters | null>;
-        query: Readable<IRouterQuery>;
+        /**
+         * Represents a `Readable` Store of the current parsed URL parameters of a [[router]] instance
+         */
+        params: Readable<IRouterParameters>;
+        /**
+         * Represents a `Readable` Store of the current query string, parsed into a key-value mapping, from a [[router]] instance
+         */
+        query: Readable<IQueryParams>;
     };
 }
 /**

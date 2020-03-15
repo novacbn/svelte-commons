@@ -7,17 +7,6 @@ export interface IGotoOptions {
     replace: boolean;
 }
 /**
- * Returns a `URL` instance stringified via `.pathname` + `.search` + `.hash`
- *
- * > **NOTE**: Set `include_hash` to `false`, to disabled `.hash` as a postfix
- *
- * @internal
- *
- * @param url
- * @param include_hash
- */
-export declare function format_url(url: Location | URL, include_hash?: boolean): string;
-/**
  * Return a new `URL` instance, based off the current Browser `Location`
  *
  * > **NOTE**: Set `hash` to `true`, to parse the current `Location.hash` as the URL
@@ -26,7 +15,7 @@ export declare function format_url(url: Location | URL, include_hash?: boolean):
  *
  * @param hash
  */
-export declare function get_url(hash?: boolean): URL;
+export declare function get_location_url(hash?: boolean): URL;
 /**
  * Updates the current Browser `Location` with a given `URL` instance, using its `.hash`, `.pathname`, and `.search` components
  *
@@ -38,7 +27,7 @@ export declare function get_url(hash?: boolean): URL;
  * @param hash
  * @param replace
  */
-export declare function update_url(url: Location | URL, hash?: boolean, replace?: boolean): void;
+export declare function update_location_url(url: Location | URL, hash?: boolean, replace?: boolean): void;
 /**
  * Progammatically navigates the Browser to the given `href`, and pushes a new History state
  *

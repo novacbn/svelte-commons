@@ -1,5 +1,5 @@
 import {SvelteComponent} from "svelte/internal";
-import {Readable, derived, readable, writable, Writable} from "svelte/store";
+import {Readable, Writable, derived, readable, writable} from "svelte/store";
 
 import {IGotoOptions, get_location_url, goto} from "../../util/browser/location";
 import {IS_BROWSER} from "../../util/shared/browser";
@@ -71,14 +71,23 @@ export interface IRouterReturn {
      */
     page: {
         /**
-         * Represents a `Readable` Store of the current hostname of the [[router]], usually taken from [[IRouterOptions.url]] or [`Location.host`](https://developer.mozilla.org/en-US/docs/Web/API/Location/host)
+         * Represents a `Readable` Store of the current hostname of a [[router]] instance, usually taken from [[IRouterOptions.url]] or [`Location.host`](https://developer.mozilla.org/en-US/docs/Web/API/Location/host)
          */
         host: Readable<string>;
 
+        /**
+         * Represents a `Readable` Store of the current pathname of a [[router]] instance
+         */
         path: Readable<string>;
 
+        /**
+         * Represents a `Readable` Store of the current parsed URL parameters of a [[router]] instance
+         */
         params: Readable<IRouterParameters>;
 
+        /**
+         * Represents a `Readable` Store of the current query string, parsed into a key-value mapping, from a [[router]] instance
+         */
         query: Readable<IQueryParams>;
     };
 }
