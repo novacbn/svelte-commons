@@ -2424,9 +2424,15 @@ img {
 				<div class="tsd-signature tsd-kind-icon">base_<wbr>url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/browser/location.ts#L8">src/util/browser/location.ts:8</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9e8d614/src/util/browser/location.ts#L12">src/util/browser/location.ts:12</a></li>
 					</ul>
 				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents the base url of your Web Application, e.g. if the entry point is <code>https://my.domain/my-application</code>, you should set to <code>/my-application/</code></p>
+					</div>
+					<p><strong>NOTE</strong>: The <a href="../modules/_util_browser_location_.html#goto">goto</a> function also reads from any <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base"><code>&lt;base&gt;</code></a> elements in <code>&lt;head&gt;</code>, if present</p>
+				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="hash" class="tsd-anchor"></a>
@@ -2434,9 +2440,14 @@ img {
 				<div class="tsd-signature tsd-kind-icon">hash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/browser/location.ts#L10">src/util/browser/location.ts:10</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9e8d614/src/util/browser/location.ts#L17">src/util/browser/location.ts:17</a></li>
 					</ul>
 				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents if the URL hash should be used as the target href source, e.g. <code>https://my.domain/path/to/route?x=y</code> or <code>https://my.domain/#path/to/route?x=y</code></p>
+					</div>
+				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="replace" class="tsd-anchor"></a>
@@ -2444,9 +2455,14 @@ img {
 				<div class="tsd-signature tsd-kind-icon">replace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/browser/location.ts#L12">src/util/browser/location.ts:12</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9e8d614/src/util/browser/location.ts#L22">src/util/browser/location.ts:22</a></li>
 					</ul>
 				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents if the navigation should create a new <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API">History</a> entry or not, e.g. Forward / Back Button-able</p>
+					</div>
+				</div>
 			</section>
 		</section>
 		<footer class="with-border-bottom">
