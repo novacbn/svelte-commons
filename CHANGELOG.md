@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v0.1.0 - **UNRELEASED**
+## v0.1.0 - 2020/03/18
 
 -   **BREAKING CHANGES**
     -   Moved `query_param` from `stores/browser/location` to `stores/browser/query_param`
