@@ -1,0 +1,67 @@
+<!--
+    NOTE: This is ran via `zeit/serve` via `serve --single ./` and then an `npm link svelte-commons` directly in this folder
+    
+    https://github.com/zeit/serve
+-->
+<html>
+    <head>
+        <script type="application/javascript" src="/node_modules/svelte-commons/dist/svelte-commons.umd.js"></script>
+    </head>
+    
+    <body>
+        <h1 id="header">404</h1>
+        <h2 id="sub">N/A</h2>
+        
+        <a href="/">Home</a><br /><br />
+        <a href="/items">Items</a><br /><br />
+        <a href="/items/123abc">Item - 123abc</a>
+        
+        <script type="application/javascript">
+            const {router} = SvelteCommons.stores;
+            
+            // NOTE: You'll want to pass actual Svelte Components to each route, strings
+            // are passed here just to reduce complexity of the test
+            const {component, goto, page} = router({
+                "/": "I am home!",
+                "items": "This is items!",
+                "items/:id": "This is an :id!"
+            });
+            
+            const {host, path, params, query} = page;
+            
+            host.subscribe((v) => console.log("::host", v));
+            path.subscribe((v) => console.log("::path", v));
+            query.subscribe((v) => console.log("::query", v));
+            
+            component.subscribe((v) => {
+                const element = document.querySelector("#header");
+                
+                element.textContent = v ? v : "404";
+                document.title = v ? v : "404";
+            });
+            
+            params.subscribe((v) => {
+                const element = document.querySelector("#sub");
+                
+                element.textContent = v.id ? v.id : "N/A";
+            });
+            
+            (() => {
+                // This function will find all the `<a>` tags, and override their click handlers to
+                // perform internal routing without full page reloads
+                function on_click(event) {
+                    const {href} = event.target;
+                    
+                    event.preventDefault();
+                    goto(href);
+                }
+                
+                const elements = document.querySelectorAll("a");
+                
+                for (const element of elements) {
+                    element.addEventListener("click", on_click);
+                }
+            })();
+        </script>
+    </body>
+</html>

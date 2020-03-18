@@ -22,8 +22,6 @@ export interface IRouterOptions {
      * Represents the base url of your application, e.g. if the entry point is `https://my.domain/my-application`, you should set to `/my-application/`
      *
      * **NOTE**: The [[router]] Store also reads from any [`<base>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) elements in `<head>`, if present
-     *
-     * **TODO**: While this property **IS** available, and detection works, it does **NOT** affect anything at the moment!
      */
     base_url: string;
 

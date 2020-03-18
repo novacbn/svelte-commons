@@ -100,6 +100,47 @@ function make_location_store(component: string): ILocationStore {
 /**
  * Returns a `Writable` Svelte Store, which binds to the [`Location.hash`](https://developer.mozilla.org/en-US/docs/Web/API/Location/hash) component
  *
+ * In normal mode, which parses the current Browser URL normally:
+ *
+ * ```html
+ * <script>
+ *     import {hash} from "svelte-commons/lib/stores/browser";
+ *
+ *     const store = hash();
+ * </script>
+ *
+ * <!-- e.g. Browser URL of `https://my.domain/path/to/application#I-am-a-hash` is `#I-am-a-hash` -->
+ * Current hash string is: <span style="color:red;">{$store}</span>!
+ * ```
+ *
+ * In hash mode, which parses current Browser URL's hash string **AS** the URL:
+ *
+ * ```html
+ * <script>
+ *     import {hash} from "svelte-commons/lib/stores/browser";
+ *
+ *     const store = hash({hash: true});
+ * </script>
+ *
+ * <!-- e.g. Browser URL of `https://my.domain/#/path/to/application#I-am-a-hash` is `#I-am-a-hash` -->
+ * Current hash string is: <span style="color:red;">{$store}</span>!
+ * ```
+ *
+ * You can also update the Store to change the hash, along with making it replace current History entry:
+ *
+ * ```html
+ * <script>
+ *     import {hash} from "svelte-commons/lib/stores/browser";
+ *
+ *     // By passing `ILocationOptions.replace`, changes wont create new History
+ *     // entries, e.g. more entries for Back / Forward Button
+ *     const store = hash({replace: true});
+ * </script>
+ *
+ * <!-- e.g. Browser URL of `https://my.domain/path/to/application` will update to `https://my.domain/path/to/application#I-am-a-hash` -->
+ * <a on:click|preventDefault={() => $store = "#I-am-a-hash"}>Click me</a> to change the hash string!
+ * ```
+ *
  * @param options
  */
 export const hash = make_location_store("hash");
@@ -107,12 +148,94 @@ export const hash = make_location_store("hash");
 /**
  * Returns a `Writable` Svelte Store, which binds to the [`Location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) component
  *
+ * In normal mode, which parses the current Browser URL normally:
+ *
+ * ```html
+ * <script>
+ *     import {pathname} from "svelte-commons/lib/stores/browser";
+ *
+ *     const store = pathname();
+ * </script>
+ *
+ * <!-- e.g. Browser URL of `https://my.domain/path/to/application` is `/path/to/application` -->
+ * Current pathname is: <span style="color:red;">{$store}</span>!
+ * ```
+ *
+ * In hash mode, which parses current Browser URL's hash string **AS** the URL:
+ *
+ * ```html
+ * <script>
+ *     import {pathname} from "svelte-commons/lib/stores/browser";
+ *
+ *     const store = pathname({hash: true});
+ * </script>
+ *
+ * <!-- e.g. Browser URL of `https://my.domain/#/path/to/application` is `/path/to/application` -->
+ * Current pathname is: <span style="color:red;">{$store}</span>!
+ * ```
+ *
+ * You can also update the Store to change the pathname, along with making it replace current History entry:
+ *
+ * ```html
+ * <script>
+ *     import {pathname} from "svelte-commons/lib/stores/browser";
+ *
+ *     // By passing `ILocationOptions.replace`, changes wont create new History
+ *     // entries, e.g. more entries for Back / Forward Button
+ *     const store = pathname({replace: true});
+ * </script>
+ *
+ * <!-- e.g. Browser URL of `https://my.domain/path/to/application` will update to `https://my.domain/path/to/other-application` -->
+ * <a on:click|preventDefault={() => $store = "/path/to/other-application"}>Click me</a> to change the pathname!
+ * ```
+ *
  * @param options
  */
 export const pathname = make_location_store("pathname");
 
 /**
  * Returns a `Writable` Svelte Store, which binds to the [`Location.search`](https://developer.mozilla.org/en-US/docs/Web/API/Location/search) component
+ *
+ * In normal mode, which parses the current Browser URL normally:
+ *
+ * ```html
+ * <script>
+ *     import {search} from "svelte-commons/lib/stores/browser";
+ *
+ *     const store = search();
+ * </script>
+ *
+ * <!-- e.g. Browser URL of `https://my.domain/path/to/application?x=1` is `?x=1` -->
+ * Current query string is: <span style="color:red;">{$store}</span>!
+ * ```
+ *
+ * In hash mode, which parses current Browser URL's hash string **AS** the URL:
+ *
+ * ```html
+ * <script>
+ *     import {search} from "svelte-commons/lib/stores/browser";
+ *
+ *     const store = search({hash: true});
+ * </script>
+ *
+ * <!-- e.g. Browser URL of `https://my.domain/#/path/to/application?x=1` is `?x=1` -->
+ * Current query string is: <span style="color:red;">{$store}</span>!
+ * ```
+ *
+ * You can also update the Store to change the query string, along with making it replace current History entry:
+ *
+ * ```html
+ * <script>
+ *     import {search} from "svelte-commons/lib/stores/browser";
+ *
+ *     // By passing `ILocationOptions.replace`, changes wont create new History
+ *     // entries, e.g. more entries for Back / Forward Button
+ *     const store = search({replace: true});
+ * </script>
+ *
+ * <!-- e.g. Browser URL of `https://my.domain/path/to/application` will update to `https://my.domain/path/to/application?x=1` -->
+ * <a on:click|preventDefault={() => $store = "?x=1"}>Click me</a> to change the query string!
+ * ```
  *
  * @param options
  */
