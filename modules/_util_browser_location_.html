@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;util/shared/functional&quot; | svelte-commons - v0.0.4</title>
+	<title>&quot;util/browser/location&quot; | svelte-commons - v0.0.4</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -2365,17 +2365,11 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-			<a href="_util_shared_functional_.html#imapperpartial" class="tsd-kind-icon">IMapper<wbr>Partial</a>
+		<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+			<a href="../interfaces/_util_browser_location_.igotooptions.html" class="tsd-kind-icon">IGoto<wbr>Options</a>
 		</li>
-		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-			<a href="_util_shared_functional_.html#iobjectentry" class="tsd-kind-icon">IObject<wbr>Entry</a>
-		</li>
-		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-			<a href="_util_shared_functional_.html#ipredicatepartial" class="tsd-kind-icon">IPredicate<wbr>Partial</a>
-		</li>
-		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-			<a href="_util_shared_functional_.html#iupdatepartial" class="tsd-kind-icon">IUpdate<wbr>Partial</a>
+		<li class=" tsd-kind-function tsd-parent-kind-external-module">
+			<a href="_util_browser_location_.html#goto" class="tsd-kind-icon">goto</a>
 		</li>
 	</ul>
 </nav>
@@ -2386,100 +2380,73 @@ img {
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Type aliases</h3>
+						<h3>Interfaces</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_util_shared_functional_.html#imapperpartial" class="tsd-kind-icon">IMapper<wbr>Partial</a></li>
-							<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_util_shared_functional_.html#iobjectentry" class="tsd-kind-icon">IObject<wbr>Entry</a></li>
-							<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_util_shared_functional_.html#ipredicatepartial" class="tsd-kind-icon">IPredicate<wbr>Partial</a></li>
-							<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_util_shared_functional_.html#iupdatepartial" class="tsd-kind-icon">IUpdate<wbr>Partial</a></li>
+							<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_util_browser_location_.igotooptions.html" class="tsd-kind-icon">IGoto<wbr>Options</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Functions</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_util_browser_location_.html#goto" class="tsd-kind-icon">goto</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Type aliases</h2>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-				<a name="imapperpartial" class="tsd-anchor"></a>
-				<h3>IMapper<wbr>Partial</h3>
-				<div class="tsd-signature tsd-kind-icon">IMapper<wbr>Partial&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/functional.ts#L9">src/util/shared/functional.ts:9</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents the mapping value or function used in <code>map_collection</code></p>
-					</div>
-				</div>
-				<h4 class="tsd-type-parameters-title">Type parameters</h4>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-					</li>
+			<h2>Functions</h2>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+				<a name="goto" class="tsd-anchor"></a>
+				<h3>goto</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+					<li class="tsd-signature tsd-kind-icon">goto<span class="tsd-signature-symbol">(</span>href<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_util_browser_location_.igotooptions.html" class="tsd-signature-type">IGotoOptions</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-				<a name="iobjectentry" class="tsd-anchor"></a>
-				<h3>IObject<wbr>Entry</h3>
-				<div class="tsd-signature tsd-kind-icon">IObject<wbr>Entry&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/functional.ts#L19">src/util/shared/functional.ts:19</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents a entry from an object that was processed via <code>Object.entries</code></p>
-					</div>
-				</div>
-				<h4 class="tsd-type-parameters-title">Type parameters</h4>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-				<a name="ipredicatepartial" class="tsd-anchor"></a>
-				<h3>IPredicate<wbr>Partial</h3>
-				<div class="tsd-signature tsd-kind-icon">IPredicate<wbr>Partial&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/functional.ts#L4">src/util/shared/functional.ts:4</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents the predicate filter, function, or <code>Array</code> index used in <code>filter_collection</code> / <code>find_collection</code> / <code>reject_collection</code></p>
-					</div>
-				</div>
-				<h4 class="tsd-type-parameters-title">Type parameters</h4>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-				<a name="iupdatepartial" class="tsd-anchor"></a>
-				<h3>IUpdate<wbr>Partial</h3>
-				<div class="tsd-signature tsd-kind-icon">IUpdate<wbr>Partial&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/functional.ts#L14">src/util/shared/functional.ts:14</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents the updating value or function used in <code>update_value</code></p>
-					</div>
-				</div>
-				<h4 class="tsd-type-parameters-title">Type parameters</h4>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/browser/location.ts#L114">src/util/browser/location.ts:114</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Progammatically navigates the Browser to the given <code>href</code>, and pushes a new History state</p>
+							</div>
+							<blockquote>
+								<p><strong>NOTE</strong>: If your <code>&lt;head&gt;</code> element contains a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base"><code>&lt;base&gt;</code></a> element, <a href="_util_browser_location_.html#goto">goto</a> will read it as the base url</p>
+							</blockquote>
+							<p>As a simple example:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {goto} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/util/browser"</span>;
+
+<span class="hljs-comment">// Navigate to a page decending from the current origin</span>
+goto(<span class="hljs-string">"/shopping-cart/item-274"</span>);
+
+<span class="hljs-comment">// Similar to above, by updates the Browser's hash string instead</span>
+goto(<span class="hljs-string">"/shopping-cart/item-274"</span>, {<span class="hljs-attr">hash</span>: <span class="hljs-literal">true</span>});</code></pre>
+							<p>You can also replace the current History state:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {goto} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/util/browser"</span>;
+
+<span class="hljs-comment">// Same above, but replacing current History state</span>
+goto(<span class="hljs-string">"/shopping-cart/item-274"</span>, {<span class="hljs-attr">replace</span>: <span class="hljs-literal">true</span>});</code></pre>
+							<p>Finally, you can navigate to entirely different websites:</p>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {goto} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/util/browser"</span>;
+
+<span class="hljs-comment">// This will cause a full page reload while navigating</span>
+goto(<span class="hljs-string">"https://google.com"</span>);</code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>href: <span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5>options: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_util_browser_location_.igotooptions.html" class="tsd-signature-type">IGotoOptions</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 					</li>
 				</ul>
 			</section>

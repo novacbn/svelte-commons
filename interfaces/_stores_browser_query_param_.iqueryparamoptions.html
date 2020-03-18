@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IStorageOptions | svelte-commons - v0.0.4</title>
+	<title>IQueryParamOptions | svelte-commons - v0.0.4</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -2366,30 +2366,18 @@ img {
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-			<a href="_stores_browser_storage_.istorageoptions.html" class="tsd-kind-icon">IStorage<wbr>Options</a>
+			<a href="_stores_browser_query_param_.iqueryparamoptions.html" class="tsd-kind-icon">IQuery<wbr>Param<wbr>Options</a>
 			<ul>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="_stores_browser_storage_.istorageoptions.html#event" class="tsd-kind-icon">event</a>
+					<a href="_stores_browser_query_param_.iqueryparamoptions.html#hash" class="tsd-kind-icon">hash</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="_stores_browser_storage_.istorageoptions.html#event_source" class="tsd-kind-icon">event_<wbr>source</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="_stores_browser_storage_.istorageoptions.html#prefix" class="tsd-kind-icon">prefix</a>
+					<a href="_stores_browser_query_param_.iqueryparamoptions.html#replace" class="tsd-kind-icon">replace</a>
 				</li>
 			</ul>
 		</li>
-		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-			<a href="../modules/_stores_browser_storage_.html#istoragestore" class="tsd-kind-icon">IStorage<wbr>Store</a>
-		</li>
-		<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-			<a href="../modules/_stores_browser_storage_.html#local_storage" class="tsd-kind-icon">local_<wbr>storage</a>
-		</li>
-		<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-			<a href="../modules/_stores_browser_storage_.html#session_storage" class="tsd-kind-icon">session_<wbr>storage</a>
-		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-			<a href="../modules/_stores_browser_storage_.html#storage" class="tsd-kind-icon">storage</a>
+			<a href="../modules/_stores_browser_query_param_.html#query_param" class="tsd-kind-icon">query_<wbr>param</a>
 		</li>
 	</ul>
 </nav>
@@ -2398,7 +2386,7 @@ img {
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>Represents all the options passable into <code>storage</code></p>
+					<p>Represents the options passable into the <a href="../modules/_stores_browser_query_param_.html#query_param">query_param</a> Svelte Store</p>
 				</div>
 			</div>
 		</section>
@@ -2406,7 +2394,7 @@ img {
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">IStorageOptions</span>
+					<span class="target">IQueryParamOptions</span>
 				</li>
 			</ul>
 		</section>
@@ -2417,9 +2405,8 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_browser_storage_.istorageoptions.html#event" class="tsd-kind-icon">event</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_browser_storage_.istorageoptions.html#event_source" class="tsd-kind-icon">event_<wbr>source</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_browser_storage_.istorageoptions.html#prefix" class="tsd-kind-icon">prefix</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_browser_query_param_.iqueryparamoptions.html#hash" class="tsd-kind-icon">hash</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_stores_browser_query_param_.iqueryparamoptions.html#replace" class="tsd-kind-icon">replace</a></li>
 						</ul>
 					</section>
 				</div>
@@ -2428,47 +2415,32 @@ img {
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="event" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> event</h3>
-				<div class="tsd-signature tsd-kind-icon">event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+				<a name="hash" class="tsd-anchor"></a>
+				<h3>hash</h3>
+				<div class="tsd-signature tsd-kind-icon">hash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/browser/storage.ts#L18">src/stores/browser/storage.ts:18</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/stores/browser/query_param.ts#L16">src/stores/browser/query_param.ts:16</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents the event to listen to for changes</p>
+						<p>Represents if the URL hash should be used as the href source, e.g. <code>https://my.domain/?x=y</code> or <code>https://my.domain/#?x=y</code></p>
 					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="event_source" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> event_<wbr>source</h3>
-				<div class="tsd-signature tsd-kind-icon">event_<wbr>source<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventTarget</span></div>
+				<a name="replace" class="tsd-anchor"></a>
+				<h3>replace</h3>
+				<div class="tsd-signature tsd-kind-icon">replace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/browser/storage.ts#L23">src/stores/browser/storage.ts:23</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/stores/browser/query_param.ts#L21">src/stores/browser/query_param.ts:21</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents the source of the event to listen to</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="prefix" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagOptional">Optional</span> prefix</h3>
-				<div class="tsd-signature tsd-kind-icon">prefix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/stores/browser/storage.ts#L28">src/stores/browser/storage.ts:28</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents the prefix to prepend to all bound keys</p>
+						<p>Represents if updates to the Store should creating a new <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API">History</a> entry or not, e.g. back button-able</p>
 					</div>
 				</div>
 			</section>

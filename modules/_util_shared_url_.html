@@ -2369,6 +2369,9 @@ img {
 			<a href="../interfaces/_util_shared_url_.iroutermap.html" class="tsd-kind-icon">IRouter<wbr>Map</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+			<a href="_util_shared_url_.html#iqueryparams" class="tsd-kind-icon">IQuery<wbr>Params</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 			<a href="_util_shared_url_.html#irouter" class="tsd-kind-icon">IRouter</a>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
@@ -2378,7 +2381,22 @@ img {
 			<a href="_util_shared_url_.html#irouterparameters" class="tsd-kind-icon">IRouter<wbr>Parameters</a>
 		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-external-module">
+			<a href="_util_shared_url_.html#format_url" class="tsd-kind-icon">format_<wbr>url</a>
+		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-external-module">
+			<a href="_util_shared_url_.html#is_internal_href" class="tsd-kind-icon">is_<wbr>internal_<wbr>href</a>
+		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-external-module">
+			<a href="_util_shared_url_.html#join" class="tsd-kind-icon">join</a>
+		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-external-module">
 			<a href="_util_shared_url_.html#make_router" class="tsd-kind-icon">make_<wbr>router</a>
+		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-external-module">
+			<a href="_util_shared_url_.html#normalize_pathname" class="tsd-kind-icon">normalize_<wbr>pathname</a>
+		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-external-module">
+			<a href="_util_shared_url_.html#parse_query" class="tsd-kind-icon">parse_<wbr>query</a>
 		</li>
 	</ul>
 </nav>
@@ -2397,6 +2415,7 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Type aliases</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_util_shared_url_.html#iqueryparams" class="tsd-kind-icon">IQuery<wbr>Params</a></li>
 							<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_util_shared_url_.html#irouter" class="tsd-kind-icon">IRouter</a></li>
 							<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_util_shared_url_.html#iroutermatcher" class="tsd-kind-icon">IRouter<wbr>Matcher</a></li>
 							<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_util_shared_url_.html#irouterparameters" class="tsd-kind-icon">IRouter<wbr>Parameters</a></li>
@@ -2405,7 +2424,12 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Functions</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_util_shared_url_.html#format_url" class="tsd-kind-icon">format_<wbr>url</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_util_shared_url_.html#is_internal_href" class="tsd-kind-icon">is_<wbr>internal_<wbr>href</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_util_shared_url_.html#join" class="tsd-kind-icon">join</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_util_shared_url_.html#make_router" class="tsd-kind-icon">make_<wbr>router</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_util_shared_url_.html#normalize_pathname" class="tsd-kind-icon">normalize_<wbr>pathname</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_util_shared_url_.html#parse_query" class="tsd-kind-icon">parse_<wbr>query</a></li>
 						</ul>
 					</section>
 				</div>
@@ -2414,12 +2438,35 @@ img {
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Type aliases</h2>
 			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+				<a name="iqueryparams" class="tsd-anchor"></a>
+				<h3>IQuery<wbr>Params</h3>
+				<div class="tsd-signature tsd-kind-icon">IQuery<wbr>Params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/url.ts#L35">src/util/shared/url.ts:35</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents the key-value mapping returned by <a href="_util_shared_url_.html#parse_query">parse_query</a></p>
+					</div>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-index-signature">
+							<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
 				<a name="irouter" class="tsd-anchor"></a>
 				<h3>IRouter</h3>
 				<div class="tsd-signature tsd-kind-icon">IRouter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/util/shared/url.ts#L13">src/util/shared/url.ts:13</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/url.ts#L13">src/util/shared/url.ts:13</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2458,7 +2505,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">IRouter<wbr>Matcher<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/util/shared/url.ts#L23">src/util/shared/url.ts:23</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/url.ts#L23">src/util/shared/url.ts:23</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2497,7 +2544,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">IRouter<wbr>Parameters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/util/shared/url.ts#L18">src/util/shared/url.ts:18</a></li>
+						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/url.ts#L18">src/util/shared/url.ts:18</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2518,32 +2565,289 @@ img {
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Functions</h2>
 			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-				<a name="make_router" class="tsd-anchor"></a>
-				<h3>make_<wbr>router</h3>
+				<a name="format_url" class="tsd-anchor"></a>
+				<h3>format_<wbr>url</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-					<li class="tsd-signature tsd-kind-icon">make_<wbr>router<span class="tsd-signature-symbol">(</span>routes<span class="tsd-signature-symbol">: </span><a href="../interfaces/_util_shared_url_.iroutermap.html" class="tsd-signature-type">IRouterMap</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_util_shared_url_.html#irouter" class="tsd-signature-type">IRouter</a></li>
+					<li class="tsd-signature tsd-kind-icon">format_<wbr>url<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">URL</span>, include_hash<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/9a7aad6/src/util/shared/url.ts#L103">src/util/shared/url.ts:103</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/url.ts#L115">src/util/shared/url.ts:115</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Returns a pathname matching function</p>
+								<p>Returns a <code>URL</code> instance stringified via <code>.pathname</code> + <code>.search</code> + <code>.hash</code></p>
 							</div>
+							<blockquote>
+								<p><strong>NOTE</strong>: Set <code>include_hash</code> to <code>false</code>, to disable including <code>.hash</code> as a postfix</p>
+							</blockquote>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {format_url} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/util/shared"</span>;
+
+<span class="hljs-keyword">const</span> url = <span class="hljs-keyword">new</span> URL(<span class="hljs-string">"https://my.domain/path/to/application?x=2#header-id"</span>);
+
+<span class="hljs-comment">// Here, we're formating it with all three URL components</span>
+<span class="hljs-keyword">const</span> format_hash = format_url(url);
+<span class="hljs-built_in">console</span>.log(format_hash); <span class="hljs-comment">// logs: `/path/to/application?x=2#header-id`</span>
+
+<span class="hljs-comment">// Optionally though. you can disable including the `.hash` component</span>
+<span class="hljs-keyword">const</span> format_no_hash = format_url(url, <span class="hljs-literal">false</span>);
+<span class="hljs-built_in">console</span>.log(format_no_hash); <span class="hljs-comment">// logs: `/path/to/application?x=2`</span></code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>url: <span class="tsd-signature-type">Location</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">URL</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> include_hash: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+								<div class="tsd-comment tsd-typography">
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+				<a name="is_internal_href" class="tsd-anchor"></a>
+				<h3>is_<wbr>internal_<wbr>href</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+					<li class="tsd-signature tsd-kind-icon">is_<wbr>internal_<wbr>href<span class="tsd-signature-symbol">(</span>href<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/url.ts#L141">src/util/shared/url.ts:141</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns if the <code>href</code> is an internal webpage link, e.g. <code>/path/to/page</code> or <code>this/is/a/path</code></p>
+							</div>
+							<blockquote>
+								<p><strong>RULES</strong>:</p>
+								<ul>
+									<li>URLs with a protocol, e.g. <code>https://my.domain/index.html</code>, are considered external</li>
+									<li>URLs that are protocol independent, e.g. <code>//cdn-provider.com/some_stylesheet.css</code> are considered external</li>
+								</ul>
+							</blockquote>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {is_internal_href} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/util/shared"</span>;
+
+<span class="hljs-keyword">const</span> href = <span class="hljs-string">"/path/to/application?x=1"</span>;
+<span class="hljs-keyword">const</span> url = <span class="hljs-string">"https://google.com"</span>;
+
+<span class="hljs-built_in">console</span>.log(is_internal_href(href)); <span class="hljs-comment">// logs: `true`</span>
+<span class="hljs-built_in">console</span>.log(is_internal_href(url)); <span class="hljs-comment">// logs: `false`</span></code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>href: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+				<a name="join" class="tsd-anchor"></a>
+				<h3>join</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+					<li class="tsd-signature tsd-kind-icon">join<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/url.ts#L170">src/util/shared/url.ts:170</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns the <code>a</code> and <code>b</code> URLs joined together naively</p>
+							</div>
+							<blockquote>
+								<p><strong>RULES</strong>:</p>
+								<ul>
+									<li>Protocols, domains, ports are ignored for both URLs</li>
+									<li>Hash string, and query parameters are ignored for <code>a</code> URL</li>
+									<li><code>b</code> URL&#39;s hash string and query parameters will be in the resulting URL</li>
+									<li>The resulting URL pathname are normalized after being joined</li>
+								</ul>
+							</blockquote>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {join} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/util/shared"</span>;
+
+<span class="hljs-comment">// We're going to join `a` and `b` together, however the protocol and domain will be</span>
+<span class="hljs-comment">// dropped from `a`, along with the query parameters</span>
+<span class="hljs-keyword">const</span> a = <span class="hljs-string">"https://my.domain/path/to/application?x=1"</span>;
+<span class="hljs-keyword">const</span> b = <span class="hljs-string">"/sub-page?x=2"</span>;
+
+<span class="hljs-keyword">const</span> joined = join(a, b);
+
+<span class="hljs-built_in">console</span>.log(joined); <span class="hljs-comment">// logs: `/path/to/application/sub-page?x=2`</span></code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>a: <span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5>b: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+				<a name="make_router" class="tsd-anchor"></a>
+				<h3>make_<wbr>router</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+					<li class="tsd-signature tsd-kind-icon">make_<wbr>router<span class="tsd-signature-symbol">(</span>routes<span class="tsd-signature-symbol">: </span><a href="../interfaces/_util_shared_url_.iroutermap.html" class="tsd-signature-type">IRouterMap</a>, base<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_util_shared_url_.html#irouter" class="tsd-signature-type">IRouter</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/url.ts#L275">src/util/shared/url.ts:275</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns a function that matches parameterized routes, returning the assigned values and parsed parameters</p>
+							</div>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {make_router} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/util/shared"</span>;
+
+<span class="hljs-keyword">import</span> ComponentOne <span class="hljs-keyword">from</span> <span class="hljs-string">"..."</span>;
+<span class="hljs-keyword">import</span> ComponentTwo <span class="hljs-keyword">from</span> <span class="hljs-string">"..."</span>;
+
+<span class="hljs-comment">// Below, we're defining our route mappings, along with their assigned Svelte Components</span>
+<span class="hljs-keyword">const</span> routes = {
+    <span class="hljs-string">"/"</span>: ComponentOne,
+    <span class="hljs-string">"/items/:id"</span>: ComponentTwo
+};
+
+<span class="hljs-comment">// Now we feed our mappings into the factory function, which gives us a matcher function</span>
+<span class="hljs-keyword">const</span> router = make_router(routes);
+
+<span class="hljs-comment">// First, let's try matching our first route</span>
+<span class="hljs-built_in">console</span>.log(router(<span class="hljs-string">"/"</span>)); <span class="hljs-comment">// logs: `[{}, ComponentOne]`</span>
+
+<span class="hljs-comment">// Next, let's try matching our second route</span>
+<span class="hljs-built_in">console</span>.log(router(<span class="hljs-string">"/items/blue-jeans"</span>)); <span class="hljs-comment">// logs: `[{id: "blue-jeans"}, ComponentTwo]`</span>
+
+<span class="hljs-comment">// Finally, we can see that if we pass an invalid route, `null` is returned. Which should</span>
+<span class="hljs-comment">// be treated the same as a "404"</span>
+<span class="hljs-built_in">console</span>.log(router(<span class="hljs-string">"/some/invalid/route"</span>)); <span class="hljs-comment">// logs: `null`</span></code></pre>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
 								<h5>routes: <a href="../interfaces/_util_shared_url_.iroutermap.html" class="tsd-signature-type">IRouterMap</a></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> base: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
 								<div class="tsd-comment tsd-typography">
 								</div>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="_util_shared_url_.html#irouter" class="tsd-signature-type">IRouter</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+				<a name="normalize_pathname" class="tsd-anchor"></a>
+				<h3>normalize_<wbr>pathname</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+					<li class="tsd-signature tsd-kind-icon">normalize_<wbr>pathname<span class="tsd-signature-symbol">(</span>pathname<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/url.ts#L201">src/util/shared/url.ts:201</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns the normalized version of the <code>pathname</code> parameter</p>
+							</div>
+							<blockquote>
+								<p><strong>RULES</strong>:</p>
+								<ul>
+									<li>Backward slashes <code>\</code> are converted to forward slashes <code>/</code></li>
+									<li>Consecutive forward slashes <code>/</code> are reduced to a single slash</li>
+									<li>Forward slashes <code>/</code> are trimmed from the beginning and end of the string</li>
+									<li>Up directory directives <code>../</code> are evaluated, removing it and the parent directory if exists<ul>
+											<li><strong>NOTE</strong>: Parent directories are currently matched to alphanumeric chatacters, periods, spaces, tildes, underscores and dashes</li>
+											<li><strong>REGEX</strong>: [\w_.-\s~]+</li>
+										</ul>
+									</li>
+								</ul>
+							</blockquote>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {normalize_pathname} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/util/shared"</span>;
+
+<span class="hljs-comment">// Below we have a pathname with Windows separators `\`, consecutive separators `//`, and up directory directives `../`</span>
+<span class="hljs-keyword">const</span> malformed_pathname = <span class="hljs-string">"\\path/to//application/src/../assets"</span>; <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> `\\` renders as `\`, since `\` normally escapes in strings</span>
+
+<span class="hljs-keyword">const</span> normalized = normalize_pathname(malformed_pathname);
+
+<span class="hljs-built_in">console</span>.log(normalized); <span class="hljs-comment">// logs: `/path/to/application/assets`</span></code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>pathname: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+				<a name="parse_query" class="tsd-anchor"></a>
+				<h3>parse_<wbr>query</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+					<li class="tsd-signature tsd-kind-icon">parse_<wbr>query<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">URLSearchParams</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_util_shared_url_.html#iqueryparams" class="tsd-signature-type">IQueryParams</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/6257d30/src/util/shared/url.ts#L225">src/util/shared/url.ts:225</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Returns a query string parsed into a key-value mapping</p>
+							</div>
+							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {parse_query} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/util/shared"</span>;
+
+<span class="hljs-keyword">const</span> query_string = <span class="hljs-string">"?sorting=ASCENDING&amp;remove-inactive"</span>;
+
+<span class="hljs-keyword">const</span> mapping = parse_query(query_string);
+
+<span class="hljs-built_in">console</span>.log(mapping); logs: <span class="hljs-string">`{"sorting": "ASCENDING", "remove-inactive": true}`</span></code></pre>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>query: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">URL</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">URLSearchParams</span></h5>
+								<div class="tsd-comment tsd-typography">
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="_util_shared_url_.html#iqueryparams" class="tsd-signature-type">IQueryParams</a></h4>
 					</li>
 				</ul>
 			</section>
