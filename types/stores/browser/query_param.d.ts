@@ -13,6 +13,48 @@ export interface IQueryParamOptions {
     replace: boolean;
 }
 /**
+ * Returns a `Writable` Svelte Store, which binds to a specific query string parameter
+ *
+ * ```javascript
+ * <script context="module">
+ *     const SORTING_MODES = {
+ *         ascending: "ASCENDING",
+ *         decending: "DECENDING"
+ *     };
+ * </script>
+ *
+ * <script>
+ *     import {query_param} from "svelte-commons/lib/stores/browser";
+ *
+ *     // By providing `SORTING_MODES.ascending` as the default, that means whenever `?sorting=` is missing,
+ *     // then the Store will output `ASCENDING`
+ *     const store = query_param("sorting", SORTING_MODES.ascending);
+ *
+ *     const movie_titles = ["Golden Eye", "Blade Runner", "Star Wars: Episode I - The Phantom Menace"];
+ *
+ *     let sorted;
+ *     $: {
+ *         sorted = [...movie_titles];
+ *         sorted.sort();
+ *
+ *         if ($store === SORTING_MODES.decending) sorted.reverse();
+ *     }
+ * </script>
+ *
+ * <!-- Below will erase `?sorting=` from the URL, since `SORTING_MODES.ascending` is our default -->
+ * Change to: <a on:click|preventDefault={() => $store = SORTING_MODES.ascending}>ASCENDING</a><br />
+ *
+ * <!-- Below will add `?sorting=DECENDING` to the URL -->
+ * Change to: <a on:click|preventDefault={() => $store = SORTING_MODES.decending}>DECENDING</a><br />
+ *
+ * <h2>Movie Titles:</h2>
+ *
+ * <ul>
+ *     {#each sorted as title}
+ *         <li>{title}</li>
+ *     {/each}
+ * </ul>
+ * ```
  *
  * @param key
  * @param default_value
