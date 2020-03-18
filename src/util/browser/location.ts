@@ -1,4 +1,3 @@
-import {IS_BROWSER} from "../shared/browser";
 import {format_url, is_internal_href, join} from "../shared/url";
 
 /**
@@ -140,7 +139,7 @@ export function goto(href: string, options: Partial<IGotoOptions>): void {
 
     // We need to support passable base urls overrides here
     if (base_url) url.pathname = join(base_url, url.pathname);
-    else if (!hash && IS_BROWSER) {
+    else if (!hash) {
         // We can also support non-hash mode base urls via `<base href="XXX" />` in `<head>`
         if (location.href !== document.baseURI) {
             const {pathname} = new URL(document.baseURI);
