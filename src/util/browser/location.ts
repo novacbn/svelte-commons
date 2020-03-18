@@ -5,10 +5,21 @@ import {format_url, is_internal_href, join} from "../shared/url";
  * Represents the options passable into [[goto]]
  */
 export interface IGotoOptions {
+    /**
+     * Represents the base url of your Web Application, e.g. if the entry point is `https://my.domain/my-application`, you should set to `/my-application/`
+     *
+     * **NOTE**: The [[goto]] function also reads from any [`<base>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) elements in `<head>`, if present
+     */
     base_url: string;
 
+    /**
+     * Represents if the URL hash should be used as the target href source, e.g. `https://my.domain/path/to/route?x=y` or `https://my.domain/#path/to/route?x=y`
+     */
     hash: boolean;
 
+    /**
+     * Represents if the navigation should create a new [History](https://developer.mozilla.org/en-US/docs/Web/API/History_API) entry or not, e.g. Forward / Back Button-able
+     */
     replace: boolean;
 }
 
