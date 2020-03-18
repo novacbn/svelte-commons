@@ -47,7 +47,7 @@ function StorageOptions(options: IStorageOptions = {}): IStorageOptions {
 /**
  * Returns a `Readable` (Server) / `Writable` (Browser) Svelte Store with a reactive binding to a given `Storage` adapter
  *
- * NOTE: Only **JSON-compatible** values are supported
+ * > **NOTE**: Only **JSON-compatible** values are supported
  *
  * As a semi-complete example:
  *

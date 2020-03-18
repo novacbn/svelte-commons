@@ -126,6 +126,16 @@ export function format_url(url: Location | URL, include_hash: boolean = true): s
  * > - URLs with a protocol, e.g. `https://my.domain/index.html`, are considered external
  * > - URLs that are protocol independent, e.g. `//cdn-provider.com/some_stylesheet.css` are considered external
  *
+ * ```javascript
+ * import {is_internal_href} from "svelte-commons/lib/util/shared";
+ *
+ * const href = "/path/to/application?x=1";
+ * const url = "https://google.com";
+ *
+ * console.log(is_internal_href(href)); // logs: `true`
+ * console.log(is_internal_href(url)); // logs: `false`
+ * ```
+ *
  * @param href
  */
 export function is_internal_href(href: string): boolean {
