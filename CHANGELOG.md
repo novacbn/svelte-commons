@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## v0.1.1 - 2020/03/30
+
+-   **BREAKING CHANGES**
+    -   All sub-modules, `svelte-commons/lib/*`, are now exported as-is at entry point.
+        -   Due to Snowpack not supporting nested imports from external libraries that well.
+        -   e.g. instead of `import {stores} from "svelte-commons"; const {immutable} = stores;`
+        -   it is `import {immutable} from "svelte-commons";`
+-   Added initial support for ECMAScript Modules (support for `pikapkg/snowpack` / `jakedeichert/svelvet`)
+
 ## v0.1.0 - 2020/03/18
 
 -   **BREAKING CHANGES**

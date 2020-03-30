@@ -11,7 +11,7 @@ Provides a collection of common Svelte Actions, Svelte Stores, and Utility Funct
 Open your terminal and install via `npm`:
 
 ```sh
-npm install git+https://github.com/novacbn/svelte-commons#0.1.0
+npm install git+https://github.com/novacbn/svelte-commons#0.1.1
 ```
 
 ### Documentation
