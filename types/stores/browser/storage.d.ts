@@ -21,7 +21,7 @@
  * ); // logs: `"a non-default string"`
  * ```
  */
-export declare const local_storage: import("../shared/storage").IStorageStore<import("../../util").IJSONType> | null;
+export declare const local_storage: import("../shared/storage").IStorageStore<import("../..").IJSONType> | null;
 /**
  * Returns a `storage` Svelte Store with a reactive binding to `window.sessionStorage`
  *
@@ -45,4 +45,4 @@ export declare const local_storage: import("../shared/storage").IStorageStore<im
  * ); // logs: `"a non-default string"`
  * ```
  */
-export declare const session_storage: import("../shared/storage").IStorageStore<import("../../util").IJSONType> | null;
+export declare const session_storage: import("../shared/storage").IStorageStore<import("../..").IJSONType> | null;

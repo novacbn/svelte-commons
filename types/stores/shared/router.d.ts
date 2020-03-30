@@ -7,7 +7,7 @@ import { IRouterMap, IRouterParameters, IQueryParams } from "../../util/shared/u
  */
 export interface IRouterOptions {
     /**
-     * Represents the base url of your application, e.g. if the entry point is `https://my.domain/my-application`, you should set to `/my-application/`
+     * Represents the base url of your Web Application, e.g. if the entry point is `https://my.domain/my-application`, you should set to `/my-application/`
      *
      * **NOTE**: The [[router]] Store also reads from any [`<base>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base) elements in `<head>`, if present
      */
@@ -126,7 +126,7 @@ export interface IRouterReturn {
  * </main>
  * ```
  *
- * Alternatively, if you SSR (Server-Side Rendering) or other server interactions is not in your scope, you can enable [[IRouterReturn.hash]] for hash mode:
+ * Alternatively, if SSR (Server-Side Rendering) or other Server-oriented interactions are not in your scope, you can enable [[IRouterOptions.hash]] for hash mode:
  *
  * ```html
  * <script>
@@ -173,7 +173,7 @@ export interface IRouterReturn {
  * </main>
  * ```
  *
- * And for SSR implementors, just pass in the current server URL to [[IRouterOptions.href]] for the `router` Store to work:
+ * And for SSR implementors, just pass in the current Server URL to [[IRouterOptions.href]] for the `router` Store to work:
  *
  * ```html
  * <script>

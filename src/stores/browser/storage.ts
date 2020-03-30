@@ -3,7 +3,7 @@ import {storage} from "../shared/storage";
 /**
  * Represents the current global object, Window (Browser) / Global (Server)
  */
-const global = this;
+const global = typeof window !== "undefined" ? window : this;
 
 /**
  * Returns a `storage` Svelte Store with a reactive binding to `window.localStorage`

@@ -16,7 +16,7 @@ export interface ILocationOptions {
      */
     readonly: boolean;
     /**
-     * Represents if updates to the Store should creating a new [History](https://developer.mozilla.org/en-US/docs/Web/API/History_API) entry or not, e.g. back button-able
+     * Represents if updates to the Store should creating a new [History](https://developer.mozilla.org/en-US/docs/Web/API/History_API) entry or not, e.g. Forward / Back Button-able
      */
     replace: boolean;
 }
