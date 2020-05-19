@@ -81,6 +81,10 @@ export declare function map_collection<T extends object>(array: T[], mapper: IMa
  */
 export declare function match_predicate<T extends object>(item: T, predicate: Partial<T>): boolean;
 /**
+ * Returns nothing and takes no arguments, used for dummy function placeholders
+ */
+export declare function noop(): void;
+/**
  * Returns the filtered `array` element, that naively DOES NOT match the `predicate`
  *
  * @internal

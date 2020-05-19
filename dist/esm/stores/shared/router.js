@@ -12,7 +12,7 @@ var __assign = (this && this.__assign) || function () {
 import { derived, readable, writable } from "svelte/store";
 import { get_location_url, goto } from "../../util/browser/location";
 import { IS_BROWSER } from "../../util/shared/browser";
-import { format_url, make_router, parse_query } from "../../util/shared/url";
+import { make_router, parse_query } from "../../util/shared/url";
 /**
  * Returns the options passable into the [[router]] Svelte Store, with standard defaults
  *
@@ -74,7 +74,7 @@ function make_href_store(href, hash) {
 function make_router_store(router, href) {
     return derived(href, function (value) {
         var url = new URL(value);
-        return router(format_url(url, false));
+        return router(url.pathname);
     });
 }
 /**

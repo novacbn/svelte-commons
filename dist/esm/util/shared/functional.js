@@ -181,6 +181,10 @@ export function match_predicate(item, predicate) {
     return true;
 }
 /**
+ * Returns nothing and takes no arguments, used for dummy function placeholders
+ */
+export function noop() { }
+/**
  * Returns the filtered `array` element, that naively DOES NOT match the `predicate`
  *
  * @internal
