@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;stores/shared/merged&quot; | svelte-commons - v0.1.2</title>
+	<title>IEvent | svelte-commons - v0.1.2</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -2365,213 +2365,132 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-			<a href="_stores_shared_merged_.html#imerger" class="tsd-kind-icon">IMerger</a>
+		<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+			<a href="_util_shared_event_.ievent.html" class="tsd-kind-icon">IEvent</a>
+			<ul>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="_util_shared_event_.ievent.html#dispatch" class="tsd-kind-icon">dispatch</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="_util_shared_event_.ievent.html#subscribe" class="tsd-kind-icon">subscribe</a>
+				</li>
+			</ul>
 		</li>
-		<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
-			<a href="_stores_shared_merged_.html#merge" class="tsd-kind-icon">merge</a>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+			<a href="../modules/_util_shared_event_.html#ieventcallback" class="tsd-kind-icon">IEvent<wbr>Callback</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+			<a href="../modules/_util_shared_event_.html#ieventnotifier" class="tsd-kind-icon">IEvent<wbr>Notifier</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+			<a href="../modules/_util_shared_event_.html#ieventsubscriber" class="tsd-kind-icon">IEvent<wbr>Subscriber</a>
+		</li>
+		<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+			<a href="../modules/_util_shared_event_.html#ieventunsubscriber" class="tsd-kind-icon">IEvent<wbr>Unsubscriber</a>
 		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-			<a href="_stores_shared_merged_.html#merged" class="tsd-kind-icon">merged</a>
+			<a href="../modules/_util_shared_event_.html#event" class="tsd-kind-icon">event</a>
 		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-comment">
+			<div class="tsd-comment tsd-typography">
+				<div class="lead">
+					<p>Represents an interface to publish event data via a singleton instance, that is compatible with Svelte Store subscriptions</p>
+				</div>
+			</div>
+		</section>
+		<section class="tsd-panel tsd-type-parameters">
+			<h3>Type parameters</h3>
+			<ul class="tsd-type-parameters">
+				<li>
+					<h4>T</h4>
+				</li>
+			</ul>
+		</section>
+		<section class="tsd-panel tsd-hierarchy">
+			<h3>Hierarchy</h3>
+			<ul class="tsd-hierarchy">
+				<li>
+					<span class="target">IEvent</span>
+				</li>
+			</ul>
+		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Type aliases</h3>
+						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_stores_shared_merged_.html#imerger" class="tsd-kind-icon">IMerger</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section ">
-						<h3>Functions</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported"><a href="_stores_shared_merged_.html#merge" class="tsd-kind-icon">merge</a></li>
-							<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_stores_shared_merged_.html#merged" class="tsd-kind-icon">merged</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_util_shared_event_.ievent.html#dispatch" class="tsd-kind-icon">dispatch</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_util_shared_event_.ievent.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Type aliases</h2>
-			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-				<a name="imerger" class="tsd-anchor"></a>
-				<h3>IMerger</h3>
-				<div class="tsd-signature tsd-kind-icon">IMerger&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/f9c4673/src/stores/shared/merged.ts#L8">src/stores/shared/merged.ts:8</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents the &quot;merger&quot; function that combines the new object, with the previous object. Overwritting existing keys</p>
-					</div>
-				</div>
-				<h4 class="tsd-type-parameters-title">Type parameters</h4>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-					</li>
-				</ul>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>previous_object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, new_object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5>previous_object: <span class="tsd-signature-type">T</span></h5>
-										</li>
-										<li>
-											<h5>new_object: <span class="tsd-signature-type">T</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</section>
-		</section>
-		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Functions</h2>
-			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
-				<a name="merge" class="tsd-anchor"></a>
-				<h3>merge</h3>
-				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
-					<li class="tsd-signature tsd-kind-icon">merge&lt;T&gt;<span class="tsd-signature-symbol">(</span>previous_object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, new_object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="dispatch" class="tsd-anchor"></a>
+				<h3>dispatch</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">dispatch<span class="tsd-signature-symbol">(</span>details<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/f9c4673/src/stores/shared/merged.ts#L15">src/stores/shared/merged.ts:15</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/f9c4673/src/util/shared/event.ts#L29">src/util/shared/event.ts:29</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Returns the two objects merged with each other</p>
+								<p>Dispatches new event details to every subscriber</p>
 							</div>
 						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T</h4>
-							</li>
-						</ul>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>previous_object: <span class="tsd-signature-type">T</span></h5>
-							</li>
-							<li>
-								<h5>new_object: <span class="tsd-signature-type">T</span></h5>
+								<h5>details: <span class="tsd-signature-type">T</span></h5>
 								<div class="tsd-comment tsd-typography">
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-				<a name="merged" class="tsd-anchor"></a>
-				<h3>merged</h3>
-				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">merged&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, merger<span class="tsd-signature-symbol">?: </span><a href="_stores_shared_merged_.html#imerger" class="tsd-signature-type">IMerger</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, start<span class="tsd-signature-symbol">?: </span><a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<a name="subscribe" class="tsd-anchor"></a>
+				<h3>subscribe</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<li class="tsd-signature tsd-kind-icon">subscribe<span class="tsd-signature-symbol">(</span>run<span class="tsd-signature-symbol">: </span><a href="../modules/_util_shared_event_.html#ieventcallback" class="tsd-signature-type">IEventCallback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_util_shared_event_.html#ieventunsubscriber" class="tsd-signature-type">IEventUnsubscriber</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/f9c4673/src/stores/shared/merged.ts#L79">src/stores/shared/merged.ts:79</a></li>
+								<li>Defined in <a href="https://github.com/novacbn/svelte-commons/blob/f9c4673/src/util/shared/event.ts#L35">src/util/shared/event.ts:35</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Represents a <code>Writable</code> Svelte Store for a Store that performs shallow delta updates to the current object</p>
+								<p>Subscribes to new incoming event dispatches</p>
 							</div>
-							<p><strong>Without Custom &quot;Merger&quot;</strong></p>
-							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {merged} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
-
-<span class="hljs-comment">// The Store is initialized with an empty base object, which is immutable by default</span>
-<span class="hljs-keyword">const</span> store = merged({});
-
-<span class="hljs-comment">// Will log every change to the Store</span>
-store.subscribe(<span class="hljs-built_in">console</span>.log);
-
-store.set({<span class="hljs-attr">first_name</span>: <span class="hljs-string">"John"</span>, <span class="hljs-attr">last_name</span>: <span class="hljs-string">"Smith"</span>}); <span class="hljs-comment">// logs: `{first_name: "John", last_name: "Smith"}`</span>
-store.set({<span class="hljs-attr">first_name</span>: <span class="hljs-string">"Jane"</span>}); <span class="hljs-comment">// logs: `{first_name: "Jane", last_name: "Smith"}`</span></code></pre>
-							<p><strong>With Custom &quot;Merger&quot;</strong></p>
-							<pre><code class="language-javascript"><span class="hljs-keyword">import</span> {merged} <span class="hljs-keyword">from</span> <span class="hljs-string">"svelte-commons/lib/stores/shared"</span>;
-
-<span class="hljs-keyword">const</span> initial_data = {
-    <span class="hljs-attr">name</span>: <span class="hljs-string">"James Bond"</span>,
-    <span class="hljs-attr">job</span>: {
-        <span class="hljs-attr">title</span>: <span class="hljs-string">"Spy"</span>,
-        <span class="hljs-attr">agency</span>: <span class="hljs-string">"MI6"</span>,
-        <span class="hljs-attr">country</span>: <span class="hljs-string">"England"</span>
-    }
-};
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">merger</span>(<span class="hljs-params">a, b</span>) </span>{
-    <span class="hljs-comment">// By default, the default "Merger" only merges the top-level object keys, and spreads</span>
-    <span class="hljs-comment">// all of them. For more performance, and to target nested keys, we can use a custom function</span>
-    <span class="hljs-keyword">const</span> { <span class="hljs-attr">name</span>: a_name, <span class="hljs-attr">job</span>: a_job = {} } = a;
-    <span class="hljs-keyword">const</span> { <span class="hljs-attr">name</span>: b_name, <span class="hljs-attr">job</span>: b_job = {} } = b;
-
-    <span class="hljs-keyword">return</span> {
-        <span class="hljs-attr">name</span>: b_name || a_name,
-        <span class="hljs-attr">job</span>: {
-            <span class="hljs-attr">title</span>: b_job.title || a_job.title,
-            <span class="hljs-attr">agency</span>: b_job.agency || a_job.agency,
-            <span class="hljs-attr">country</span>: b_job.country || a_job.country
-        }
-    };
-}
-
-<span class="hljs-comment">// The Store is initialized with an empty base object, which is immutable by default</span>
-<span class="hljs-keyword">const</span> store = merged(initial_data, merger);
-
-<span class="hljs-comment">// Will log every change to the Store</span>
-store.subscribe(<span class="hljs-built_in">console</span>.log); <span class="hljs-comment">// logs: `{name:"James Bond",job:{title:"Spy",agency:"MI6",country:"England"}}`</span>
-
-store.set({<span class="hljs-attr">job</span>: {<span class="hljs-attr">agency</span>: <span class="hljs-string">"FBI"</span>, <span class="hljs-attr">country</span>: <span class="hljs-string">"USA"</span>}}); <span class="hljs-comment">// logs: `{name:"James Bond",job:{title:"Spy",agency:"FBI",country:"USA"}}`</span></code></pre>
 						</div>
-						<h4 class="tsd-type-parameters-title">Type parameters</h4>
-						<ul class="tsd-type-parameters">
-							<li>
-								<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
-							</li>
-						</ul>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>value: <span class="tsd-signature-type">T</span></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> merger: <a href="_stores_shared_merged_.html#imerger" class="tsd-signature-type">IMerger</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;merge</span></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <a href="_util_shared_stores_.html#istorestartstopnotifier" class="tsd-signature-type">IStoreStartStopNotifier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5>run: <a href="../modules/_util_shared_event_.html#ieventcallback" class="tsd-signature-type">IEventCallback</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Writable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="../modules/_util_shared_event_.html#ieventunsubscriber" class="tsd-signature-type">IEventUnsubscriber</a></h4>
 					</li>
 				</ul>
 			</section>
