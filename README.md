@@ -11,7 +11,7 @@ Provides a collection of common Svelte Actions, Svelte Stores, and Utility Funct
 Open your terminal and install via `npm`:
 
 ```sh
-npm install git+https://github.com/novacbn/svelte-commons#0.1.1
+npm install git+https://github.com/novacbn/svelte-commons#0.1.2
 ```
 
 ### Documentation
@@ -39,6 +39,7 @@ See TypeDoc documentation at [novacbn.github.io/svelte-commons](https://novacbn.
     -   [`session_storage`](https://novacbn.github.io/svelte-commons/modules/_stores_browser_storage_.html#session_storage) — **browser only**
     -   [`storage`](https://novacbn.github.io/svelte-commons/modules/_stores_shared_storage_#storage) — **shared**
 -   Utilities
+    -   [`event`](https://novacbn.github.io/svelte-commons/modules/_util_shared_event_.html#event) — **shared**
     -   [`format_css_declaration`](https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#format_css_declaration) — **shared**
     -   [`format_css_reference`](https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#format_css_reference) — **shared**
     -   [`format_css_variable`](https://novacbn.github.io/svelte-commons/modules/_util_shared_browser_.html#format_css_variable) — **shared**

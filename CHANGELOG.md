@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.1.2 - 2020/05/18
+
+-   Added `event` to `util/shared/event`
+    -   Similar to `readable` / `writable`, returns an object `{dispatch: (value) => void, subscriber: (run, invalidate) => unsubscribe}`
+    -   Use this to create singleton event publishers, when not in context of the Browser's DOM. e.g. Application sub-systems
+-   Added `noop` to `util/shared/functional` for dummy function placeholders
+-   Fixed `router` not working in hash mode (removed erroneous `format_url` call)
+
 ## v0.1.1 - 2020/03/30
 
 -   **BREAKING CHANGES**
