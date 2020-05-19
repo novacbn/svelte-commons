@@ -157,7 +157,7 @@ function make_router_store(
     return derived(href, (value) => {
         const url = new URL(value);
 
-        return router(format_url(url, false));
+        return router(url.pathname);
     });
 }
 

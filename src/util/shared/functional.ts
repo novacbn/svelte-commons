@@ -159,6 +159,11 @@ export function match_predicate<T extends object>(item: T, predicate: Partial<T>
 }
 
 /**
+ * Returns nothing and takes no arguments, used for dummy function placeholders
+ */
+export function noop(): void {}
+
+/**
  * Returns the filtered `array` element, that naively DOES NOT match the `predicate`
  *
  * @internal
