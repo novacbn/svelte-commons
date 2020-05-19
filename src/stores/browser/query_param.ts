@@ -37,7 +37,7 @@ function QueryParamOptions(options: Partial<IQueryParamOptions> = {}): IQueryPar
 /**
  * Returns a `Writable` Svelte Store, which binds to a specific query string parameter
  *
- * ```javascript
+ * ```html
  * <script context="module">
  *     const SORTING_MODES = {
  *         ascending: "ASCENDING",

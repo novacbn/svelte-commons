@@ -37,6 +37,30 @@ export interface IEvent<T> {
 
 /**
  * Returns a new [[IEvent]] instance, for handling event publishing in non-DOM related contexts
+ *
+ * As a minimal example:
+ *
+ * ```javascript
+ * import {event} from "svelte-commons/lib/util/event";
+ *
+ * // Initialize our event publisher as a singleton
+ * const MY_EVENT = event((dispatch) => {
+ *     // The callback we provided, will run whenever we get a first subscriber
+ *     console.log("Got my first subscriber!");
+ *
+ *     return () => {
+ *         // And the callback returned, will run whenever we lose our last subscriber
+ *         console.log("Lost my last subscriber!");
+ *     };
+ * });
+ *
+ * MY_EVENT.subscribe((details) => {
+ *     console.log(details);
+ * }); // Will log any dispatches to the event publisher
+ *
+ * MY_EVENT.dispatch({message: "Hello world!"}); // logs: `{"message": "Hello world!"}`
+ * ```
+ *
  * @param start
  */
 export function event<T>(start: IEventNotifier<T>): IEvent<T> {
